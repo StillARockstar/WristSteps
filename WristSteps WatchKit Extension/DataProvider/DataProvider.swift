@@ -16,6 +16,8 @@ protocol HealthData {
     var stepCount: Int { get }
     var stepCountPublished: Published<Int> { get }
     var stepCountPublisher: Published<Int>.Publisher { get }
+
+    func update()
 }
 
 protocol UserData {
@@ -42,6 +44,10 @@ class AppHealthData: HealthData {
     @Published var stepCount: Int = 0
     var stepCountPublished: Published<Int> { _stepCount }
     var stepCountPublisher: Published<Int>.Publisher { $stepCount }
+
+    func update() {
+
+    }
 }
 
 class AppUserData: UserData {
@@ -68,4 +74,8 @@ class SimulatorHealthData: HealthData {
     @Published var stepCount: Int = Int.random(in: 0...10000)
     var stepCountPublished: Published<Int> { _stepCount }
     var stepCountPublisher: Published<Int>.Publisher { $stepCount }
+
+    func update() {
+        self.stepCount = Int.random(in: 0...10000)
+    }
 }

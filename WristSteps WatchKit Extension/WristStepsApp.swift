@@ -9,21 +9,37 @@ import SwiftUI
 
 @main
 struct WristStepsApp: App {
+    @WKExtensionDelegateAdaptor(ExtensionDelegate.self) var extensionDelegate
+
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                #if TARGET_WATCH
                 HomeView()
                     .environmentObject(
-                        HomeViewProvider(dataProvider: AppDataProvider())
+                        HomeViewProvider(dataProvider: extensionDelegate.dataProvider)
                     )
-                #else
-                HomeView()
-                    .environmentObject(
-                        HomeViewProvider(dataProvider: SimulatorDataProvider())
-                    )
-                #endif
             }
         }
+    }
+}
+
+class ExtensionDelegate: NSObject, WKExtensionDelegate {
+    let dataProvider: DataProvider
+
+    override init() {
+        #if TARGET_WATCH
+        self.dataProvider = AppDataProvider()
+        #else
+        self.dataProvider = SimulatorDataProvider()
+        #endif
+        super.init()
+    }
+
+    func applicationWillEnterForeground() {
+        dataProvider.healthData.update()
+    }
+
+    func applicationDidEnterBackground() {
+        print("Application did enter background")
     }
 }
