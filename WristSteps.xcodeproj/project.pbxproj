@@ -15,6 +15,8 @@
 		4C9FE88924FBC504008062AF /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE88824FBC504008062AF /* ComplicationController.swift */; };
 		4C9FE88B24FBC504008062AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9FE88A24FBC504008062AF /* Assets.xcassets */; };
 		4C9FE88E24FBC504008062AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9FE88D24FBC504008062AF /* Preview Assets.xcassets */; };
+		4C9FE89E24FBC67C008062AF /* Color+Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE89D24FBC67C008062AF /* Color+Tint.swift */; };
+		4C9FE8A024FBC6C8008062AF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9FE89F24FBC6C8008062AF /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		4C9FE88A24FBC504008062AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C9FE88D24FBC504008062AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4C9FE88F24FBC504008062AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C9FE89D24FBC67C008062AF /* Color+Tint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Tint.swift"; sourceTree = "<group>"; };
+		4C9FE89F24FBC6C8008062AF /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,10 +119,12 @@
 		4C9FE88324FBC504008062AF /* WristSteps WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4C9FE89D24FBC67C008062AF /* Color+Tint.swift */,
 				4C9FE88424FBC504008062AF /* ContentView.swift */,
 				4C9FE88624FBC504008062AF /* WristStepsApp.swift */,
 				4C9FE88824FBC504008062AF /* ComplicationController.swift */,
 				4C9FE88A24FBC504008062AF /* Assets.xcassets */,
+				4C9FE89F24FBC6C8008062AF /* Colors.xcassets */,
 				4C9FE88F24FBC504008062AF /* Info.plist */,
 				4C9FE88C24FBC504008062AF /* Preview Content */,
 			);
@@ -247,6 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C9FE8A024FBC6C8008062AF /* Colors.xcassets in Resources */,
 				4C9FE88E24FBC504008062AF /* Preview Assets.xcassets in Resources */,
 				4C9FE88B24FBC504008062AF /* Assets.xcassets in Resources */,
 			);
@@ -259,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C9FE89E24FBC67C008062AF /* Color+Tint.swift in Sources */,
 				4C9FE88524FBC504008062AF /* ContentView.swift in Sources */,
 				4C9FE88724FBC504008062AF /* WristStepsApp.swift in Sources */,
 				4C9FE88924FBC504008062AF /* ComplicationController.swift in Sources */,
