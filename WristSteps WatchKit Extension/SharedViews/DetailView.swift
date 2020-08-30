@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct DetailView: View {
-    let currentStepCount: Int
-    let currentStepGoal: Int
+    let stepCount: Int
+    let stepGoal: Int
 
-    private var currentStepPercent: Int {
-        Int((Double(currentStepCount) / Double(currentStepGoal)) * 100)
+    private var stepPercent: Double {
+        (Double(stepCount) / Double(stepGoal)) * 100
     }
 
     var body: some View {
@@ -20,12 +20,12 @@ struct DetailView: View {
             HStack {
                 Text("TODAY")
                     .foregroundColor(.gray)
-                Text("\(currentStepPercent)%")
+                Text("\(stepPercent, specifier: "%.0f")%")
                     .foregroundColor(.appTint)
                     .fontWeight(.semibold)
             }
             HStack(alignment: .bottom) {
-                Text("\(currentStepCount)")
+                Text("\(stepCount)")
                     .foregroundColor(.appTint)
                     .font(.title)
                 Text("steps")
@@ -35,7 +35,7 @@ struct DetailView: View {
             HStack {
                 Text("GOAL")
                     .foregroundColor(.gray)
-                Text("\(currentStepGoal) steps")
+                Text("\(stepGoal) steps")
                     .fontWeight(.medium)
             }
         }
@@ -45,6 +45,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(currentStepCount: 5000, currentStepGoal: 10000)
+        DetailView(stepCount: 5000, stepGoal: 10000)
     }
 }

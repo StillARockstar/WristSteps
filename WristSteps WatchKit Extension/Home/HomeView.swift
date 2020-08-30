@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var provider: HomeViewProvider
+
     var body: some View {
         VStack {
-            DetailView(currentStepCount: 5000, currentStepGoal: 10000)
+            Spacer()
+            DetailView(
+                stepCount: provider.stepCount,
+                stepGoal: provider.stepGoal
+            )
             Spacer()
             HStack {
                 Button("🏁", action: { })
@@ -24,5 +30,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environmentObject(HomeViewProvider(dataProvider: SimulatorDataProvider()))
     }
 }
