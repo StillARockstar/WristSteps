@@ -21,6 +21,7 @@
 		4C9FE8A324FBE673008062AF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE8A224FBE673008062AF /* HomeView.swift */; };
 		4C9FE8A624FBE6E4008062AF /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE8A524FBE6E4008062AF /* DetailView.swift */; };
 		4CC3713F250016F700509583 /* View+Embed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3713E250016F700509583 /* View+Embed.swift */; };
+		4CD0B75925001E1800D13426 /* ComplicationPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0B75825001E1800D13426 /* ComplicationPayload.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		4C9FE8A224FBE673008062AF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4C9FE8A524FBE6E4008062AF /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		4CC3713E250016F700509583 /* View+Embed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Embed.swift"; sourceTree = "<group>"; };
+		4CD0B75825001E1800D13426 /* ComplicationPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationPayload.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				4C9FE8A424FBE6D3008062AF /* SharedViews */,
 				4C9FE8A124FBE65E008062AF /* Home */,
 				4C9FE88624FBC504008062AF /* WristStepsApp.swift */,
+				4CD0B75825001E1800D13426 /* ComplicationPayload.swift */,
 				4C9FE88824FBC504008062AF /* ComplicationController.swift */,
 				4C9FE88A24FBC504008062AF /* Assets.xcassets */,
 				4C9FE89F24FBC6C8008062AF /* Colors.xcassets */,
@@ -307,6 +310,7 @@
 				4C253A9424FBEDF80083B66B /* HomeViewProvider.swift in Sources */,
 				4C253A9724FBEFAE0083B66B /* DataProvider.swift in Sources */,
 				4C9FE88724FBC504008062AF /* WristStepsApp.swift in Sources */,
+				4CD0B75925001E1800D13426 /* ComplicationPayload.swift in Sources */,
 				4C9FE8A324FBE673008062AF /* HomeView.swift in Sources */,
 				4CC3713F250016F700509583 /* View+Embed.swift in Sources */,
 				4C9FE88924FBC504008062AF /* ComplicationController.swift in Sources */,

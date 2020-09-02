@@ -5,6 +5,7 @@
 //  Created by Michael Schoder on 30.08.20.
 //
 
+import ClockKit
 import SwiftUI
 import Combine
 
@@ -37,6 +38,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         self.stepCountPublisher = dataProvider.healthData.stepCountPublisher
             .removeDuplicates()
             .sink { newValue in
+                ComplicationPayload.shared.set(.stepCount, newValue: newValue)
+                CLKComplicationServer.sharedInstance().activeComplications?.forEach {
+                    CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
+                }
                 print("New step count: \(newValue)")
             }
 
