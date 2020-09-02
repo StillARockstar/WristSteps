@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 @main
 struct WristStepsApp: App {
@@ -24,6 +25,7 @@ struct WristStepsApp: App {
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
     let dataProvider: DataProvider
+    private var stepCountPublisher: AnyCancellable
 
     override init() {
         #if TARGET_WATCH
@@ -31,11 +33,18 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         #else
         self.dataProvider = SimulatorDataProvider()
         #endif
+
+        self.stepCountPublisher = dataProvider.healthData.stepCountPublisher
+            .removeDuplicates()
+            .sink { newValue in
+                print("New step count: \(newValue)")
+            }
+
         super.init()
     }
 
     func applicationWillEnterForeground() {
-        dataProvider.healthData.update()
+        dataProvider.healthData.update(completion: { _ in })
     }
 
     func applicationDidEnterBackground() {

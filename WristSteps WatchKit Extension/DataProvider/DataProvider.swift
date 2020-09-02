@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreMotion
 
 protocol DataProvider {
     var healthData: HealthData { get }
@@ -17,7 +18,7 @@ protocol HealthData {
     var stepCountPublished: Published<Int> { get }
     var stepCountPublisher: Published<Int>.Publisher { get }
 
-    func update()
+    func update(completion: @escaping ((Bool) -> Void))
 }
 
 protocol UserData {
@@ -45,8 +46,22 @@ class AppHealthData: HealthData {
     var stepCountPublished: Published<Int> { _stepCount }
     var stepCountPublisher: Published<Int>.Publisher { $stepCount }
 
-    func update() {
+    private let pedometer = CMPedometer()
 
+    func update(completion: @escaping ((Bool) -> Void)) {
+        let endDate = Date()
+        let startDate = Calendar.current.startOfDay(for: endDate)
+
+        pedometer.queryPedometerData(from: startDate, to: endDate, withHandler: { [weak self] pedometerData, error in
+            guard let pedometerData = pedometerData else {
+                completion(false)
+                return
+            }
+            DispatchQueue.main.async {
+                self?.stepCount = pedometerData.numberOfSteps.intValue
+            }
+            completion(true)
+        })
     }
 }
 
@@ -71,11 +86,15 @@ class SimulatorDataProvider: DataProvider {
 }
 
 class SimulatorHealthData: HealthData {
-    @Published var stepCount: Int = Int.random(in: 0...10000)
+    @Published var stepCount: Int = 0
     var stepCountPublished: Published<Int> { _stepCount }
     var stepCountPublisher: Published<Int>.Publisher { $stepCount }
 
-    func update() {
-        self.stepCount = Int.random(in: 0...10000)
+    func update(completion: @escaping ((Bool) -> Void)) {
+        DispatchQueue(label: "simulated_data").asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            DispatchQueue.main.async {
+                self?.stepCount = Int.random(in: 0...10000)
+            }
+        }
     }
 }
