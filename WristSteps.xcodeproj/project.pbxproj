@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C253A9424FBEDF80083B66B /* HomeViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C253A9324FBEDF80083B66B /* HomeViewProvider.swift */; };
 		4C253A9724FBEFAE0083B66B /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C253A9624FBEFAE0083B66B /* DataProvider.swift */; };
+		4C2E95FD250030B1004A1FB0 /* LifeCycleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */; };
 		4C9FE87424FBC503008062AF /* WristSteps WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4C9FE87324FBC503008062AF /* WristSteps WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C9FE87924FBC503008062AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9FE87824FBC503008062AF /* Assets.xcassets */; };
 		4C9FE88024FBC504008062AF /* WristSteps WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4C9FE87F24FBC504008062AF /* WristSteps WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -69,6 +70,7 @@
 /* Begin PBXFileReference section */
 		4C253A9324FBEDF80083B66B /* HomeViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewProvider.swift; sourceTree = "<group>"; };
 		4C253A9624FBEFAE0083B66B /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleHandler.swift; sourceTree = "<group>"; };
 		4C9FE86F24FBC503008062AF /* WristSteps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WristSteps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9FE87324FBC503008062AF /* WristSteps WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WristSteps WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9FE87824FBC503008062AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				4C9FE8A424FBE6D3008062AF /* SharedViews */,
 				4C9FE8A124FBE65E008062AF /* Home */,
 				4C9FE88624FBC504008062AF /* WristStepsApp.swift */,
+				4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */,
 				4CD0B75825001E1800D13426 /* ComplicationPayload.swift */,
 				4C9FE88824FBC504008062AF /* ComplicationController.swift */,
 				4C9FE88A24FBC504008062AF /* Assets.xcassets */,
@@ -310,6 +313,7 @@
 				4C253A9424FBEDF80083B66B /* HomeViewProvider.swift in Sources */,
 				4C253A9724FBEFAE0083B66B /* DataProvider.swift in Sources */,
 				4C9FE88724FBC504008062AF /* WristStepsApp.swift in Sources */,
+				4C2E95FD250030B1004A1FB0 /* LifeCycleHandler.swift in Sources */,
 				4CD0B75925001E1800D13426 /* ComplicationPayload.swift in Sources */,
 				4C9FE8A324FBE673008062AF /* HomeView.swift in Sources */,
 				4CC3713F250016F700509583 /* View+Embed.swift in Sources */,

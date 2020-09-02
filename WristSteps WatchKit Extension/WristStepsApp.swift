@@ -26,6 +26,7 @@ struct WristStepsApp: App {
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
     let dataProvider: DataProvider
+    private let lifeCycleHandler: LifeCycleHandler
     private var stepCountPublisher: AnyCancellable
 
     override init() {
@@ -34,6 +35,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         #else
         self.dataProvider = SimulatorDataProvider()
         #endif
+        self.lifeCycleHandler = LifeCycleHandler(dataProvider: self.dataProvider)
 
         self.stepCountPublisher = dataProvider.healthData.stepCountPublisher
             .removeDuplicates()
@@ -49,70 +51,16 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     }
 
     func applicationWillEnterForeground() {
-        dataProvider.healthData.update(completion: { _ in })
+        lifeCycleHandler.appWillEnterForeground()
     }
 
     func applicationDidEnterBackground() {
-        scheduleNextUpdate(completion: { _ in })
+        lifeCycleHandler.appDidEnterBackground()
     }
 
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
         for task in backgroundTasks {
-            switch task {
-            case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                performBackgroundTasks(completion: {
-                    backgroundTask.setTaskCompletedWithSnapshot(false)
-                })
-            default:
-                task.setTaskCompletedWithSnapshot(true)
-            }
+            lifeCycleHandler.handle(task)
         }
-    }
-}
-
-private extension ExtensionDelegate {
-    func scheduleNextUpdate(completion: @escaping ((Bool) -> Void)) {
-        let minuteGranuity = 15
-
-        let now = Date()
-        let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: now)
-        let minute = calendar.component(.minute, from: now)
-
-        let floorMinute = minute - (minute % minuteGranuity)
-        guard let floorDate = calendar.date(bySettingHour: hour, minute: floorMinute, second: 0, of: now),
-              let updateDate = calendar.date(byAdding: .minute, value: minuteGranuity, to: floorDate)
-        else {
-            completion(false)
-            return
-        }
-
-        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: updateDate, userInfo: nil, scheduledCompletion: { error in
-            completion(error == nil)
-        })
-    }
-
-    func performBackgroundTasks(completion: (() -> Void)) {
-        let operation1 = BlockOperation { [weak self] in
-            let sema = DispatchSemaphore(value: 0)
-            self?.scheduleNextUpdate(completion: { _ in
-                sema.signal()
-            })
-            sema.wait()
-        }
-        let operation2 = BlockOperation { [weak self] in
-            let sema = DispatchSemaphore(value: 0)
-            self?.dataProvider.healthData.update(completion: { _ in
-                sema.signal()
-            })
-            sema.wait()
-        }
-
-        let loadingQueue = OperationQueue()
-        loadingQueue.addOperation(operation1)
-        loadingQueue.addOperation(operation2)
-        loadingQueue.waitUntilAllOperationsAreFinished()
-
-        completion()
     }
 }
