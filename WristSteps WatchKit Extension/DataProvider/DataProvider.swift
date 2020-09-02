@@ -57,9 +57,7 @@ class AppHealthData: HealthData {
                 completion(false)
                 return
             }
-            DispatchQueue.main.async {
-                self?.stepCount = pedometerData.numberOfSteps.intValue
-            }
+            self?.stepCount = pedometerData.numberOfSteps.intValue
             completion(true)
         })
     }
@@ -92,9 +90,8 @@ class SimulatorHealthData: HealthData {
 
     func update(completion: @escaping ((Bool) -> Void)) {
         DispatchQueue(label: "simulated_data").asyncAfter(deadline: .now() + 0.2) { [weak self] in
-            DispatchQueue.main.async {
-                self?.stepCount = Int.random(in: 0...10000)
-            }
+            self?.stepCount = Int.random(in: 0...10000)
+            completion(true)
         }
     }
 }
