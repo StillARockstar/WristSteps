@@ -8,5 +8,7 @@
 import SwiftUI
 
 extension Color {
+    static let appTint = Self.appBlue
 
+    static let appBlue = Self.blue
 }

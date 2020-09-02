@@ -7,16 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C253A9424FBEDF80083B66B /* HomeViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C253A9324FBEDF80083B66B /* HomeViewProvider.swift */; };
+		4C253A9724FBEFAE0083B66B /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C253A9624FBEFAE0083B66B /* DataProvider.swift */; };
 		4C9FE87424FBC503008062AF /* WristSteps WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4C9FE87324FBC503008062AF /* WristSteps WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C9FE87924FBC503008062AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9FE87824FBC503008062AF /* Assets.xcassets */; };
 		4C9FE88024FBC504008062AF /* WristSteps WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4C9FE87F24FBC504008062AF /* WristSteps WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		4C9FE88524FBC504008062AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE88424FBC504008062AF /* ContentView.swift */; };
 		4C9FE88724FBC504008062AF /* WristStepsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE88624FBC504008062AF /* WristStepsApp.swift */; };
 		4C9FE88924FBC504008062AF /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE88824FBC504008062AF /* ComplicationController.swift */; };
 		4C9FE88B24FBC504008062AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9FE88A24FBC504008062AF /* Assets.xcassets */; };
 		4C9FE88E24FBC504008062AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9FE88D24FBC504008062AF /* Preview Assets.xcassets */; };
 		4C9FE89E24FBC67C008062AF /* Color+Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE89D24FBC67C008062AF /* Color+Tint.swift */; };
 		4C9FE8A024FBC6C8008062AF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9FE89F24FBC6C8008062AF /* Colors.xcassets */; };
+		4C9FE8A324FBE673008062AF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE8A224FBE673008062AF /* HomeView.swift */; };
+		4C9FE8A624FBE6E4008062AF /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE8A524FBE6E4008062AF /* DetailView.swift */; };
+		4CC3713F250016F700509583 /* View+Embed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3713E250016F700509583 /* View+Embed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,12 +66,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4C253A9324FBEDF80083B66B /* HomeViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewProvider.swift; sourceTree = "<group>"; };
+		4C253A9624FBEFAE0083B66B /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		4C9FE86F24FBC503008062AF /* WristSteps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WristSteps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9FE87324FBC503008062AF /* WristSteps WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WristSteps WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9FE87824FBC503008062AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C9FE87A24FBC503008062AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C9FE87F24FBC504008062AF /* WristSteps WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WristSteps WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C9FE88424FBC504008062AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4C9FE88624FBC504008062AF /* WristStepsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WristStepsApp.swift; sourceTree = "<group>"; };
 		4C9FE88824FBC504008062AF /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		4C9FE88A24FBC504008062AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,6 +80,9 @@
 		4C9FE88F24FBC504008062AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C9FE89D24FBC67C008062AF /* Color+Tint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Tint.swift"; sourceTree = "<group>"; };
 		4C9FE89F24FBC6C8008062AF /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		4C9FE8A224FBE673008062AF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		4C9FE8A524FBE6E4008062AF /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		4CC3713E250016F700509583 /* View+Embed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Embed.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C253A9524FBEF9B0083B66B /* DataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				4C253A9624FBEFAE0083B66B /* DataProvider.swift */,
+			);
+			path = DataProvider;
+			sourceTree = "<group>";
+		};
 		4C9FE86824FBC503008062AF = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +136,10 @@
 			isa = PBXGroup;
 			children = (
 				4C9FE89D24FBC67C008062AF /* Color+Tint.swift */,
-				4C9FE88424FBC504008062AF /* ContentView.swift */,
+				4CC3713E250016F700509583 /* View+Embed.swift */,
+				4C253A9524FBEF9B0083B66B /* DataProvider */,
+				4C9FE8A424FBE6D3008062AF /* SharedViews */,
+				4C9FE8A124FBE65E008062AF /* Home */,
 				4C9FE88624FBC504008062AF /* WristStepsApp.swift */,
 				4C9FE88824FBC504008062AF /* ComplicationController.swift */,
 				4C9FE88A24FBC504008062AF /* Assets.xcassets */,
@@ -137,6 +156,23 @@
 				4C9FE88D24FBC504008062AF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4C9FE8A124FBE65E008062AF /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4C253A9324FBEDF80083B66B /* HomeViewProvider.swift */,
+				4C9FE8A224FBE673008062AF /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4C9FE8A424FBE6D3008062AF /* SharedViews */ = {
+			isa = PBXGroup;
+			children = (
+				4C9FE8A524FBE6E4008062AF /* DetailView.swift */,
+			);
+			path = SharedViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,8 +303,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C9FE89E24FBC67C008062AF /* Color+Tint.swift in Sources */,
-				4C9FE88524FBC504008062AF /* ContentView.swift in Sources */,
+				4C9FE8A624FBE6E4008062AF /* DetailView.swift in Sources */,
+				4C253A9424FBEDF80083B66B /* HomeViewProvider.swift in Sources */,
+				4C253A9724FBEFAE0083B66B /* DataProvider.swift in Sources */,
 				4C9FE88724FBC504008062AF /* WristStepsApp.swift in Sources */,
+				4C9FE8A324FBE673008062AF /* HomeView.swift in Sources */,
+				4CC3713F250016F700509583 /* View+Embed.swift in Sources */,
 				4C9FE88924FBC504008062AF /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +459,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.0.0;
+				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-D TARGET_WATCH";
 				PRODUCT_BUNDLE_IDENTIFIER = at.Schoder.WristSteps.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -445,6 +486,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.0.0;
+				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-D TARGET_WATCH";
 				PRODUCT_BUNDLE_IDENTIFIER = at.Schoder.WristSteps.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
