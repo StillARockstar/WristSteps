@@ -17,7 +17,7 @@ class HomeViewProvider: ObservableObject {
 
     init(dataProvider: DataProvider) {
         self.dataProvider = dataProvider
-        dataProvider.healthData.stepCountPublisher.assign(to: \.stepCount, on: self).store(in: &subscriptions)
-        dataProvider.userData.stepGoalPublisher.assign(to: \.stepGoal, on: self).store(in: &subscriptions)
+        dataProvider.healthData.stepCountPublisher.receive(on: DispatchQueue.main).assign(to: \.stepCount, on: self).store(in: &subscriptions)
+        dataProvider.userData.stepGoalPublisher.receive(on: DispatchQueue.main).assign(to: \.stepGoal, on: self).store(in: &subscriptions)
     }
 }
