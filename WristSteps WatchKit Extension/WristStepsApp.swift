@@ -13,12 +13,11 @@ struct WristStepsApp: App {
 
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                HomeView()
-                    .environmentObject(
-                        HomeViewProvider(dataProvider: extensionDelegate.dataProvider)
-                    )
-            }
+            HomeView()
+                .environmentObject(
+                    HomeViewProvider(dataProvider: extensionDelegate.dataProvider)
+                )
+                .embedInNavigation()
         }
     }
 }

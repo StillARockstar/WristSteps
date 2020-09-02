@@ -20,6 +20,7 @@
 		4C9FE8A024FBC6C8008062AF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9FE89F24FBC6C8008062AF /* Colors.xcassets */; };
 		4C9FE8A324FBE673008062AF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE8A224FBE673008062AF /* HomeView.swift */; };
 		4C9FE8A624FBE6E4008062AF /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE8A524FBE6E4008062AF /* DetailView.swift */; };
+		4CC3713F250016F700509583 /* View+Embed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3713E250016F700509583 /* View+Embed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		4C9FE89F24FBC6C8008062AF /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		4C9FE8A224FBE673008062AF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4C9FE8A524FBE6E4008062AF /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		4CC3713E250016F700509583 /* View+Embed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Embed.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				4C9FE89D24FBC67C008062AF /* Color+Tint.swift */,
+				4CC3713E250016F700509583 /* View+Embed.swift */,
 				4C253A9524FBEF9B0083B66B /* DataProvider */,
 				4C9FE8A424FBE6D3008062AF /* SharedViews */,
 				4C9FE8A124FBE65E008062AF /* Home */,
@@ -305,6 +308,7 @@
 				4C253A9724FBEFAE0083B66B /* DataProvider.swift in Sources */,
 				4C9FE88724FBC504008062AF /* WristStepsApp.swift in Sources */,
 				4C9FE8A324FBE673008062AF /* HomeView.swift in Sources */,
+				4CC3713F250016F700509583 /* View+Embed.swift in Sources */,
 				4C9FE88924FBC504008062AF /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
