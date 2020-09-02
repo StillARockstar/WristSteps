@@ -6,10 +6,7 @@
 //
 
 import Foundation
-<<<<<<< HEAD
 import CoreMotion
-=======
->>>>>>> master
 
 protocol DataProvider {
     var healthData: HealthData { get }
@@ -21,11 +18,7 @@ protocol HealthData {
     var stepCountPublished: Published<Int> { get }
     var stepCountPublisher: Published<Int>.Publisher { get }
 
-<<<<<<< HEAD
     func update(completion: @escaping ((Bool) -> Void))
-=======
-    func update()
->>>>>>> master
 }
 
 protocol UserData {
@@ -53,7 +46,6 @@ class AppHealthData: HealthData {
     var stepCountPublished: Published<Int> { _stepCount }
     var stepCountPublisher: Published<Int>.Publisher { $stepCount }
 
-<<<<<<< HEAD
     private let pedometer = CMPedometer()
 
     func update(completion: @escaping ((Bool) -> Void)) {
@@ -68,10 +60,6 @@ class AppHealthData: HealthData {
             self?.stepCount = pedometerData.numberOfSteps.intValue
             completion(true)
         })
-=======
-    func update() {
-
->>>>>>> master
     }
 }
 
@@ -96,7 +84,6 @@ class SimulatorDataProvider: DataProvider {
 }
 
 class SimulatorHealthData: HealthData {
-<<<<<<< HEAD
     @Published var stepCount: Int = 0
     var stepCountPublished: Published<Int> { _stepCount }
     var stepCountPublisher: Published<Int>.Publisher { $stepCount }
@@ -106,13 +93,5 @@ class SimulatorHealthData: HealthData {
             self?.stepCount = Int.random(in: 0...10000)
             completion(true)
         }
-=======
-    @Published var stepCount: Int = Int.random(in: 0...10000)
-    var stepCountPublished: Published<Int> { _stepCount }
-    var stepCountPublisher: Published<Int>.Publisher { $stepCount }
-
-    func update() {
-        self.stepCount = Int.random(in: 0...10000)
->>>>>>> master
     }
 }
