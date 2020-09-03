@@ -30,7 +30,7 @@ struct SetGoalView: View {
                 .padding(.leading, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
 
                 Spacer()
-                Text("\(provider.stepGoal)")
+                Text("\(provider.stepGoal.kFormattedString)")
                     .font(.title)
                 Spacer()
 
@@ -58,7 +58,7 @@ struct SetGoalView_Previews: PreviewProvider {
 }
 
 private struct RoundTintedStyle: ButtonStyle {
-    private let size: CGFloat = 25.0
+    private let size: CGFloat = 15.0
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
