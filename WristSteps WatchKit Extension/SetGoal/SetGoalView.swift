@@ -15,7 +15,7 @@ struct SetGoalView: View {
         VStack {
             Text("Stepgoal".uppercased())
                 .foregroundColor(.appTint)
-            Text("The recommended amount of steps is \(10000) per day")
+            Text("The recommended amount of steps is \(provider.recommendedStepGoal) per day")
                 .font(.footnote)
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
@@ -44,6 +44,7 @@ struct SetGoalView: View {
 
             Spacer()
             Button("Update Goal", action: {
+                provider.commitStepGoalUpdate()
                 presentationMode.wrappedValue.dismiss()
             })
         }

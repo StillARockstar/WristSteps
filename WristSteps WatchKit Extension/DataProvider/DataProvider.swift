@@ -25,6 +25,8 @@ protocol UserData {
     var stepGoal: Int { get }
     var stepGoalPublished: Published<Int> { get }
     var stepGoalPublisher: Published<Int>.Publisher { get }
+
+    func update(stepGoal: Int)
 }
 
 
@@ -67,6 +69,10 @@ class AppUserData: UserData {
     @Published var stepGoal: Int = 0
     var stepGoalPublished: Published<Int> { _stepGoal }
     var stepGoalPublisher: Published<Int>.Publisher { $stepGoal }
+
+    func update(stepGoal: Int) {
+        self.stepGoal = stepGoal
+    }
 }
 
 
