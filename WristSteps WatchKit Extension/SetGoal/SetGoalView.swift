@@ -30,7 +30,7 @@ struct SetGoalView: View {
                 .padding(.leading, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
 
                 Spacer()
-                Text("\(provider.stepGoal.kFormattedString)")
+                Text("\(Int(provider.stepGoal).kFormattedString)")
                     .font(.title)
                 Spacer()
 
@@ -41,6 +41,14 @@ struct SetGoalView: View {
                 .buttonStyle(RoundTintedStyle())
                 .padding(.trailing, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
             }
+            .focusable(true)
+            .digitalCrownRotation(
+                $provider.stepGoal,
+                from: provider.minimumStepGoal,
+                through: provider.maximumStepGoal,
+                by: 100,
+                sensitivity: .high
+            )
 
             Spacer()
             Button("Update Goal", action: {
