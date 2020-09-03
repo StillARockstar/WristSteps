@@ -11,6 +11,7 @@ class SetGoalViewProvider: ObservableObject {
     private let dataProvider: DataProvider
 
     let recommendedStepGoal = 10000
+    let incrementSize: Double = 100
     let minimumStepGoal: Double = 1000
     let maximumStepGoal: Double = 90000
     @Published var stepGoal: Double = 0

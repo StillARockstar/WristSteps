@@ -23,7 +23,7 @@ struct SetGoalView: View {
 
             HStack {
                 Button(
-                    action: { provider.stepGoal -= 100 },
+                    action: { provider.stepGoal -= provider.incrementSize },
                     label: { Image(systemName: "minus") }
                 )
                 .buttonStyle(RoundTintedStyle())
@@ -35,7 +35,7 @@ struct SetGoalView: View {
                 Spacer()
 
                 Button(
-                    action: { provider.stepGoal += 100 },
+                    action: { provider.stepGoal += provider.incrementSize },
                     label: { Image(systemName: "plus") }
                 )
                 .buttonStyle(RoundTintedStyle())
@@ -46,7 +46,7 @@ struct SetGoalView: View {
                 $provider.stepGoal,
                 from: provider.minimumStepGoal,
                 through: provider.maximumStepGoal,
-                by: 100,
+                by: provider.incrementSize,
                 sensitivity: .high
             )
 
