@@ -27,7 +27,8 @@ struct WristStepsApp: App {
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
     let dataProvider: DataProvider
     private let lifeCycleHandler: LifeCycleHandler
-    private var stepCountPublisher: AnyCancellable
+    private let stepCountPublisher: AnyCancellable
+    private let stepGoalPublisher: AnyCancellable
 
     override init() {
         #if TARGET_WATCH
@@ -45,6 +46,15 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
                 NSLog("New step count: \(newValue)")
+            }
+        self.stepGoalPublisher = dataProvider.userData.stepGoalPublisher
+            .removeDuplicates()
+            .sink { newValue in
+                ComplicationPayload.shared.set(.stepGoal, newValue: newValue)
+                CLKComplicationServer.sharedInstance().activeComplications?.forEach {
+                    CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
+                }
+                NSLog("New step goal: \(newValue)")
             }
 
         super.init()

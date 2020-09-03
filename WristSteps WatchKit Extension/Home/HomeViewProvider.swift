@@ -12,6 +12,8 @@ class HomeViewProvider: ObservableObject {
     private let dataProvider: DataProvider
     private var subscriptions: Set<AnyCancellable> = Set()
 
+    var setGoalViewProvider: SetGoalViewProvider { SetGoalViewProvider(dataProvider: dataProvider) }
+
     @Published var stepCount: Int = 0
     @Published var stepGoal: Int = 0
 
