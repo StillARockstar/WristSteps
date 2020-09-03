@@ -70,8 +70,18 @@ class AppUserData: UserData {
     var stepGoalPublished: Published<Int> { _stepGoal }
     var stepGoalPublisher: Published<Int>.Publisher { $stepGoal }
 
+    init() {
+        self.stepGoal = DataStore.namespace(DataStoreConstants.namespace).get(key: DataStoreConstants.stepGoalKey) as? Int ?? 10000
+    }
+
     func update(stepGoal: Int) {
         self.stepGoal = stepGoal
+        DataStore.namespace(DataStoreConstants.namespace).set(value: stepGoal, for: DataStoreConstants.stepGoalKey)
+    }
+
+    private struct DataStoreConstants {
+        static let namespace = "user_data"
+        static let stepGoalKey = "step_goal"
     }
 }
 

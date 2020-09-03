@@ -17,12 +17,13 @@ class ComplicationPayload {
         ComplicationPayload()
     }()
 
-    private let userDefaultsPrefix = "complication_payload"
-
     private init() { }
 
     func set(_ key: ComplicationPayloadKey, newValue: Any) {
-        let fullKey = "\(userDefaultsPrefix)_\(key.rawValue)"
-        UserDefaults.standard.setValue(newValue, forKey: fullKey)
+        DataStore.namespace(DataStoreConstants.namespace).set(value: newValue, for: key.rawValue)
+    }
+
+    private struct DataStoreConstants {
+        static let namespace = "complication_payload"
     }
 }
