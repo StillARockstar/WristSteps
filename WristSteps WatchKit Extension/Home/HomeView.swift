@@ -25,7 +25,10 @@ struct HomeView: View {
             }
         }
         .navigationBarTitle("WristSteps")
-        .sheet(isPresented: $showingSetGoal, content: { SetGoalView() })
+        .sheet(isPresented: $showingSetGoal, content: {
+                SetGoalView()
+                    .environmentObject(provider.setGoalViewProvider)
+        })
     }
 }
 
