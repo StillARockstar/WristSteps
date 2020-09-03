@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State var showingSetGoal = false
     @EnvironmentObject var provider: HomeViewProvider
 
     var body: some View {
@@ -19,11 +20,12 @@ struct HomeView: View {
             )
             Spacer()
             HStack {
-                Button("🏁", action: { })
+                Button("🏁", action: { showingSetGoal.toggle() })
                 Button("🎨", action: { })
             }
         }
         .navigationBarTitle("WristSteps")
+        .sheet(isPresented: $showingSetGoal, content: { SetGoalView() })
     }
 }
 
