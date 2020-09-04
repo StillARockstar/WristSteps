@@ -13,6 +13,7 @@ class HomeViewProvider: ObservableObject {
     private var subscriptions: Set<AnyCancellable> = Set()
 
     var setGoalViewProvider: SetGoalViewProvider { SetGoalViewProvider(dataProvider: dataProvider) }
+    var setColorViewProvider: SetColorViewProvider { SetColorViewProvider() }
 
     @Published var stepCount: Int = 0
     @Published var stepGoal: Int = 0

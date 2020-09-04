@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SetColorView: View {
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var provider: SetColorViewProvider
 
     let columns = [
@@ -29,8 +30,15 @@ struct SetColorView: View {
             LazyVGrid(columns: columns, spacing: 5){
                 ForEach(provider.availableColors, id: \.self) { item in
                     Button(
-                        action: { },
-                        label: { Image(systemName: "checkmark.circle.fill") }
+                        action: {
+                            provider.commitColorUpdate(newValue: item)
+                            presentationMode.wrappedValue.dismiss()
+                        },
+                        label: {
+                            Image(systemName:
+                                    item.name == provider.selectedColorName ? "checkmark.circle.fill" : "circle.fill"
+                            )
+                        }
                     )
                         .padding()
                         .font(.title)

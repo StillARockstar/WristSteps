@@ -29,6 +29,7 @@ struct HomeView: View {
                 Button("🎨", action: { showingSetColor.toggle() })
                     .sheet(isPresented: $showingSetColor, content: {
                         SetColorView()
+                            .environmentObject(provider.setColorViewProvider)
                     })
             }
         }

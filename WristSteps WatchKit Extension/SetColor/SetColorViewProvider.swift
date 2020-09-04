@@ -8,9 +8,14 @@
 import Foundation
 
 class SetColorViewProvider: ObservableObject {
+    let selectedColorName = "appBlue"
     let availableColors: [AppColor] = AppColor.all
 
     init() {
         
+    }
+
+    func commitColorUpdate(newValue: AppColor) {
+        print("new color = \(newValue.name)")
     }
 }
