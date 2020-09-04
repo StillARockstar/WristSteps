@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SetColorView: View {
-    let data = ["1", "2", "3", "4", "5", "6"]
+    @EnvironmentObject var provider: SetColorViewProvider
 
     let columns = [
         GridItem(.flexible()),
@@ -27,14 +27,14 @@ struct SetColorView: View {
             Spacer()
 
             LazyVGrid(columns: columns, spacing: 5){
-                ForEach(data, id: \.self) { item in
+                ForEach(provider.availableColors, id: \.self) { item in
                     Button(
                         action: { },
                         label: { Image(systemName: "checkmark.circle.fill") }
                     )
                         .padding()
                         .font(.title)
-                        .foregroundColor(.blue)
+                        .foregroundColor(item.color)
                         .buttonStyle(PlainButtonStyle())
                 }
             }
@@ -45,5 +45,6 @@ struct SetColorView: View {
 struct SetColorView_Previews: PreviewProvider {
     static var previews: some View {
         SetColorView()
+            .environmentObject(SetColorViewProvider())
     }
 }
