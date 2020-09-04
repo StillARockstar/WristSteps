@@ -25,10 +25,12 @@ struct WristStepsApp: App {
 }
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
+    @Environment(\.appTint) var appTintColor: Color
     let dataProvider: DataProvider
     private let lifeCycleHandler: LifeCycleHandler
     private let stepCountPublisher: AnyCancellable
     private let stepGoalPublisher: AnyCancellable
+    private let colorNamePublisher: AnyCancellable
 
     override init() {
         #if TARGET_WATCH
@@ -55,6 +57,16 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
                 NSLog("New step goal: \(newValue)")
+            }
+        self.colorNamePublisher = dataProvider.userData.colorNamePublisher
+            .removeDuplicates()
+            .sink { newValue in
+                ComplicationPayload.shared.set(.colorName, newValue: newValue)
+                CLKComplicationServer.sharedInstance().activeComplications?.forEach {
+                    CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
+                }
+                Color.update(appTint: AppColor.color(forName: newValue).color)
+                NSLog("New color name: \(newValue)")
             }
 
         super.init()
