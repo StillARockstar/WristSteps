@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Color {
-    static let appTint = Self.appBlue
+    static private(set) var appTint = Color.appBlue
 
     static let appBlue = AppColor.appBlue.color
     static let appCyan = AppColor.appCyan.color
@@ -16,6 +16,10 @@ extension Color {
     static let appOrange = AppColor.appOrange.color
     static let appPurple = AppColor.appPurple.color
     static let appRed = AppColor.appRed.color
+
+    static func update(appTint: Color) {
+        Self.appTint = appTint
+    }
 }
 
 struct AppColor: Hashable {
@@ -30,4 +34,20 @@ struct AppColor: Hashable {
     static let appRed = AppColor(name: "appRed", color: Color("appRed"))
 
     static let all: [AppColor] = [appBlue, appCyan, appGreen, appOrange, appPurple, appRed]
+
+    static func color(forName name: String) -> AppColor {
+        return all.first(where: { $0.name == name }) ?? .appBlue
+    }
+
+    private init(name: String, color: Color) {
+        self.name = name
+        self.color = color
+    }
+}
+
+extension EnvironmentValues {
+    var appTint: Color {
+        get { return Color.appTint }
+        set { } 
+    }
 }

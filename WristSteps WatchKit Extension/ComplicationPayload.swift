@@ -10,6 +10,7 @@ import Foundation
 enum ComplicationPayloadKey: String {
     case stepCount = "stepCount"
     case stepGoal = "stepGoal"
+    case colorName = "colorName"
 }
 
 class ComplicationPayload {
