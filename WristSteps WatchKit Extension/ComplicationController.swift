@@ -19,7 +19,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             CLKComplicationDescriptor(
                 identifier: ComplicationProvider.ComplicationStyle.glyph.rawValue,
                 displayName: "Glyph",
-                supportedFamilies: [.modularSmall, .utilitarianSmall, .utilitarianSmallFlat, .circularSmall, .extraLarge, .graphicCorner, .graphicCircular],
+                supportedFamilies: [.modularSmall, .utilitarianSmall, .circularSmall, .extraLarge, .graphicCorner, .graphicCircular],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.glyph.rawValue]
             ),
             CLKComplicationDescriptor(
@@ -49,13 +49,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             CLKComplicationDescriptor(
                 identifier: ComplicationProvider.ComplicationStyle.ringSteps.rawValue,
                 displayName: "Ring + Steps",
-                supportedFamilies: [.modularSmall, .utilitarianSmall, .utilitarianSmallFlat, .circularSmall, .extraLarge, .graphicCorner, .graphicCircular],
+                supportedFamilies: [.modularSmall, .utilitarianSmall, .circularSmall, .extraLarge, .graphicCorner, .graphicCircular],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.linePercent.rawValue]
             ),
             CLKComplicationDescriptor(
                 identifier: ComplicationProvider.ComplicationStyle.ringPercent.rawValue,
                 displayName: "Ring + Percent",
-                supportedFamilies: [.modularSmall, .utilitarianSmall, .utilitarianSmallFlat, .circularSmall, .extraLarge, .graphicCorner, .graphicCircular],
+                supportedFamilies: [.modularSmall, .utilitarianSmall, .circularSmall, .extraLarge, .graphicCorner, .graphicCircular],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.ringPercent.rawValue]
             )
         ]

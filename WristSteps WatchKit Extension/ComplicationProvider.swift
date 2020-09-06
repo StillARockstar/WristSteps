@@ -33,7 +33,7 @@ class ComplicationProvider {
         case .utilitarianSmall:
             return utilitarianSmallTemplate(with: style)
         case .utilitarianSmallFlat:
-            return nil
+            return utilitarianSmallFlatTemplate(with: style)
         case .utilitarianLarge:
             return utilitarianLargeTemplate(with: style)
         case .circularSmall:
@@ -134,6 +134,19 @@ class ComplicationProvider {
                 ringStyle: .closed
             )
         case .lineSteps, .linePercent:
+            return nil
+        }
+    }
+
+    private func utilitarianSmallFlatTemplate(with style: ComplicationStyle) -> CLKComplicationTemplate? {
+        switch style {
+        case .steps:
+            let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
+            return CLKComplicationTemplateUtilitarianSmallFlat(textProvider: textProvider)
+        case .percent:
+            let textProvider = CLKSimpleTextProvider(text: shortStepPercentString)
+            return CLKComplicationTemplateUtilitarianSmallFlat(textProvider: textProvider)
+        case .glyph, .lineSteps, .linePercent, .ringSteps, .ringPercent:
             return nil
         }
     }
