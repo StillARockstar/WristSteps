@@ -51,7 +51,7 @@ class ComplicationProvider {
         case .graphicRectangular:
             template = graphicRectangularTemplate(with: style)
         case .graphicExtraLarge:
-            return nil
+            template = graphicExtraLargeTemplate(with: style)
         @unknown default:
             return nil
         }
@@ -315,6 +315,27 @@ class ComplicationProvider {
                 gaugeProvider: gaugeProvider
             )
         case .glyph, .steps, .percent, .ringSteps, .ringPercent, .ringPercentSteps:
+            return nil
+        }
+    }
+
+    private func graphicExtraLargeTemplate(with style: ComplicationStyle) -> CLKComplicationTemplate? {
+        switch style {
+        case .ringSteps:
+            let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsFraction)
+            let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
+            return CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeText(
+                gaugeProvider: gaugeProvider,
+                centerTextProvider: textProvider
+            )
+        case .ringPercent:
+            let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsFraction)
+            let textProvider = CLKSimpleTextProvider(text: shortStepPercentString)
+            return CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeText(
+                gaugeProvider: gaugeProvider,
+                centerTextProvider: textProvider
+            )
+        case .glyph, .steps, .percent, .lineSteps, .linePercent, .ringPercentSteps:
             return nil
         }
     }
