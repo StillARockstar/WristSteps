@@ -50,7 +50,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 identifier: ComplicationProvider.ComplicationStyle.ringSteps.rawValue,
                 displayName: "Ring + Steps",
                 supportedFamilies: [.modularSmall, .utilitarianSmall, .circularSmall, .extraLarge, .graphicCorner, .graphicCircular],
-                userInfo: ["style": ComplicationProvider.ComplicationStyle.linePercent.rawValue]
+                userInfo: ["style": ComplicationProvider.ComplicationStyle.ringSteps.rawValue]
             ),
             CLKComplicationDescriptor(
                 identifier: ComplicationProvider.ComplicationStyle.ringPercent.rawValue,
