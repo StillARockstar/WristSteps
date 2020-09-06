@@ -17,16 +17,10 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
         let descriptors = [
             CLKComplicationDescriptor(
-                identifier: ComplicationProvider.ComplicationStyle.lineSteps.rawValue,
-                displayName: "Line + Steps",
-                supportedFamilies: [.graphicCorner, .graphicRectangular],
-                userInfo: ["style": ComplicationProvider.ComplicationStyle.lineSteps.rawValue]
-            ),
-            CLKComplicationDescriptor(
-                identifier: ComplicationProvider.ComplicationStyle.linePercent.rawValue,
-                displayName: "Line + Percent",
-                supportedFamilies: [.graphicCorner, .graphicRectangular],
-                userInfo: ["style": ComplicationProvider.ComplicationStyle.linePercent.rawValue]
+                identifier: ComplicationProvider.ComplicationStyle.glyph.rawValue,
+                displayName: "Glyph",
+                supportedFamilies: [.modularSmall, .utilitarianSmall, .utilitarianSmallFlat, .circularSmall, .extraLarge, .graphicCorner, .graphicCircular],
+                userInfo: ["style": ComplicationProvider.ComplicationStyle.glyph.rawValue]
             ),
             CLKComplicationDescriptor(
                 identifier: ComplicationProvider.ComplicationStyle.steps.rawValue,
@@ -39,6 +33,18 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 displayName: "Percent",
                 supportedFamilies: [.modularSmall, .modularLarge, .utilitarianSmall, .utilitarianSmallFlat , .utilitarianLarge, .circularSmall, .extraLarge],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.percent.rawValue]
+            ),
+            CLKComplicationDescriptor(
+                identifier: ComplicationProvider.ComplicationStyle.lineSteps.rawValue,
+                displayName: "Line + Steps",
+                supportedFamilies: [.graphicCorner, .graphicRectangular],
+                userInfo: ["style": ComplicationProvider.ComplicationStyle.lineSteps.rawValue]
+            ),
+            CLKComplicationDescriptor(
+                identifier: ComplicationProvider.ComplicationStyle.linePercent.rawValue,
+                displayName: "Line + Percent",
+                supportedFamilies: [.graphicCorner, .graphicRectangular],
+                userInfo: ["style": ComplicationProvider.ComplicationStyle.linePercent.rawValue]
             )
         ]
         handler(descriptors)

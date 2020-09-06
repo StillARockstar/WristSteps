@@ -11,6 +11,7 @@ class ComplicationProvider {
     private let dataProvider: DataProvider
 
     enum ComplicationStyle: String {
+        case glyph = "glyph"
         case steps = "steps"
         case percent = "percent"
         case lineSteps = "line_steps"
@@ -52,6 +53,10 @@ class ComplicationProvider {
 
     private func modularSmallTemplate(with style: ComplicationStyle) -> CLKComplicationTemplate? {
         switch style {
+        case .glyph:
+            let imageProvider = CLKImageProvider(onePieceImage: appGlyph)
+            imageProvider.tintColor = color
+            return CLKComplicationTemplateModularSmallSimpleImage(imageProvider: imageProvider)
         case .steps:
             let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
             return CLKComplicationTemplateModularSmallSimpleText(textProvider: textProvider)
@@ -79,13 +84,17 @@ class ComplicationProvider {
                 headerTextProvider: headerProvider,
                 bodyTextProvider: bodyProvider
             )
-        case .lineSteps, .linePercent:
+        case .glyph, .lineSteps, .linePercent:
             return nil
         }
     }
 
     private func utilitarianSmallTemplate(with style: ComplicationStyle) -> CLKComplicationTemplate? {
         switch style {
+        case .glyph:
+            let imageProvider = CLKImageProvider(onePieceImage: appGlyph)
+            imageProvider.tintColor = color
+            return CLKComplicationTemplateUtilitarianSmallSquare(imageProvider: imageProvider)
         case .steps:
             let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
             return CLKComplicationTemplateUtilitarianSmallFlat(textProvider: textProvider)
@@ -105,13 +114,17 @@ class ComplicationProvider {
         case .percent:
             let textProvider = CLKSimpleTextProvider(text: longStepPercentString)
             return CLKComplicationTemplateUtilitarianLargeFlat(textProvider: textProvider)
-        case .lineSteps, .linePercent:
+        case .glyph, .lineSteps, .linePercent:
             return nil
         }
     }
 
     private func circularSmallTemplate(with style: ComplicationStyle) -> CLKComplicationTemplate? {
         switch style {
+        case .glyph:
+            let imageProvider = CLKImageProvider(onePieceImage: appGlyph)
+            imageProvider.tintColor = color
+            return CLKComplicationTemplateCircularSmallSimpleImage(imageProvider: imageProvider)
         case .steps:
             let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
             return CLKComplicationTemplateCircularSmallSimpleText(textProvider: textProvider)
@@ -125,6 +138,10 @@ class ComplicationProvider {
 
     private func extraLarge(with style: ComplicationStyle) -> CLKComplicationTemplate? {
         switch style {
+        case .glyph:
+            let imageProvider = CLKImageProvider(onePieceImage: appGlyph)
+            imageProvider.tintColor = color
+            return CLKComplicationTemplateExtraLargeSimpleImage(imageProvider: imageProvider)
         case .steps:
             let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
             return CLKComplicationTemplateExtraLargeSimpleText(textProvider: textProvider)
@@ -138,6 +155,9 @@ class ComplicationProvider {
 
     private func graphicCornerTemplate(with style: ComplicationStyle) -> CLKComplicationTemplate? {
         switch style {
+        case .glyph:
+            let imageProvider = CLKFullColorImageProvider(fullColorImage: appGlyph)
+            return CLKComplicationTemplateGraphicCornerCircularImage(imageProvider: imageProvider)
         case .lineSteps:
             let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsPercent)
             let textProvider = CLKSimpleTextProvider(text: longStepCountString)
@@ -153,6 +173,16 @@ class ComplicationProvider {
                 outerTextProvider: textProvider
             )
         case .steps, .percent:
+            return nil
+        }
+    }
+
+    private func graphicCircularTemplate(with style: ComplicationStyle) -> CLKComplicationTemplate? {
+        switch style {
+        case .glyph:
+            let imageProvider = CLKFullColorImageProvider(fullColorImage: appGlyph)
+            return CLKComplicationTemplateGraphicCircularImage(imageProvider: imageProvider)
+        case .steps, .percent, .lineSteps, .linePercent:
             return nil
         }
     }
@@ -177,7 +207,7 @@ class ComplicationProvider {
                 body1TextProvider: body1Provider,
                 gaugeProvider: gaugeProvider
             )
-        case .steps, .percent:
+        case .glyph, .steps, .percent:
             return nil
         }
     }
@@ -187,6 +217,10 @@ private extension ComplicationProvider {
     var color: UIColor {
         let appColor = AppColor.color(forName: dataProvider.userData.colorName)
         return UIColor(appColor.color)
+    }
+
+    var appGlyph: UIImage {
+        return UIImage(named: "app_glyph")!
     }
 
     var stepsPercent: Float {
