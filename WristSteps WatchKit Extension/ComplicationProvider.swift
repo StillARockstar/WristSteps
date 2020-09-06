@@ -30,8 +30,10 @@ class ComplicationProvider {
             return modularSmallTemplate(with: style)
         case .modularLarge:
             return modularLargeTemplate(with: style)
-        case .utilitarianSmall, .utilitarianSmallFlat:
+        case .utilitarianSmall:
             return utilitarianSmallTemplate(with: style)
+        case .utilitarianSmallFlat:
+            return nil
         case .utilitarianLarge:
             return utilitarianLargeTemplate(with: style)
         case .circularSmall:
@@ -69,14 +71,14 @@ class ComplicationProvider {
             let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
             return CLKComplicationTemplateModularSmallRingText(
                 textProvider: textProvider,
-                fillFraction: stepsPercent,
+                fillFraction: stepsFraction,
                 ringStyle: .closed
             )
         case .ringPercent:
             let textProvider = CLKSimpleTextProvider(text: shortStepPercentString)
             return CLKComplicationTemplateModularSmallRingText(
                 textProvider: textProvider,
-                fillFraction: stepsPercent,
+                fillFraction: stepsFraction,
                 ringStyle: .closed
             )
         case .lineSteps, .linePercent:
@@ -121,14 +123,14 @@ class ComplicationProvider {
             let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
             return CLKComplicationTemplateUtilitarianSmallRingText(
                 textProvider: textProvider,
-                fillFraction: stepsPercent,
+                fillFraction: stepsFraction,
                 ringStyle: .closed
             )
         case .ringPercent:
             let textProvider = CLKSimpleTextProvider(text: shortStepPercentString)
             return CLKComplicationTemplateUtilitarianSmallRingText(
                 textProvider: textProvider,
-                fillFraction: stepsPercent,
+                fillFraction: stepsFraction,
                 ringStyle: .closed
             )
         case .lineSteps, .linePercent:
@@ -165,14 +167,14 @@ class ComplicationProvider {
             let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
             return CLKComplicationTemplateCircularSmallRingText(
                 textProvider: textProvider,
-                fillFraction: stepsPercent,
+                fillFraction: stepsFraction,
                 ringStyle: .closed
             )
         case .ringPercent:
             let textProvider = CLKSimpleTextProvider(text: shortStepPercentString)
             return CLKComplicationTemplateCircularSmallRingText(
                 textProvider: textProvider,
-                fillFraction: stepsPercent,
+                fillFraction: stepsFraction,
                 ringStyle: .closed
             )
         case .lineSteps, .linePercent:
@@ -196,14 +198,14 @@ class ComplicationProvider {
             let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
             return CLKComplicationTemplateExtraLargeRingText(
                 textProvider: textProvider,
-                fillFraction: stepsPercent,
+                fillFraction: stepsFraction,
                 ringStyle: .closed
             )
         case .ringPercent:
             let textProvider = CLKSimpleTextProvider(text: shortStepPercentString)
             return CLKComplicationTemplateExtraLargeRingText(
                 textProvider: textProvider,
-                fillFraction: stepsPercent,
+                fillFraction: stepsFraction,
                 ringStyle: .closed
             )
         case .lineSteps, .linePercent:
@@ -217,14 +219,14 @@ class ComplicationProvider {
             let imageProvider = CLKFullColorImageProvider(fullColorImage: appGlyph)
             return CLKComplicationTemplateGraphicCornerCircularImage(imageProvider: imageProvider)
         case .lineSteps:
-            let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsPercent)
+            let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsFraction)
             let textProvider = CLKSimpleTextProvider(text: longStepCountString)
             return CLKComplicationTemplateGraphicCornerGaugeText(
                 gaugeProvider: gaugeProvider,
                 outerTextProvider: textProvider
             )
         case .linePercent:
-            let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsPercent)
+            let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsFraction)
             let textProvider = CLKSimpleTextProvider(text: longStepPercentString)
             return CLKComplicationTemplateGraphicCornerGaugeText(
                 gaugeProvider: gaugeProvider,
@@ -249,7 +251,7 @@ class ComplicationProvider {
             let imageProvider = CLKFullColorImageProvider(fullColorImage: appGlyph)
             return CLKComplicationTemplateGraphicCircularImage(imageProvider: imageProvider)
         case .ringSteps:
-            let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsPercent)
+            let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsFraction)
             let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
             return CLKComplicationTemplateGraphicCircularClosedGaugeText(
                 gaugeProvider: gaugeProvider,
@@ -263,7 +265,7 @@ class ComplicationProvider {
     private func graphicRectangularTemplate(with style: ComplicationStyle) -> CLKComplicationTemplate? {
         switch style {
         case .lineSteps:
-            let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsPercent)
+            let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsFraction)
             let headerProvider = CLKSimpleTextProvider(text: "")
             let body1Provider = CLKSimpleTextProvider(text: longStepCountString)
             return CLKComplicationTemplateGraphicRectangularTextGauge(
@@ -272,7 +274,7 @@ class ComplicationProvider {
                 gaugeProvider: gaugeProvider
             )
         case .linePercent:
-            let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsPercent)
+            let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsFraction)
             let headerProvider = CLKSimpleTextProvider(text: "")
             let body1Provider = CLKSimpleTextProvider(text: longStepPercentString)
             return CLKComplicationTemplateGraphicRectangularTextGauge(
@@ -306,12 +308,14 @@ private extension ComplicationProvider {
         return UIImage(named:"radialGraph\(stepPercent)")!
     }
 
-    var stepsPercent: Float {
+    var stepsFraction: Float {
         let stepCount = dataProvider.healthData.stepCount
         let stepGoal = dataProvider.userData.stepGoal
+        return Float(stepCount) / Float(stepGoal)
+    }
 
-        let calculatedPercent = Double(stepCount) / Double(stepGoal)
-        let stepPercent = Int(calculatedPercent * 100)
+    var stepsPercent: Float {
+        let stepPercent = Int(stepsFraction * 100)
 
         return Float(stepPercent)
     }
