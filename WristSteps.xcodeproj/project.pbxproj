@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C05CDDE2503896E00C40885 /* ComplicationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05CDDD2503896E00C40885 /* ComplicationProvider.swift */; };
 		4C253A9424FBEDF80083B66B /* HomeViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C253A9324FBEDF80083B66B /* HomeViewProvider.swift */; };
 		4C253A9724FBEFAE0083B66B /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C253A9624FBEFAE0083B66B /* DataProvider.swift */; };
 		4C2E95FD250030B1004A1FB0 /* LifeCycleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4C05CDDD2503896E00C40885 /* ComplicationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationProvider.swift; sourceTree = "<group>"; };
 		4C253A9324FBEDF80083B66B /* HomeViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewProvider.swift; sourceTree = "<group>"; };
 		4C253A9624FBEFAE0083B66B /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleHandler.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				4C9FE88624FBC504008062AF /* WristStepsApp.swift */,
 				4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */,
 				4CD0B75825001E1800D13426 /* ComplicationPayload.swift */,
+				4C05CDDD2503896E00C40885 /* ComplicationProvider.swift */,
 				4C9FE88824FBC504008062AF /* ComplicationController.swift */,
 				4C9FE88A24FBC504008062AF /* Assets.xcassets */,
 				4C9FE89F24FBC6C8008062AF /* Colors.xcassets */,
@@ -349,6 +352,7 @@
 				4C253A9724FBEFAE0083B66B /* DataProvider.swift in Sources */,
 				4C9FE88724FBC504008062AF /* WristStepsApp.swift in Sources */,
 				4C95D6772502804100CB4D35 /* SetColorViewProvider.swift in Sources */,
+				4C05CDDE2503896E00C40885 /* ComplicationProvider.swift in Sources */,
 				4C95D66D250178BE00CB4D35 /* NumberFormatting.swift in Sources */,
 				4C95D66F25017F6500CB4D35 /* DataStore.swift in Sources */,
 				4C95D6722501856600CB4D35 /* SetColorView.swift in Sources */,

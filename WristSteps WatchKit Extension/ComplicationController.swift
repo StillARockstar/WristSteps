@@ -9,12 +9,19 @@ import ClockKit
 
 
 class ComplicationController: NSObject, CLKComplicationDataSource {
-    
+    lazy var appComplicationProvider: ComplicationProvider = { ComplicationProvider(dataProvider: AppDataProvider()) }()
+    lazy var sampleComplicationProvider: ComplicationProvider = { ComplicationProvider(dataProvider: SampleDataProvider()) }()
+
     // MARK: Complication Configuration
 
     func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
         let descriptors = [
-            CLKComplicationDescriptor(identifier: "complication", displayName: "WristSteps", supportedFamilies: CLKComplicationFamily.allCases)
+            CLKComplicationDescriptor(
+                identifier: ComplicationProvider.ComplicationStyle.lineSteps.rawValue,
+                displayName: "Line + Steps",
+                supportedFamilies: [.graphicCorner, .graphicRectangular],
+                userInfo: ["style": ComplicationProvider.ComplicationStyle.lineSteps.rawValue]
+            )
         ]
         handler(descriptors)
     }
@@ -28,6 +35,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     // MARK: Sample Templates
     
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
-        handler(nil)
+        guard let styleId = complication.userInfo?["style"] as? String,
+              let style = ComplicationProvider.ComplicationStyle(rawValue: styleId)
+        else {
+            handler(nil)
+            return
+        }
+        handler(sampleComplicationProvider.template(for: complication.family, style: style))
     }
 }

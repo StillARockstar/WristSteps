@@ -127,3 +127,40 @@ class SimulatorHealthData: HealthData {
         }
     }
 }
+
+
+// - MARK: SampleDataProvider
+
+class SampleDataProvider: DataProvider {
+    let healthData: HealthData
+    let userData: UserData
+
+    init() {
+        self.healthData = SampleHealthData()
+        self.userData = SampleUserData()
+    }
+}
+
+class SampleHealthData: HealthData {
+    @Published var stepCount: Int = 5000
+    var stepCountPublished: Published<Int> { _stepCount }
+    var stepCountPublisher: Published<Int>.Publisher { $stepCount }
+
+    func update(completion: @escaping ((Bool) -> Void)) { }
+}
+
+class SampleUserData: UserData {
+    @Published var stepGoal: Int = 10000
+    var stepGoalPublished: Published<Int> { _stepGoal }
+    var stepGoalPublisher: Published<Int>.Publisher { $stepGoal }
+
+    @Published var colorName: String = AppColor.appBlue.name
+    var colorNamePublished: Published<String> { _colorName }
+    var colorNamePublisher: Published<String>.Publisher { $colorName}
+
+    init() { }
+
+    func update(stepGoal: Int) { }
+
+    func update(colorName: String) { }
+}
