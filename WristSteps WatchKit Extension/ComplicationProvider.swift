@@ -18,6 +18,7 @@ class ComplicationProvider {
         case linePercent = "line_percent"
         case ringSteps = "ring_steps"
         case ringPercent = "ring_percent"
+        case ringPercentSteps = "ring_percent_steps"
     }
 
     init(dataProvider: DataProvider) {
@@ -44,7 +45,7 @@ class ComplicationProvider {
         case .graphicCorner:
             template = graphicCornerTemplate(with: style)
         case .graphicBezel:
-            return nil
+            template = graphicBezelTemplate(with: style)
         case .graphicCircular:
             template = graphicCircularTemplate(with: style)
         case .graphicRectangular:
@@ -84,7 +85,7 @@ class ComplicationProvider {
                 fillFraction: stepsFraction,
                 ringStyle: .closed
             )
-        case .lineSteps, .linePercent:
+        case .lineSteps, .linePercent, .ringPercentSteps:
             return nil
         }
     }
@@ -105,7 +106,7 @@ class ComplicationProvider {
                 headerTextProvider: headerProvider,
                 bodyTextProvider: bodyProvider
             )
-        case .glyph, .lineSteps, .linePercent, .ringSteps, .ringPercent:
+        case .glyph, .lineSteps, .linePercent, .ringSteps, .ringPercent, .ringPercentSteps:
             return nil
         }
     }
@@ -136,7 +137,7 @@ class ComplicationProvider {
                 fillFraction: stepsFraction,
                 ringStyle: .closed
             )
-        case .lineSteps, .linePercent:
+        case .lineSteps, .linePercent, .ringPercentSteps:
             return nil
         }
     }
@@ -149,7 +150,7 @@ class ComplicationProvider {
         case .percent:
             let textProvider = CLKSimpleTextProvider(text: mediumStepPercentString)
             return CLKComplicationTemplateUtilitarianSmallFlat(textProvider: textProvider)
-        case .glyph, .lineSteps, .linePercent, .ringSteps, .ringPercent:
+        case .glyph, .lineSteps, .linePercent, .ringSteps, .ringPercent, .ringPercentSteps:
             return nil
         }
     }
@@ -162,7 +163,7 @@ class ComplicationProvider {
         case .percent:
             let textProvider = CLKSimpleTextProvider(text: longStepPercentString)
             return CLKComplicationTemplateUtilitarianLargeFlat(textProvider: textProvider)
-        case .glyph, .lineSteps, .linePercent, .ringSteps, .ringPercent:
+        case .glyph, .lineSteps, .linePercent, .ringSteps, .ringPercent, .ringPercentSteps:
             return nil
         }
     }
@@ -193,7 +194,7 @@ class ComplicationProvider {
                 fillFraction: stepsFraction,
                 ringStyle: .closed
             )
-        case .lineSteps, .linePercent:
+        case .lineSteps, .linePercent, .ringPercentSteps:
             return nil
         }
     }
@@ -220,7 +221,7 @@ class ComplicationProvider {
                 fillFraction: stepsFraction,
                 ringStyle: .closed
             )
-        case .steps, .percent, .lineSteps, .linePercent:
+        case .steps, .percent, .lineSteps, .linePercent, .ringPercentSteps:
             return nil
         }
     }
@@ -249,7 +250,25 @@ class ComplicationProvider {
             let textProvider = CLKSimpleTextProvider(text: longStepPercentString)
             let imageProvider = CLKFullColorImageProvider(fullColorImage: percentImage)
             return CLKComplicationTemplateGraphicCornerTextImage(textProvider: textProvider, imageProvider: imageProvider)
-        case .glyph, .steps, .percent:
+        case .glyph, .steps, .percent, .ringPercentSteps:
+            return nil
+        }
+    }
+
+    private func graphicBezelTemplate(with style: ComplicationStyle) -> CLKComplicationTemplate? {
+        switch style {
+        case .ringSteps, .ringPercent:
+            return CLKComplicationTemplateGraphicBezelCircularText(
+                circularTemplate: graphicCircularTemplate(with: style) as! CLKComplicationTemplateGraphicCircular,
+                textProvider: nil
+            )
+        case .ringPercentSteps:
+            let textProvider = CLKSimpleTextProvider(text: longStepCountString)
+            return CLKComplicationTemplateGraphicBezelCircularText(
+                circularTemplate: graphicCircularTemplate(with: .ringPercent) as! CLKComplicationTemplateGraphicCircular,
+                textProvider: textProvider
+            )
+        case .glyph, .steps, .percent, .lineSteps, .linePercent:
             return nil
         }
     }
@@ -270,7 +289,7 @@ class ComplicationProvider {
                 gaugeProvider: gaugeProvider,
                 centerTextProvider: textProvider
             )
-        case .glyph, .steps, .percent, .lineSteps, .linePercent:
+        case .glyph, .steps, .percent, .lineSteps, .linePercent, .ringPercentSteps:
             return nil
         }
     }
@@ -295,7 +314,7 @@ class ComplicationProvider {
                 body1TextProvider: body1Provider,
                 gaugeProvider: gaugeProvider
             )
-        case .glyph, .steps, .percent, .ringSteps, .ringPercent:
+        case .glyph, .steps, .percent, .ringSteps, .ringPercent, .ringPercentSteps:
             return nil
         }
     }

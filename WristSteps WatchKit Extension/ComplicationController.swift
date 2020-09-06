@@ -47,14 +47,20 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             CLKComplicationDescriptor(
                 identifier: "\(ComplicationProvider.ComplicationStyle.ringSteps.rawValue)_\(timestamp)",
                 displayName: "Ring + Steps",
-                supportedFamilies: [.modularSmall, .utilitarianSmall, .circularSmall, .extraLarge, .graphicCorner, .graphicCircular],
+                supportedFamilies: [.modularSmall, .utilitarianSmall, .circularSmall, .extraLarge, .graphicCorner, .graphicCircular, .graphicBezel],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.ringSteps.rawValue]
             ),
             CLKComplicationDescriptor(
                 identifier: "\(ComplicationProvider.ComplicationStyle.ringPercent.rawValue)_\(timestamp)",
                 displayName: "Ring + Percent",
-                supportedFamilies: [.modularSmall, .utilitarianSmall, .circularSmall, .extraLarge, .graphicCorner, .graphicCircular],
+                supportedFamilies: [.modularSmall, .utilitarianSmall, .circularSmall, .extraLarge, .graphicCorner, .graphicCircular, .graphicBezel],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.ringPercent.rawValue]
+            ),
+            CLKComplicationDescriptor(
+                identifier: "\(ComplicationProvider.ComplicationStyle.ringPercentSteps.rawValue)_\(timestamp)",
+                displayName: "Ring + Percent + Steps",
+                supportedFamilies: [.graphicBezel],
+                userInfo: ["style": ComplicationProvider.ComplicationStyle.ringPercentSteps.rawValue]
             )
         ]
         handler(descriptors)
