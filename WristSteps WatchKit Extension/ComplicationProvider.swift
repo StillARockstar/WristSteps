@@ -12,6 +12,7 @@ class ComplicationProvider {
 
     enum ComplicationStyle: String {
         case lineSteps = "line_steps"
+        case linePercent = "line_percent"
     }
 
     init(dataProvider: DataProvider) {
@@ -58,6 +59,13 @@ class ComplicationProvider {
                 gaugeProvider: gaugeProvider,
                 outerTextProvider: textProvider
             )
+        case .linePercent:
+            let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsPercent)
+            let textProvider = CLKSimpleTextProvider(text: longStepPercentString)
+            return CLKComplicationTemplateGraphicCornerGaugeText(
+                gaugeProvider: gaugeProvider,
+                outerTextProvider: textProvider
+            )
         }
     }
 
@@ -67,6 +75,15 @@ class ComplicationProvider {
             let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsPercent)
             let headerProvider = CLKSimpleTextProvider(text: "WristSteps")
             let body1Provider = CLKSimpleTextProvider(text: longStepCountString)
+            return CLKComplicationTemplateGraphicRectangularTextGauge(
+                headerTextProvider: headerProvider,
+                body1TextProvider: body1Provider,
+                gaugeProvider: gaugeProvider
+            )
+        case .linePercent:
+            let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsPercent)
+            let headerProvider = CLKSimpleTextProvider(text: "WristSteps")
+            let body1Provider = CLKSimpleTextProvider(text: longStepPercentString)
             return CLKComplicationTemplateGraphicRectangularTextGauge(
                 headerTextProvider: headerProvider,
                 body1TextProvider: body1Provider,
@@ -94,5 +111,9 @@ private extension ComplicationProvider {
 
     var longStepCountString: String {
         return "\(dataProvider.healthData.stepCount) steps"
+    }
+
+    var longStepPercentString: String {
+        return "\(Int(stepsPercent)) percent"
     }
 }

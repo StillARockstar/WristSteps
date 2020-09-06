@@ -21,6 +21,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 displayName: "Line + Steps",
                 supportedFamilies: [.graphicCorner, .graphicRectangular],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.lineSteps.rawValue]
+            ),
+            CLKComplicationDescriptor(
+                identifier: ComplicationProvider.ComplicationStyle.linePercent.rawValue,
+                displayName: "Line + Percent",
+                supportedFamilies: [.graphicCorner, .graphicRectangular],
+                userInfo: ["style": ComplicationProvider.ComplicationStyle.linePercent.rawValue]
             )
         ]
         handler(descriptors)
