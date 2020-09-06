@@ -60,6 +60,10 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         handler(descriptors)
     }
 
+    func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
+        handler(.hideOnLockScreen)
+    }
+
     // MARK: Timeline Population
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
