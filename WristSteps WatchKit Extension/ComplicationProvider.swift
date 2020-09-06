@@ -202,7 +202,7 @@ class ComplicationProvider {
             imageProvider.tintColor = color
             return CLKComplicationTemplateExtraLargeSimpleImage(imageProvider: imageProvider)
         case .ringSteps:
-            // Not Working
+            // Not Working - Beta Bug
             let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
             return CLKComplicationTemplateExtraLargeRingText(
                 textProvider: textProvider,
@@ -210,7 +210,7 @@ class ComplicationProvider {
                 ringStyle: .closed
             )
         case .ringPercent:
-            // Not Working
+            // Not Working - Beta Bug
             let textProvider = CLKSimpleTextProvider(text: mediumStepPercentString)
             return CLKComplicationTemplateExtraLargeRingText(
                 textProvider: textProvider,
@@ -224,10 +224,6 @@ class ComplicationProvider {
 
     private func graphicCornerTemplate(with style: ComplicationStyle) -> CLKComplicationTemplate? {
         switch style {
-        case .glyph:
-            // Not Working
-            let imageProvider = CLKFullColorImageProvider(fullColorImage: appGlyph)
-            return CLKComplicationTemplateGraphicCornerCircularImage(imageProvider: imageProvider)
         case .lineSteps:
             let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsFraction)
             let textProvider = CLKSimpleTextProvider(text: mediumStepCountString)
@@ -250,17 +246,13 @@ class ComplicationProvider {
             let textProvider = CLKSimpleTextProvider(text: longStepPercentString)
             let imageProvider = CLKFullColorImageProvider(fullColorImage: percentImage)
             return CLKComplicationTemplateGraphicCornerTextImage(textProvider: textProvider, imageProvider: imageProvider)
-        case .steps, .percent:
+        case .glyph, .steps, .percent:
             return nil
         }
     }
 
     private func graphicCircularTemplate(with style: ComplicationStyle) -> CLKComplicationTemplate? {
         switch style {
-        case .glyph:
-            // Not Working
-            let imageProvider = CLKFullColorImageProvider(fullColorImage: appGlyph)
-            return CLKComplicationTemplateGraphicCircularImage(imageProvider: imageProvider)
         case .ringSteps:
             let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsFraction)
             let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
@@ -275,7 +267,7 @@ class ComplicationProvider {
                 gaugeProvider: gaugeProvider,
                 centerTextProvider: textProvider
             )
-        case .steps, .percent, .lineSteps, .linePercent:
+        case .glyph, .steps, .percent, .lineSteps, .linePercent:
             return nil
         }
     }

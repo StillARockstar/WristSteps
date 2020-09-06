@@ -19,7 +19,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             CLKComplicationDescriptor(
                 identifier: ComplicationProvider.ComplicationStyle.glyph.rawValue,
                 displayName: "Glyph",
-                supportedFamilies: [.modularSmall, .utilitarianSmall, .circularSmall, .extraLarge, .graphicCorner, .graphicCircular],
+                supportedFamilies: [.modularSmall, .utilitarianSmall, .circularSmall, .extraLarge],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.glyph.rawValue]
             ),
             CLKComplicationDescriptor(
