@@ -9,8 +9,6 @@ import ClockKit
 
 
 class ComplicationController: NSObject, CLKComplicationDataSource {
-    lazy var appComplicationProvider: ComplicationProvider = { ComplicationProvider(dataProvider: AppDataProvider()) }()
-
     // MARK: Complication Configuration
 
     func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
@@ -65,7 +63,24 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     // MARK: Timeline Population
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
-        handler(nil)
+        #if TARGET_WATCH
+        let complicationProvider = ComplicationProvider(dataProvider: AppDataProvider())
+        #else
+        let complicationProvider = ComplicationProvider(dataProvider: SampleDataProvider())
+        #endif
+        guard let styleId = complication.userInfo?["style"] as? String,
+              let style = ComplicationProvider.ComplicationStyle(rawValue: styleId)
+        else {
+            handler(nil)
+            return
+        }
+        guard let complicationTemplate = complicationProvider.template(for: complication.family, style: style) else {
+            handler(nil)
+            return
+        }
+
+        let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: complicationTemplate)
+        handler(timelineEntry)
     }
 
     // MARK: Sample Templates
