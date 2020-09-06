@@ -158,9 +158,16 @@ class SampleUserData: UserData {
     var colorNamePublished: Published<String> { _colorName }
     var colorNamePublisher: Published<String>.Publisher { $colorName}
 
-    init() { }
+    init() {
+        self.colorName = DataStore.namespace(DataStoreConstants.namespace).get(key: DataStoreConstants.colorKey) as? String ?? AppColor.appBlue.name
+    }
 
     func update(stepGoal: Int) { }
 
     func update(colorName: String) { }
+
+    private struct DataStoreConstants {
+        static let namespace = "user_data"
+        static let colorKey = "app_color"
+    }
 }

@@ -25,34 +25,37 @@ class ComplicationProvider {
     }
 
     func template(for family: CLKComplicationFamily, style: ComplicationStyle) -> CLKComplicationTemplate? {
+        var template: CLKComplicationTemplate?
         switch family {
         case .modularSmall:
-            return modularSmallTemplate(with: style)
+            template = modularSmallTemplate(with: style)
         case .modularLarge:
-            return modularLargeTemplate(with: style)
+            template = modularLargeTemplate(with: style)
         case .utilitarianSmall:
-            return utilitarianSmallTemplate(with: style)
+            template = utilitarianSmallTemplate(with: style)
         case .utilitarianSmallFlat:
-            return utilitarianSmallFlatTemplate(with: style)
+            template = utilitarianSmallFlatTemplate(with: style)
         case .utilitarianLarge:
-            return utilitarianLargeTemplate(with: style)
+            template = utilitarianLargeTemplate(with: style)
         case .circularSmall:
-            return circularSmallTemplate(with: style)
+            template = circularSmallTemplate(with: style)
         case .extraLarge:
-            return extraLarge(with: style)
+            template = extraLarge(with: style)
         case .graphicCorner:
-            return graphicCornerTemplate(with: style)
+            template = graphicCornerTemplate(with: style)
         case .graphicBezel:
             return nil
         case .graphicCircular:
-            return graphicCircularTemplate(with: style)
+            template = graphicCircularTemplate(with: style)
         case .graphicRectangular:
-            return graphicRectangularTemplate(with: style)
+            template = graphicRectangularTemplate(with: style)
         case .graphicExtraLarge:
             return nil
         @unknown default:
             return nil
         }
+        template?.tintColor = color
+        return template
     }
 
     private func modularSmallTemplate(with style: ComplicationStyle) -> CLKComplicationTemplate? {
@@ -305,7 +308,7 @@ private extension ComplicationProvider {
     }
 
     var appGlyph: UIImage {
-        return UIImage(named: "app_glyph")!
+        return UIImage(named: "app_glyph")!.imageWithColor(newColor: color)
     }
 
     var percentImage: UIImage {
@@ -315,7 +318,7 @@ private extension ComplicationProvider {
             stepPercent = stepPercent % 100 + 100
         }
 
-        return UIImage(named:"radialGraph\(stepPercent)")!
+        return UIImage(named:"radialGraph\(stepPercent)")!.imageWithColor(newColor: color)
     }
 
     var stepsFraction: Float {

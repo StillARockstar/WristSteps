@@ -65,6 +65,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 CLKComplicationServer.sharedInstance().activeComplications?.forEach {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
+                CLKComplicationServer.sharedInstance().reloadComplicationDescriptors()
                 Color.update(appTint: AppColor.color(forName: newValue).color)
                 NSLog("New color name: \(newValue)")
             }
