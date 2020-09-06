@@ -12,6 +12,7 @@ class ComplicationProvider {
 
     enum ComplicationStyle: String {
         case steps = "steps"
+        case percent = "percent"
         case lineSteps = "line_steps"
         case linePercent = "line_percent"
     }
@@ -54,6 +55,9 @@ class ComplicationProvider {
         case .steps:
             let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
             return CLKComplicationTemplateModularSmallSimpleText(textProvider: textProvider)
+        case .percent:
+            let textProvider = CLKSimpleTextProvider(text: shortStepPercentString)
+            return CLKComplicationTemplateModularSmallSimpleText(textProvider: textProvider)
         case .lineSteps, .linePercent:
             return nil
         }
@@ -68,6 +72,13 @@ class ComplicationProvider {
                 headerTextProvider: headerProvider,
                 bodyTextProvider: bodyProvider
             )
+        case .percent:
+            let headerProvider = CLKSimpleTextProvider(text: "")
+            let bodyProvider = CLKSimpleTextProvider(text: shortStepPercentString)
+            return CLKComplicationTemplateModularLargeTallBody(
+                headerTextProvider: headerProvider,
+                bodyTextProvider: bodyProvider
+            )
         case .lineSteps, .linePercent:
             return nil
         }
@@ -77,6 +88,9 @@ class ComplicationProvider {
         switch style {
         case .steps:
             let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
+            return CLKComplicationTemplateUtilitarianSmallFlat(textProvider: textProvider)
+        case .percent:
+            let textProvider = CLKSimpleTextProvider(text: shortStepPercentString)
             return CLKComplicationTemplateUtilitarianSmallFlat(textProvider: textProvider)
         case .lineSteps, .linePercent:
             return nil
@@ -88,6 +102,9 @@ class ComplicationProvider {
         case .steps:
             let textProvider = CLKSimpleTextProvider(text: longStepCountString)
             return CLKComplicationTemplateUtilitarianLargeFlat(textProvider: textProvider)
+        case .percent:
+            let textProvider = CLKSimpleTextProvider(text: longStepPercentString)
+            return CLKComplicationTemplateUtilitarianLargeFlat(textProvider: textProvider)
         case .lineSteps, .linePercent:
             return nil
         }
@@ -98,6 +115,9 @@ class ComplicationProvider {
         case .steps:
             let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
             return CLKComplicationTemplateCircularSmallSimpleText(textProvider: textProvider)
+        case .percent:
+            let textProvider = CLKSimpleTextProvider(text: shortStepPercentString)
+            return CLKComplicationTemplateCircularSmallSimpleText(textProvider: textProvider)
         case .lineSteps, .linePercent:
             return nil
         }
@@ -107,6 +127,9 @@ class ComplicationProvider {
         switch style {
         case .steps:
             let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
+            return CLKComplicationTemplateExtraLargeSimpleText(textProvider: textProvider)
+        case .percent:
+            let textProvider = CLKSimpleTextProvider(text: shortStepPercentString)
             return CLKComplicationTemplateExtraLargeSimpleText(textProvider: textProvider)
         case .lineSteps, .linePercent:
             return nil
@@ -129,7 +152,7 @@ class ComplicationProvider {
                 gaugeProvider: gaugeProvider,
                 outerTextProvider: textProvider
             )
-        case .steps:
+        case .steps, .percent:
             return nil
         }
     }
@@ -154,7 +177,7 @@ class ComplicationProvider {
                 body1TextProvider: body1Provider,
                 gaugeProvider: gaugeProvider
             )
-        case .steps:
+        case .steps, .percent:
             return nil
         }
     }
@@ -186,6 +209,10 @@ private extension ComplicationProvider {
 
     var longStepCountString: String {
         return "\(dataProvider.healthData.stepCount) steps"
+    }
+
+    var shortStepPercentString: String {
+        return "\(Int(stepsPercent))%%"
     }
 
     var longStepPercentString: String {
