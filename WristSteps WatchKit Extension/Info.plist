@@ -32,9 +32,9 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>
 	</dict>
-	<key>WKWatchOnly</key>
-	<true/>
 	<key>NSMotionUsageDescription</key>
 	<string>WristSteps requires access to show you the most up-to-date step count</string>
+	<key>WKWatchOnly</key>
+	<true/>
 </dict>
 </plist>
