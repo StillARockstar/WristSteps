@@ -146,7 +146,9 @@ class SampleHealthData: HealthData {
     var stepCountPublished: Published<Int> { _stepCount }
     var stepCountPublisher: Published<Int>.Publisher { $stepCount }
 
-    func update(completion: @escaping ((Bool) -> Void)) { }
+    func update(completion: @escaping ((Bool) -> Void)) {
+        completion(true)
+    }
 }
 
 class SampleUserData: UserData {
