@@ -14,6 +14,7 @@
 		4C2E960025016F21004A1FB0 /* SetGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E95FF25016F21004A1FB0 /* SetGoalView.swift */; };
 		4C2E960425017144004A1FB0 /* SetGoalViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E960325017144004A1FB0 /* SetGoalViewProvider.swift */; };
 		4C6638C1258017720028B398 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638C0258017720028B398 /* InfoView.swift */; };
+		4C6638C925801DF80028B398 /* InfoViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638C825801DF80028B398 /* InfoViewProvider.swift */; };
 		4C95D66D250178BE00CB4D35 /* NumberFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D66C250178BE00CB4D35 /* NumberFormatting.swift */; };
 		4C95D66F25017F6500CB4D35 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D66E25017F6500CB4D35 /* DataStore.swift */; };
 		4C95D6722501856600CB4D35 /* SetColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D6712501856600CB4D35 /* SetColorView.swift */; };
@@ -83,6 +84,7 @@
 		4C2E95FF25016F21004A1FB0 /* SetGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalView.swift; sourceTree = "<group>"; };
 		4C2E960325017144004A1FB0 /* SetGoalViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalViewProvider.swift; sourceTree = "<group>"; };
 		4C6638C0258017720028B398 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		4C6638C825801DF80028B398 /* InfoViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewProvider.swift; sourceTree = "<group>"; };
 		4C95D66C250178BE00CB4D35 /* NumberFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatting.swift; sourceTree = "<group>"; };
 		4C95D66E25017F6500CB4D35 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		4C95D6712501856600CB4D35 /* SetColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetColorView.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 		4C6638BF2580170C0028B398 /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				4C6638C825801DF80028B398 /* InfoViewProvider.swift */,
 				4C6638C0258017720028B398 /* InfoView.swift */,
 			);
 			path = Info;
@@ -368,6 +371,7 @@
 				4C95D66F25017F6500CB4D35 /* DataStore.swift in Sources */,
 				4C95D6722501856600CB4D35 /* SetColorView.swift in Sources */,
 				4C2E95FD250030B1004A1FB0 /* LifeCycleHandler.swift in Sources */,
+				4C6638C925801DF80028B398 /* InfoViewProvider.swift in Sources */,
 				4CD0B75925001E1800D13426 /* ComplicationPayload.swift in Sources */,
 				4C9FE8A324FBE673008062AF /* HomeView.swift in Sources */,
 				4CC3713F250016F700509583 /* View+Convenients.swift in Sources */,

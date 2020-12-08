@@ -50,7 +50,9 @@ struct HomeView: View {
                     .environmentObject(provider.setColorViewProvider)
                     .asAnyView()
             case .info:
-                return InfoView().asAnyView()
+                return InfoView()
+                    .environmentObject(provider.infoViewProvider)
+                    .asAnyView()
             }
         })
         .navigationBarTitle("WristSteps")
