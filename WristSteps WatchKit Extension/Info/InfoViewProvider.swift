@@ -10,9 +10,11 @@ import Foundation
 class InfoViewProvider: ObservableObject {
     private let dataProvider: DataProvider
     let versionNumber: String
+    let copyrightText: String
 
     init(dataProvider: DataProvider) {
         self.dataProvider = dataProvider
-        self.versionNumber = "1.0.1 (2)"
+        self.versionNumber = "\(Bundle.main.releaseVersionNumber) (\(Bundle.main.buildVersionNumber))"
+        self.copyrightText = "© 2020 Michael Schoder"
     }
 }

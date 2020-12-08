@@ -25,7 +25,7 @@ struct InfoView: View {
                 .padding(.bottom, 4)
 
             Text("Copyright")
-            Text("© 2020 Michael Schoder")
+            Text(provider.copyrightText)
                 .font(.caption)
                 .foregroundColor(.gray)
         }
