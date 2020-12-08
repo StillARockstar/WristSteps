@@ -14,4 +14,8 @@ extension View {
             self
         }
     }
+
+    func asAnyView() -> AnyView {
+        AnyView(self)
+    }
 }
