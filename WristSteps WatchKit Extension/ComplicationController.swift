@@ -74,35 +74,43 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
         #if TARGET_WATCH
-        let complicationProvider = ComplicationProvider(dataProvider: AppDataProvider())
+        let dataProvider = AppDataProvider()
         #else
-        let complicationProvider = ComplicationProvider(dataProvider: SampleDataProvider())
+        let dataProvider = SimulatorDataProvider()
         #endif
-        guard let styleId = complication.userInfo?["style"] as? String,
-              let style = ComplicationProvider.ComplicationStyle(rawValue: styleId)
-        else {
-            handler(nil)
-            return
-        }
-        guard let complicationTemplate = complicationProvider.template(for: complication.family, style: style) else {
-            handler(nil)
-            return
-        }
 
-        let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: complicationTemplate)
-        handler(timelineEntry)
+        dataProvider.healthData.update { _ in
+            let complicationProvider = ComplicationProvider(dataProvider: dataProvider)
+            guard let styleId = complication.userInfo?["style"] as? String,
+                  let style = ComplicationProvider.ComplicationStyle(rawValue: styleId)
+            else {
+                handler(nil)
+                return
+            }
+            guard let complicationTemplate = complicationProvider.template(for: complication.family, style: style) else {
+                handler(nil)
+                return
+            }
+
+            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: complicationTemplate)
+            handler(timelineEntry)
+        }
     }
 
     // MARK: Sample Templates
     
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
-        let sampleComplicationProvider = ComplicationProvider(dataProvider: SampleDataProvider())
-        guard let styleId = complication.userInfo?["style"] as? String,
-              let style = ComplicationProvider.ComplicationStyle(rawValue: styleId)
-        else {
-            handler(nil)
-            return
+        let dataProvider = SampleDataProvider()
+
+        dataProvider.healthData.update { _ in
+            let sampleComplicationProvider = ComplicationProvider(dataProvider: dataProvider)
+            guard let styleId = complication.userInfo?["style"] as? String,
+                  let style = ComplicationProvider.ComplicationStyle(rawValue: styleId)
+            else {
+                handler(nil)
+                return
+            }
+            handler(sampleComplicationProvider.template(for: complication.family, style: style))
         }
-        handler(sampleComplicationProvider.template(for: complication.family, style: style))
     }
 }
