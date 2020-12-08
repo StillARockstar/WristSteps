@@ -13,6 +13,9 @@
 		4C2E95FD250030B1004A1FB0 /* LifeCycleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */; };
 		4C2E960025016F21004A1FB0 /* SetGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E95FF25016F21004A1FB0 /* SetGoalView.swift */; };
 		4C2E960425017144004A1FB0 /* SetGoalViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E960325017144004A1FB0 /* SetGoalViewProvider.swift */; };
+		4C6638C1258017720028B398 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638C0258017720028B398 /* InfoView.swift */; };
+		4C6638C925801DF80028B398 /* InfoViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638C825801DF80028B398 /* InfoViewProvider.swift */; };
+		4C6638D4258023B50028B398 /* Bundle+Convenients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638D3258023B50028B398 /* Bundle+Convenients.swift */; };
 		4C95D66D250178BE00CB4D35 /* NumberFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D66C250178BE00CB4D35 /* NumberFormatting.swift */; };
 		4C95D66F25017F6500CB4D35 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D66E25017F6500CB4D35 /* DataStore.swift */; };
 		4C95D6722501856600CB4D35 /* SetColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D6712501856600CB4D35 /* SetColorView.swift */; };
@@ -28,7 +31,7 @@
 		4C9FE8A024FBC6C8008062AF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9FE89F24FBC6C8008062AF /* Colors.xcassets */; };
 		4C9FE8A324FBE673008062AF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE8A224FBE673008062AF /* HomeView.swift */; };
 		4C9FE8A624FBE6E4008062AF /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FE8A524FBE6E4008062AF /* DetailView.swift */; };
-		4CC3713F250016F700509583 /* View+Embed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3713E250016F700509583 /* View+Embed.swift */; };
+		4CC3713F250016F700509583 /* View+Convenients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3713E250016F700509583 /* View+Convenients.swift */; };
 		4CD0B75925001E1800D13426 /* ComplicationPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0B75825001E1800D13426 /* ComplicationPayload.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +84,9 @@
 		4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleHandler.swift; sourceTree = "<group>"; };
 		4C2E95FF25016F21004A1FB0 /* SetGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalView.swift; sourceTree = "<group>"; };
 		4C2E960325017144004A1FB0 /* SetGoalViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalViewProvider.swift; sourceTree = "<group>"; };
+		4C6638C0258017720028B398 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		4C6638C825801DF80028B398 /* InfoViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewProvider.swift; sourceTree = "<group>"; };
+		4C6638D3258023B50028B398 /* Bundle+Convenients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Convenients.swift"; sourceTree = "<group>"; };
 		4C95D66C250178BE00CB4D35 /* NumberFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatting.swift; sourceTree = "<group>"; };
 		4C95D66E25017F6500CB4D35 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		4C95D6712501856600CB4D35 /* SetColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetColorView.swift; sourceTree = "<group>"; };
@@ -99,7 +105,7 @@
 		4C9FE89F24FBC6C8008062AF /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		4C9FE8A224FBE673008062AF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4C9FE8A524FBE6E4008062AF /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		4CC3713E250016F700509583 /* View+Embed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Embed.swift"; sourceTree = "<group>"; };
+		4CC3713E250016F700509583 /* View+Convenients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Convenients.swift"; sourceTree = "<group>"; };
 		4CD0B75825001E1800D13426 /* ComplicationPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationPayload.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +135,15 @@
 				4C2E95FF25016F21004A1FB0 /* SetGoalView.swift */,
 			);
 			path = SetGoal;
+			sourceTree = "<group>";
+		};
+		4C6638BF2580170C0028B398 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				4C6638C825801DF80028B398 /* InfoViewProvider.swift */,
+				4C6638C0258017720028B398 /* InfoView.swift */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 		4C95D6702501853F00CB4D35 /* SetColor */ = {
@@ -172,7 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				4C9FE89D24FBC67C008062AF /* Color+Tint.swift */,
-				4CC3713E250016F700509583 /* View+Embed.swift */,
+				4CC3713E250016F700509583 /* View+Convenients.swift */,
+				4C6638D3258023B50028B398 /* Bundle+Convenients.swift */,
 				4C95D66C250178BE00CB4D35 /* NumberFormatting.swift */,
 				4C95D66E25017F6500CB4D35 /* DataStore.swift */,
 				4C253A9524FBEF9B0083B66B /* DataProvider */,
@@ -180,6 +196,7 @@
 				4C9FE8A124FBE65E008062AF /* Home */,
 				4C2E95FE25016F0B004A1FB0 /* SetGoal */,
 				4C95D6702501853F00CB4D35 /* SetColor */,
+				4C6638BF2580170C0028B398 /* Info */,
 				4C9FE88624FBC504008062AF /* WristStepsApp.swift */,
 				4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */,
 				4CD0B75825001E1800D13426 /* ComplicationPayload.swift */,
@@ -357,10 +374,13 @@
 				4C95D66F25017F6500CB4D35 /* DataStore.swift in Sources */,
 				4C95D6722501856600CB4D35 /* SetColorView.swift in Sources */,
 				4C2E95FD250030B1004A1FB0 /* LifeCycleHandler.swift in Sources */,
+				4C6638C925801DF80028B398 /* InfoViewProvider.swift in Sources */,
 				4CD0B75925001E1800D13426 /* ComplicationPayload.swift in Sources */,
 				4C9FE8A324FBE673008062AF /* HomeView.swift in Sources */,
-				4CC3713F250016F700509583 /* View+Embed.swift in Sources */,
+				4CC3713F250016F700509583 /* View+Convenients.swift in Sources */,
+				4C6638D4258023B50028B398 /* Bundle+Convenients.swift in Sources */,
 				4C2E960425017144004A1FB0 /* SetGoalViewProvider.swift in Sources */,
+				4C6638C1258017720028B398 /* InfoView.swift in Sources */,
 				4C9FE88924FBC504008062AF /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

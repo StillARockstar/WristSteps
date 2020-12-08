@@ -7,9 +7,16 @@
 
 import SwiftUI
 
+enum HomeViewSheetItemType: Identifiable {
+    case setGoal
+    case setColor
+    case info
+
+    var id: Int { hashValue }
+}
+
 struct HomeView: View {
-    @State var showingSetGoal = false
-    @State var showingSetColor = false
+    @State var sheetItem: HomeViewSheetItemType?
     @EnvironmentObject var provider: HomeViewProvider
 
     var body: some View {
@@ -21,19 +28,35 @@ struct HomeView: View {
             )
             Spacer()
             HStack {
-                Button("🏁", action: { showingSetGoal.toggle() })
-                    .sheet(isPresented: $showingSetGoal, content: {
-                        SetGoalView()
-                            .environmentObject(provider.setGoalViewProvider)
-                    })
-                Button("🎨", action: { showingSetColor.toggle() })
-                    .sheet(isPresented: $showingSetColor, content: {
-                        SetColorView()
-                            .environmentObject(provider.setColorViewProvider)
-                    })
+                Button("🏁", action: {
+                    sheetItem = .setGoal
+                })
+                Button("🎨", action: {
+                    sheetItem = .setColor
+                })
             }
         }
+        .onLongPressGesture {
+            sheetItem = .info
+        }
+        .sheet(item: $sheetItem, content: { item -> AnyView in
+            switch item {
+            case .setGoal:
+                return SetGoalView()
+                    .environmentObject(provider.setGoalViewProvider)
+                    .asAnyView()
+            case .setColor:
+                return SetColorView()
+                    .environmentObject(provider.setColorViewProvider)
+                    .asAnyView()
+            case .info:
+                return InfoView()
+                    .environmentObject(provider.infoViewProvider)
+                    .asAnyView()
+            }
+        })
         .navigationBarTitle("WristSteps")
+
     }
 }
 
