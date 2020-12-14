@@ -9,13 +9,6 @@ import Foundation
 
 extension Int {
 
-    var thousandsFormattedString: String {
-        let value = (Double(self) / Double(1000)).roundToDigits(places: 1)
-        let number = NSNumber(value: value)
-        let numberString = NumberFormatter.localizedString(from: number, number: .decimal)
-        return "\(numberString)"
-    }
-
     var kFormattedString: String {
         if self >= 1000 {
             let value = (Double(self) / Double(1000)).roundToDigits(places: 1)
