@@ -277,7 +277,7 @@ class ComplicationProvider {
         switch style {
         case .ringSteps:
             let gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: color, fillFraction: stepsFraction)
-            let textProvider = CLKSimpleTextProvider(text: shortStepCountString)
+            let textProvider = CLKSimpleTextProvider(text: veryShortStepCountString)
             return CLKComplicationTemplateGraphicCircularClosedGaugeText(
                 gaugeProvider: gaugeProvider,
                 centerTextProvider: textProvider
@@ -371,6 +371,10 @@ private extension ComplicationProvider {
         let stepPercent = Int(stepsFraction * 100)
 
         return Float(stepPercent)
+    }
+
+    var veryShortStepCountString: String {
+        return "\(dataProvider.healthData.stepCount.thousandsFormattedString)"
     }
 
     var shortStepCountString: String {
