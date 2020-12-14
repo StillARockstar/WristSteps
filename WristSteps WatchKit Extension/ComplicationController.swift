@@ -47,7 +47,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             CLKComplicationDescriptor(
                 identifier: "\(ComplicationProvider.ComplicationStyle.ringSteps.rawValue)_\(timestamp)",
                 displayName: "Ring + Steps",
-                supportedFamilies: [.circularSmall, .extraLarge, .graphicCorner],
+                supportedFamilies: [.circularSmall, .graphicCorner],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.ringSteps.rawValue]
             ),
             CLKComplicationDescriptor(
