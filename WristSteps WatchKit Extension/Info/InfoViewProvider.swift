@@ -15,6 +15,6 @@ class InfoViewProvider: ObservableObject {
     init(dataProvider: DataProvider) {
         self.dataProvider = dataProvider
         self.versionNumber = "\(Bundle.main.releaseVersionNumber) (\(Bundle.main.buildVersionNumber))"
-        self.copyrightText = "© 2020 Michael Schoder"
+        self.copyrightText = "© 2021 Michael Schoder"
     }
 }
