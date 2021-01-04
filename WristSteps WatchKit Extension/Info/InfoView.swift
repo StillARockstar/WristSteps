@@ -15,7 +15,7 @@ struct InfoView: View {
             Text("About WristSteps".uppercased())
                 .font(.headline)
                 .foregroundColor(.appTint)
-                .frame(maxWidth: .infinity,alignment: .center)
+                .frame(maxWidth: .infinity, alignment: .center)
                 .padding([.top, .bottom], 4)
 
             Text("App Version")
