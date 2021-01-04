@@ -16,7 +16,6 @@ struct OnboardingView: View {
                 OnboardingPageView(provider: pageProvider)
             })
         }
-        .frame(width: .infinity, height: .infinity, alignment: .center)
         .tabViewStyle(PageTabViewStyle())
     }
 }
