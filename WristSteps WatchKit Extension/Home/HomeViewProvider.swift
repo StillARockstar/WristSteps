@@ -11,7 +11,6 @@ import Combine
 class HomeViewProvider: ObservableObject {
     private let dataProvider: DataProvider
     private var subscriptions: Set<AnyCancellable> = Set()
-    private var shouldShowOnboarding: Bool = true
 
     var onboardingProvider: OnboardingViewProvider { OnboardingViewProvider() }
     var setGoalViewProvider: SetGoalViewProvider { SetGoalViewProvider(dataProvider: dataProvider) }
@@ -28,8 +27,8 @@ class HomeViewProvider: ObservableObject {
     }
 
     func shouldShowOnboardingAndSetFlag() -> Bool {
-        if shouldShowOnboarding {
-            shouldShowOnboarding = false
+        if !dataProvider.appData.onboardingDone {
+            dataProvider.appData.setOnboardingDone(true)
             return true
         }
         return false
