@@ -33,7 +33,7 @@ class OnboardingViewProvider: ObservableObject {
             ),
             OnboardingPageProvider(
                 headline: "Set the complication",
-                description: "Go back to your watch face, long press to edit. From there you set WristSteps as a complication."
+                description: "Go back to your watch face and long press to edit. From there you set WristSteps as a complication."
             )
         ]
     }
