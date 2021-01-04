@@ -9,8 +9,15 @@ import Foundation
 import CoreMotion
 
 protocol DataProvider {
+    var appData: AppData { get }
     var healthData: HealthData { get }
     var userData: UserData { get }
+}
+
+protocol AppData {
+    var onboardingDone: Bool { get }
+
+    func setOnboardingDone(_ flag: Bool)
 }
 
 protocol HealthData {
@@ -39,12 +46,32 @@ protocol UserData {
 // - MARK: App Data Provider
 
 class AppDataProvider: DataProvider {
+    let appData: AppData
     let healthData: HealthData
     let userData: UserData
 
     init() {
+        self.appData = AppAppData()
         self.healthData = AppHealthData()
         self.userData = AppUserData()
+    }
+}
+
+class AppAppData: AppData {
+    private(set) var onboardingDone: Bool
+
+    init() {
+        self.onboardingDone = DataStore.namespace(DataStoreConstants.namespace).get(key: DataStoreConstants.onboardingDoneKey) as? Bool ?? false
+    }
+
+    func setOnboardingDone(_ flag: Bool) {
+        self.onboardingDone = flag
+        DataStore.namespace(DataStoreConstants.namespace).set(value: flag, for: DataStoreConstants.onboardingDoneKey)
+    }
+
+    private struct DataStoreConstants {
+        static let namespace = "app_data"
+        static let onboardingDoneKey = "onboarding_done"
     }
 }
 
@@ -106,10 +133,12 @@ class AppUserData: UserData {
 // - MARK: Simulator Data Provider
 
 class SimulatorDataProvider: DataProvider {
+    let appData: AppData
     let healthData: HealthData
     let userData: UserData
 
     init() {
+        self.appData = AppAppData()
         self.healthData = SimulatorHealthData()
         self.userData = AppUserData()
     }
@@ -132,10 +161,12 @@ class SimulatorHealthData: HealthData {
 // - MARK: SampleDataProvider
 
 class SampleDataProvider: DataProvider {
+    let appData: AppData
     let healthData: HealthData
     let userData: UserData
 
     init() {
+        self.appData = AppAppData()
         self.healthData = SampleHealthData()
         self.userData = SampleUserData()
     }
