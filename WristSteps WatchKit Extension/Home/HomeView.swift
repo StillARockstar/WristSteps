@@ -8,6 +8,7 @@
 import SwiftUI
 
 enum HomeViewSheetItemType: Identifiable {
+    case onboarding
     case setGoal
     case setColor
     case info
@@ -39,8 +40,17 @@ struct HomeView: View {
         .onLongPressGesture {
             sheetItem = .info
         }
+        .onAppear(perform: {
+            if provider.shouldShowOnboardingAndSetFlag() {
+                sheetItem = .onboarding
+            }
+        })
         .sheet(item: $sheetItem, content: { item -> AnyView in
             switch item {
+            case .onboarding:
+                return OnboardingView()
+                    .environmentObject(provider.onboardingProvider)
+                    .asAnyView()
             case .setGoal:
                 return SetGoalView()
                     .environmentObject(provider.setGoalViewProvider)
@@ -56,7 +66,6 @@ struct HomeView: View {
             }
         })
         .navigationBarTitle("WristSteps")
-
     }
 }
 
