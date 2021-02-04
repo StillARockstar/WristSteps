@@ -15,7 +15,8 @@ class SetColorViewProvider: ObservableObject {
     private var iapInfoPublisher: AnyCancellable?
 
     let selectedColorName: String
-    let availableColors: [AppColor] = AppColor.all
+    let availableStandardColors: [AppColor] = AppColor.standard
+    let availablePremiumColors: [AppColor] = AppColor.premium
 
     @Published var purchaseAvailable: Bool = false
 
