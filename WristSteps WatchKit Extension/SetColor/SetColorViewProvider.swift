@@ -6,21 +6,35 @@
 //
 
 import Foundation
+import Combine
 
 class SetColorViewProvider: ObservableObject {
     private let dataProvider: DataProvider
+    private let iapProduct: IAPProduct?
     private let iapManager: IAPManager
+    private var iapInfoPublisher: AnyCancellable?
 
     let selectedColorName: String
     let availableColors: [AppColor] = AppColor.all
+
+    @Published var purchaseAvailable: Bool = false
 
     init(dataProvider: DataProvider, iapManager: IAPManager) {
         self.dataProvider = dataProvider
         self.iapManager = iapManager
         self.selectedColorName = dataProvider.userData.colorName
+
+        self.iapProduct = self.iapManager.getProduct(for: ProductIds.premiumColors.rawValue)
+        self.iapInfoPublisher = self.iapProduct?.$information.sink(receiveValue: { [weak self] information in
+            self?.purchaseAvailable = information != nil
+        })
     }
 
     func commitColorUpdate(newValue: AppColor) {
         dataProvider.userData.update(colorName: newValue.name)
+    }
+
+    func purchasePremiumColors() {
+        iapProduct?.buy()
     }
 }

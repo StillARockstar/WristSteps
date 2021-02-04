@@ -18,32 +18,40 @@ struct SetColorView: View {
     ]
 
     var body: some View {
-        VStack {
-            Text("App Color".uppercased())
-                .foregroundColor(.appTint)
-            Text("App & Complication color")
-                .font(.footnote)
-                .foregroundColor(.gray)
-                .multilineTextAlignment(.center)
-            Spacer()
+        ScrollView {
+            VStack {
+                Text("App Color".uppercased())
+                    .foregroundColor(.appTint)
+                Text("App & Complication color")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+                Spacer()
 
-            LazyVGrid(columns: columns, spacing: 5){
-                ForEach(provider.availableColors, id: \.self) { item in
-                    Button(
-                        action: {
-                            provider.commitColorUpdate(newValue: item)
-                            presentationMode.wrappedValue.dismiss()
-                        },
-                        label: {
-                            Image(systemName:
-                                    item.name == provider.selectedColorName ? "checkmark.circle.fill" : "circle.fill"
-                            )
-                        }
-                    )
-                        .padding()
-                        .font(.title)
-                        .foregroundColor(item.color)
-                        .buttonStyle(PlainButtonStyle())
+                LazyVGrid(columns: columns, spacing: 5){
+                    ForEach(provider.availableColors, id: \.self) { item in
+                        Button(
+                            action: {
+                                provider.commitColorUpdate(newValue: item)
+                                presentationMode.wrappedValue.dismiss()
+                            },
+                            label: {
+                                Image(systemName:
+                                        item.name == provider.selectedColorName ? "checkmark.circle.fill" : "circle.fill"
+                                )
+                            }
+                        )
+                            .padding()
+                            .font(.title)
+                            .foregroundColor(item.color)
+                            .buttonStyle(PlainButtonStyle())
+                    }
+                }
+
+                if provider.purchaseAvailable {
+                    Button("Upgrade", action: {
+                        provider.purchasePremiumColors()
+                    })
                 }
             }
         }
