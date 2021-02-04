@@ -27,6 +27,7 @@ struct WristStepsApp: App {
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
     @Environment(\.appTint) var appTintColor: Color
     let dataProvider: DataProvider
+    let iapManager: IAPManager
     private let lifeCycleHandler: LifeCycleHandler
     private let stepCountPublisher: AnyCancellable
     private let stepGoalPublisher: AnyCancellable
@@ -38,6 +39,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         #else
         self.dataProvider = SimulatorDataProvider()
         #endif
+
+        self.iapManager = IAPManager()
+        self.iapManager.generateProducts(with: ProductIds.allCases.map({ $0.rawValue }))
+
         self.lifeCycleHandler = LifeCycleHandler(dataProvider: self.dataProvider)
 
         self.stepCountPublisher = dataProvider.healthData.stepCountPublisher
