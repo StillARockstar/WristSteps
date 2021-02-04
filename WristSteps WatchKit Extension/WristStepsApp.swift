@@ -17,7 +17,10 @@ struct WristStepsApp: App {
         WindowGroup {
             HomeView()
                 .environmentObject(
-                    HomeViewProvider(dataProvider: extensionDelegate.dataProvider)
+                    HomeViewProvider(
+                        dataProvider: extensionDelegate.dataProvider,
+                        iapManager: extensionDelegate.iapManager
+                    )
                 )
                 .embedInNavigation()
         }

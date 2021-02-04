@@ -72,6 +72,11 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .environmentObject(HomeViewProvider(dataProvider: SimulatorDataProvider()))
+            .environmentObject(
+                HomeViewProvider(
+                    dataProvider: SimulatorDataProvider(),
+                    iapManager: IAPManager()
+                )
+            )
     }
 }

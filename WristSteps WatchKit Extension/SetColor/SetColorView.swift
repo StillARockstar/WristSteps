@@ -53,6 +53,11 @@ struct SetColorView: View {
 struct SetColorView_Previews: PreviewProvider {
     static var previews: some View {
         SetColorView()
-            .environmentObject(SetColorViewProvider(dataProvider: SimulatorDataProvider()))
+            .environmentObject(
+                SetColorViewProvider(
+                    dataProvider: SimulatorDataProvider(),
+                    iapManager: IAPManager()
+                )
+            )
     }
 }
