@@ -8,14 +8,7 @@
 import SwiftUI
 
 extension Color {
-    static private(set) var appTint = Color.appBlue
-
-    static let appBlue = AppColor.appBlue.color
-    static let appCyan = AppColor.appCyan.color
-    static let appGreen = AppColor.appGreen.color
-    static let appOrange = AppColor.appOrange.color
-    static let appPurple = AppColor.appPurple.color
-    static let appRed = AppColor.appRed.color
+    static private(set) var appTint = AppColor.appBlue.color
 
     static func update(appTint: Color) {
         Self.appTint = appTint
@@ -25,24 +18,13 @@ extension Color {
 struct AppColor: Hashable {
     let name: String
     let displayName: String
-    let color: Color
-
-    static let appBlue = AppColor(name: "appBlue", displayName: "App Blue", color: Color("appBlue"))
-    static let appCyan = AppColor(name: "appCyan", displayName: "App Cyan", color: Color("appCyan"))
-    static let appGreen = AppColor(name: "appGreen", displayName: "App Green", color: Color("appGreen"))
-    static let appOrange = AppColor(name: "appOrange", displayName: "App Orange", color: Color("appOrange"))
-    static let appPurple = AppColor(name: "appPurple", displayName: "App Purple", color: Color("appPurple"))
-    static let appRed = AppColor(name: "appRed", displayName: "App Red", color: Color("appRed"))
-
-    static let all: [AppColor] = Self.standard + Self.premium
-    static let standard: [AppColor] = [appBlue, appCyan, appGreen, appOrange, appPurple, appRed]
-    static let premium: [AppColor] = [appBlue, appCyan, appGreen, appOrange, appPurple, appRed]
+    let color: Color    
 
     static func color(forName name: String) -> AppColor {
         return all.first(where: { $0.name == name }) ?? .appBlue
     }
 
-    private init(name: String, displayName: String, color: Color) {
+    init(name: String, displayName: String, color: Color) {
         self.name = name
         self.displayName = displayName
         self.color = color

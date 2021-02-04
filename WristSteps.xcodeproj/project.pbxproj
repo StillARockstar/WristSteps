@@ -39,6 +39,7 @@
 		4CDFAD5525CC782F003EA090 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 4CDFAD5425CC7829003EA090 /* Configuration.storekit */; };
 		4CDFAD5925CC782F003EA090 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 4CDFAD5425CC7829003EA090 /* Configuration.storekit */; };
 		4CDFAD5A25CC7830003EA090 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 4CDFAD5425CC7829003EA090 /* Configuration.storekit */; };
+		4CDFAD5F25CC9D09003EA090 /* ColorDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDFAD5E25CC9D09003EA090 /* ColorDefinitions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		4CC3713E250016F700509583 /* View+Convenients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Convenients.swift"; sourceTree = "<group>"; };
 		4CD0B75825001E1800D13426 /* ComplicationPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationPayload.swift; sourceTree = "<group>"; };
 		4CDFAD5425CC7829003EA090 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		4CDFAD5E25CC9D09003EA090 /* ColorDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDefinitions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				4C9FE89D24FBC67C008062AF /* Color+Tint.swift */,
+				4CDFAD5E25CC9D09003EA090 /* ColorDefinitions.swift */,
 				4CC3713E250016F700509583 /* View+Convenients.swift */,
 				4C6638D3258023B50028B398 /* Bundle+Convenients.swift */,
 				4C95D66C250178BE00CB4D35 /* NumberFormatting.swift */,
@@ -399,6 +402,7 @@
 				4C05CDDE2503896E00C40885 /* ComplicationProvider.swift in Sources */,
 				4C95D66D250178BE00CB4D35 /* NumberFormatting.swift in Sources */,
 				4C95D66F25017F6500CB4D35 /* DataStore.swift in Sources */,
+				4CDFAD5F25CC9D09003EA090 /* ColorDefinitions.swift in Sources */,
 				4C95D6722501856600CB4D35 /* SetColorView.swift in Sources */,
 				4C2E95FD250030B1004A1FB0 /* LifeCycleHandler.swift in Sources */,
 				4C6638C925801DF80028B398 /* InfoViewProvider.swift in Sources */,
