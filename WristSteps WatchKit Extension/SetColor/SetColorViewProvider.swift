@@ -39,7 +39,7 @@ class SetColorViewProvider: ObservableObject {
             .sink(receiveValue: { [weak self] information in
                 DispatchQueue.main.async {
                     self?.premiumColorsInfo = information
-                    self?.canPurchasePremiumColors = true
+                    self?.canPurchasePremiumColors = information != nil
                 }
             })
     }
