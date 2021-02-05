@@ -46,11 +46,16 @@ extension IAPManager {
     }
 
     private func isProductPurchsed(identifier: String) -> Bool {
-        UserDefaults.standard.bool(forKey: identifier)
+        DataStore.namespace(DataStoreConstants.namespace).get(key: DataStoreConstants.premiumColorsKey) as? Bool ?? false
     }
 
     private func setProductPurchased(identifier: String, _ value: Bool) {
-        UserDefaults.standard.setValue(value, forKey: identifier)
+        DataStore.namespace(DataStoreConstants.namespace).set(value: value, for: DataStoreConstants.premiumColorsKey)
+    }
+
+    private struct DataStoreConstants {
+        static let namespace = "purchase_data"
+        static let premiumColorsKey = "premium_colors"
     }
 }
 
