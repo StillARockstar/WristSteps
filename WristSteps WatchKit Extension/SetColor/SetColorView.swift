@@ -25,7 +25,13 @@ struct SetColorView: View {
             }
             .listRowBackground(Color.clear)
 
-            premiumListView
+            if provider.hasPremiumColorsUnlocked {
+                premiumListView
+            }
+            if !provider.hasPremiumColorsUnlocked && provider.canPurchasePremiumColors {
+                premiumPurchaseView
+                premiumRestoreView
+            }
         }
     }
 
@@ -81,6 +87,38 @@ struct SetColorView: View {
                 }
             })
         })
+    }
+
+    private var premiumPurchaseView: some View {
+        Button(action: {
+            provider.purchasePremiumColors()
+        }, label: {
+            VStack(spacing: 5) {
+                Text(provider.premiumColorsInfo?.productTitle ?? "")
+                    .foregroundColor(.appTint)
+                Text(provider.premiumColorsInfo?.productDescription ?? "")
+                    .multilineTextAlignment(.center)
+                Text("for \(provider.premiumColorsInfo?.productPrice ?? "")" )
+                    .foregroundColor(.appTint)
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                Text("One time purchase")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+            }
+            .padding([.top, .bottom], 5)
+            .frame(maxWidth: .infinity)
+        })
+    }
+
+    private var premiumRestoreView: some View {
+        Button(
+            "Restore Purchase",
+            action: {
+                provider.restorePremiumColors()
+            }
+        )
     }
 }
 
