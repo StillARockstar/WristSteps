@@ -1,0 +1,29 @@
+{
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "D531705A",
+      "localizations" : [
+        {
+          "description" : "Unlock unique 81 colors to match your style",
+          "displayName" : "Premium Colors",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "at.Schoder.WristSteps.iap.PremiumColors",
+      "referenceName" : "WristSteps Premium Colors",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 0
+  }
+}
