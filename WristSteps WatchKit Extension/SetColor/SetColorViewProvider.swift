@@ -12,8 +12,7 @@ class SetColorViewProvider: ObservableObject {
     private let dataProvider: DataProvider
     private let iapProduct: IAPProduct?
     private let iapManager: IAPManager
-    private var iapPurchasedPublisher: AnyCancellable?
-    private var iapInfoPublisher: AnyCancellable?
+    private var cancellables: [AnyCancellable?] = []
 
     let selectedColorName: String
     let availableStandardColors: [AppColor] = AppColor.standard
@@ -29,19 +28,28 @@ class SetColorViewProvider: ObservableObject {
         self.selectedColorName = dataProvider.userData.colorName
 
         self.iapProduct = self.iapManager.getProduct(for: ProductIds.premiumColors.rawValue)
-        self.iapPurchasedPublisher = self.iapProduct?.$purchased
-            .sink(receiveValue: { [weak self] value in
-                DispatchQueue.main.async {
-                    self?.hasPremiumColorsUnlocked = value
-                }
+        self.cancellables.append(
+            self.iapProduct?.$purchased
+                .sink(receiveValue: { [weak self] value in
+                    DispatchQueue.main.async {
+                        self?.hasPremiumColorsUnlocked = value
+                    }
+                })
+        )
+        self.cancellables.append(
+            self.iapProduct?.$information
+                .sink(receiveValue: { [weak self] information in
+                    DispatchQueue.main.async {
+                        self?.premiumColorsInfo = information
+                        self?.canPurchasePremiumColors = information != nil
+                    }
+                })
+        )
+        self.cancellables.append(
+            iapManager.restoreEvents.sink(receiveValue: { restored in
+                print("Got restore event with: \(restored)")
             })
-        self.iapInfoPublisher = self.iapProduct?.$information
-            .sink(receiveValue: { [weak self] information in
-                DispatchQueue.main.async {
-                    self?.premiumColorsInfo = information
-                    self?.canPurchasePremiumColors = information != nil
-                }
-            })
+        )
     }
 
     func commitColorUpdate(newValue: AppColor) {
