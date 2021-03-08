@@ -11,6 +11,12 @@ struct InfoViewProvider {
     let emoji: String?
     let title: String
     let body: String
+
+    init(emoji: String? = nil, title: String, body: String) {
+        self.emoji = emoji
+        self.title = title
+        self.body = body
+    }
 }
 
 struct InfoView: View {
@@ -41,6 +47,12 @@ struct InfoView_Previews: PreviewProvider {
         InfoView(
             provider: InfoViewProvider(
                 emoji: "👋",
+                title: "Info View Title",
+                body: "This is the body is of an info view! It is scollable. And it is awesome and my be super long"
+            )
+        )
+        InfoView(
+            provider: InfoViewProvider(
                 title: "Info View Title",
                 body: "This is the body is of an info view! It is scollable. And it is awesome and my be super long"
             )
