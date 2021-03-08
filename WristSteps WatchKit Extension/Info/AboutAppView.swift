@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct InfoView: View {
-    @EnvironmentObject var provider: InfoViewProvider
+struct AboutAppView: View {
+    @EnvironmentObject var provider: AboutAppViewProvider
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -33,9 +33,9 @@ struct InfoView: View {
     }
 }
 
-struct InfoView_Previews: PreviewProvider {
+struct AboutAppView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoView()
-            .environmentObject(InfoViewProvider(dataProvider: SimulatorDataProvider()))
+        AboutAppView()
+            .environmentObject(AboutAppViewProvider(dataProvider: SimulatorDataProvider()))
     }
 }
