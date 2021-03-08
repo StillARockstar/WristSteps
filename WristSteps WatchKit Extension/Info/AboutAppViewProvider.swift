@@ -7,7 +7,7 @@
 
 import Foundation
 
-class InfoViewProvider: ObservableObject {
+class AboutAppViewProvider: ObservableObject {
     private let dataProvider: DataProvider
     let versionNumber: String
     let copyrightText: String

@@ -7,9 +7,16 @@
 
 import Foundation
 import StoreKit
+import Combine
 
 enum ProductIds: String, CaseIterable {
     case premiumColors = "at.Schoder.WristSteps.iap.PremiumColors"
+}
+
+enum RestoreEventState {
+    case success
+    case noPurchases
+    case failed
 }
 
 // MARK: - IAPManager
@@ -22,6 +29,7 @@ class IAPManager: NSObject {
 
     private var productRequest: SKProductsRequest?
     private var products: [String: IAPProduct] = [:]
+    let restoreEvents = PassthroughSubject<RestoreEventState, Never>()
 
     func generateProducts(with idenfifiers: [String]) {
         for identifier in idenfifiers {
@@ -107,6 +115,37 @@ extension IAPManager: SKPaymentTransactionObserver {
                 break
             }
         }
+    }
+
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        guard !queue.transactions.isEmpty else {
+            self.restoreEvents.send(.noPurchases)
+            return
+        }
+
+        for transaction in queue.transactions {
+            let productIdentifier = transaction.payment.productIdentifier
+
+            switch transaction.transactionState {
+            case .purchased, .restored:
+                self.restoreEvents.send(.success)
+                self.setProductPurchased(
+                    identifier: productIdentifier,
+                    true
+                )
+                self.getProduct(for: productIdentifier)?.setPurchased(true)
+            case .failed:
+                self.restoreEvents.send(.failed)
+            case .deferred, .purchasing:
+                break
+            @unknown default:
+                break
+            }
+        }
+    }
+
+    func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+        self.restoreEvents.send(.failed)
     }
 }
 

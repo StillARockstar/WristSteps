@@ -33,6 +33,11 @@ struct SetColorView: View {
                 premiumRestoreView
             }
         }
+        .sheet(
+            item: $provider.restorePurchaseResult,
+            content: { provider in
+                InfoView(provider: provider)
+            })
     }
 
     private var headerView: some View {

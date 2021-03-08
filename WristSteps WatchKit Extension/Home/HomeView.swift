@@ -60,8 +60,8 @@ struct HomeView: View {
                     .environmentObject(provider.setColorViewProvider)
                     .asAnyView()
             case .info:
-                return InfoView()
-                    .environmentObject(provider.infoViewProvider)
+                return AboutAppView()
+                    .environmentObject(provider.aboutAppViewProvider)
                     .asAnyView()
             }
         })

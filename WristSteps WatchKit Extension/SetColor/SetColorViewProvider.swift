@@ -12,8 +12,7 @@ class SetColorViewProvider: ObservableObject {
     private let dataProvider: DataProvider
     private let iapProduct: IAPProduct?
     private let iapManager: IAPManager
-    private var iapPurchasedPublisher: AnyCancellable?
-    private var iapInfoPublisher: AnyCancellable?
+    private var cancellables: [AnyCancellable?] = []
 
     let selectedColorName: String
     let availableStandardColors: [AppColor] = AppColor.standard
@@ -22,6 +21,7 @@ class SetColorViewProvider: ObservableObject {
     @Published var hasPremiumColorsUnlocked: Bool = false
     @Published var canPurchasePremiumColors: Bool = false
     @Published var premiumColorsInfo: ProductInformation?
+    @Published var restorePurchaseResult: InfoViewProvider?
 
     init(dataProvider: DataProvider, iapManager: IAPManager) {
         self.dataProvider = dataProvider
@@ -29,19 +29,49 @@ class SetColorViewProvider: ObservableObject {
         self.selectedColorName = dataProvider.userData.colorName
 
         self.iapProduct = self.iapManager.getProduct(for: ProductIds.premiumColors.rawValue)
-        self.iapPurchasedPublisher = self.iapProduct?.$purchased
-            .sink(receiveValue: { [weak self] value in
+        self.cancellables.append(
+            self.iapProduct?.$purchased
+                .sink(receiveValue: { [weak self] value in
+                    DispatchQueue.main.async {
+                        self?.hasPremiumColorsUnlocked = value
+                    }
+                })
+        )
+        self.cancellables.append(
+            self.iapProduct?.$information
+                .sink(receiveValue: { [weak self] information in
+                    DispatchQueue.main.async {
+                        self?.premiumColorsInfo = information
+                        self?.canPurchasePremiumColors = information != nil
+                    }
+                })
+        )
+        self.cancellables.append(
+            iapManager.restoreEvents.sink(receiveValue: { [weak self] restoredState in
                 DispatchQueue.main.async {
-                    self?.hasPremiumColorsUnlocked = value
+                    switch restoredState {
+                    case .success:
+                        self?.restorePurchaseResult = InfoViewProvider(
+                            emoji: "👍",
+                            title: "Restored",
+                            body: "All Purchases restored!"
+                        )
+                    case .noPurchases:
+                        self?.restorePurchaseResult = InfoViewProvider(
+                            emoji: "🤷‍♂️",
+                            title: "No Purchases",
+                            body: "There are no purchases to restore."
+                        )
+                    case .failed:
+                        self?.restorePurchaseResult = InfoViewProvider(
+                            emoji: "😬",
+                            title: "Ooops",
+                            body: "There way an error restoring your purchases. Try again later."
+                        )
+                    }
                 }
             })
-        self.iapInfoPublisher = self.iapProduct?.$information
-            .sink(receiveValue: { [weak self] information in
-                DispatchQueue.main.async {
-                    self?.premiumColorsInfo = information
-                    self?.canPurchasePremiumColors = information != nil
-                }
-            })
+        )
     }
 
     func commitColorUpdate(newValue: AppColor) {
