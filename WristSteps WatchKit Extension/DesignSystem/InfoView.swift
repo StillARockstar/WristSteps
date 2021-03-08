@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct InfoViewProvider {
+struct InfoViewProvider: Identifiable {
+    let id = UUID()
     let emoji: String?
     let title: String
     let body: String

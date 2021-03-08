@@ -13,6 +13,12 @@ enum ProductIds: String, CaseIterable {
     case premiumColors = "at.Schoder.WristSteps.iap.PremiumColors"
 }
 
+enum RestoreEventState {
+    case success
+    case noPurchases
+    case failed
+}
+
 // MARK: - IAPManager
 
 class IAPManager: NSObject {
@@ -23,7 +29,7 @@ class IAPManager: NSObject {
 
     private var productRequest: SKProductsRequest?
     private var products: [String: IAPProduct] = [:]
-    let restoreEvents = PassthroughSubject<Bool, Never>()
+    let restoreEvents = PassthroughSubject<RestoreEventState, Never>()
 
     func generateProducts(with idenfifiers: [String]) {
         for identifier in idenfifiers {
@@ -113,7 +119,7 @@ extension IAPManager: SKPaymentTransactionObserver {
 
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
         guard !queue.transactions.isEmpty else {
-            self.restoreEvents.send(false)
+            self.restoreEvents.send(.noPurchases)
             return
         }
 
@@ -122,14 +128,14 @@ extension IAPManager: SKPaymentTransactionObserver {
 
             switch transaction.transactionState {
             case .purchased, .restored:
-                self.restoreEvents.send(true)
+                self.restoreEvents.send(.success)
                 self.setProductPurchased(
                     identifier: productIdentifier,
                     true
                 )
                 self.getProduct(for: productIdentifier)?.setPurchased(true)
             case .failed:
-                self.restoreEvents.send(false)
+                self.restoreEvents.send(.failed)
             case .deferred, .purchasing:
                 break
             @unknown default:
@@ -139,7 +145,7 @@ extension IAPManager: SKPaymentTransactionObserver {
     }
 
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
-        self.restoreEvents.send(false)
+        self.restoreEvents.send(.failed)
     }
 }
 

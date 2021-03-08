@@ -21,6 +21,7 @@ class SetColorViewProvider: ObservableObject {
     @Published var hasPremiumColorsUnlocked: Bool = false
     @Published var canPurchasePremiumColors: Bool = false
     @Published var premiumColorsInfo: ProductInformation?
+    @Published var restorePurchaseResult: InfoViewProvider?
 
     init(dataProvider: DataProvider, iapManager: IAPManager) {
         self.dataProvider = dataProvider
@@ -46,8 +47,29 @@ class SetColorViewProvider: ObservableObject {
                 })
         )
         self.cancellables.append(
-            iapManager.restoreEvents.sink(receiveValue: { restored in
-                print("Got restore event with: \(restored)")
+            iapManager.restoreEvents.sink(receiveValue: { [weak self] restoredState in
+                DispatchQueue.main.async {
+                    switch restoredState {
+                    case .success:
+                        self?.restorePurchaseResult = InfoViewProvider(
+                            emoji: "👍",
+                            title: "Restored",
+                            body: "All Purchases restored!"
+                        )
+                    case .noPurchases:
+                        self?.restorePurchaseResult = InfoViewProvider(
+                            emoji: "🤷‍♂️",
+                            title: "No Purchases",
+                            body: "There are no purchases to restore."
+                        )
+                    case .failed:
+                        self?.restorePurchaseResult = InfoViewProvider(
+                            emoji: "😬",
+                            title: "Ooops",
+                            body: "There way an error restoring your purchases. Try again later."
+                        )
+                    }
+                }
             })
         )
     }
