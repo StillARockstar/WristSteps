@@ -112,6 +112,11 @@ extension IAPManager: SKPaymentTransactionObserver {
     }
 
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        guard !queue.transactions.isEmpty else {
+            self.restoreEvents.send(false)
+            return
+        }
+
         for transaction in queue.transactions {
             let productIdentifier = transaction.payment.productIdentifier
 
