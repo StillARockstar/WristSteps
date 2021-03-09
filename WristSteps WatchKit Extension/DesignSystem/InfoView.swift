@@ -40,6 +40,7 @@ struct InfoView: View {
                 Text(self.provider.title)
                     .font(.headline)
                     .foregroundColor(.appTint)
+                    .padding(.top, self.provider.emoji == nil ? 10 : 0)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity, alignment: .center)
                 Text(self.provider.body)

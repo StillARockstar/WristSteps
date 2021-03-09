@@ -13,49 +13,16 @@ struct OnboardingView: View {
 
     var body: some View {
         TabView {
-            ForEach(provider.pages, content: { pageProvider in
-                OnboardingPageView(provider: pageProvider)
-            })
-            OnboardingDoneView(action: {
-                presentationMode.wrappedValue.dismiss()
+            ForEach(provider.pages, content: { infoViewProvider in
+                InfoView(provider: infoViewProvider)
             })
         }
         .tabViewStyle(PageTabViewStyle())
-    }
-}
-
-private struct OnboardingPageView: View {
-    let provider: OnboardingPageProvider
-
-    var body: some View {
-        VStack(spacing: 5) {
-            Text(provider.headline)
-                .font(.headline)
-                .foregroundColor(.appTint)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity, alignment: .center)
-            Text(provider.description)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity, alignment: .center)
-            Spacer()
-        }
-        .padding(.top, 5)
-    }
-}
-
-private struct OnboardingDoneView: View {
-    let action: () -> Void
-
-    var body: some View {
-        VStack {
-            Text("... and thats it!")
-                .font(.headline)
-                .foregroundColor(.appTint)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.bottom, 5)
-            Button("Done", action: action)
-        }
+        .onAppear(perform: {
+            provider.doneAction = {
+                presentationMode.wrappedValue.dismiss()
+            }
+        })
     }
 }
 
