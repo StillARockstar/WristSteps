@@ -14,10 +14,7 @@ struct SetGoalView: View {
     var body: some View {
         VStack {
             HeadingText("Stepgoal")
-            Text("The recommended amount of steps is \(provider.recommendedStepGoal) per day")
-                .font(.footnote)
-                .foregroundColor(.gray)
-                .multilineTextAlignment(.center)
+            Body1Text("The recommended amount of steps is \(provider.recommendedStepGoal) per day")
             Spacer()
 
             HStack {

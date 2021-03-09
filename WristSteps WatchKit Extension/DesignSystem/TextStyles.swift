@@ -22,3 +22,33 @@ struct HeadingText: View {
             .frame(maxWidth: .infinity, alignment: .center)
     }
 }
+
+struct BodyText: View {
+    let text: String
+
+    init(_ text: String) {
+        self.text = text
+    }
+
+    var body: some View {
+        Text(text)
+            .multilineTextAlignment(.center)
+            .frame(maxWidth: .infinity, alignment: .center)
+    }
+}
+
+struct Body1Text: View {
+    let text: String
+
+    init(_ text: String) {
+        self.text = text
+    }
+
+    var body: some View {
+        Text(text)
+            .font(.footnote)
+            .foregroundColor(.gray)
+            .multilineTextAlignment(.center)
+            .frame(maxWidth: .infinity, alignment: .center)
+    }
+}

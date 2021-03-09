@@ -39,9 +39,7 @@ struct InfoView: View {
                 }
                 HeadingText(self.provider.title)
                     .padding(.top, self.provider.emoji == nil ? 10 : 0)
-                Text(self.provider.body)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, alignment: .center)
+                BodyText(self.provider.body)
                 if let action = self.provider.action {
                     Button(action.label, action: action.actionBlock)
                 }
