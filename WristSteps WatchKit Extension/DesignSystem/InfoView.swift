@@ -37,12 +37,8 @@ struct InfoView: View {
                     Text(emoji)
                         .font(.largeTitle)
                 }
-                Text(self.provider.title)
-                    .font(.headline)
-                    .foregroundColor(.appTint)
+                HeadingText(self.provider.title)
                     .padding(.top, self.provider.emoji == nil ? 10 : 0)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, alignment: .center)
                 Text(self.provider.body)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity, alignment: .center)

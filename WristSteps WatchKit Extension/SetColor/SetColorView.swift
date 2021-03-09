@@ -42,8 +42,7 @@ struct SetColorView: View {
 
     private var headerView: some View {
         VStack {
-            Text("App Color".uppercased())
-                .foregroundColor(.appTint)
+            HeadingText("App Color")
             Text("App & Watchface color")
                 .font(.footnote)
                 .foregroundColor(.gray)

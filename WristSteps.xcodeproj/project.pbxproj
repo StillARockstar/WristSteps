@@ -18,6 +18,7 @@
 		4C6638C925801DF80028B398 /* AboutAppViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638C825801DF80028B398 /* AboutAppViewProvider.swift */; };
 		4C6638D4258023B50028B398 /* Bundle+Convenients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638D3258023B50028B398 /* Bundle+Convenients.swift */; };
 		4C7FA7D525F6A33A00ACECF7 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7FA7D425F6A33A00ACECF7 /* InfoView.swift */; };
+		4C88EC5D25F804330056E2F7 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88EC5C25F804330056E2F7 /* TextStyles.swift */; };
 		4C90122425A385D500B2E759 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122325A385D500B2E759 /* OnboardingView.swift */; };
 		4C90122C25A3890A00B2E759 /* OnboardingViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122B25A3890A00B2E759 /* OnboardingViewProvider.swift */; };
 		4C95D66D250178BE00CB4D35 /* NumberFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D66C250178BE00CB4D35 /* NumberFormatting.swift */; };
@@ -97,6 +98,7 @@
 		4C6638C825801DF80028B398 /* AboutAppViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewProvider.swift; sourceTree = "<group>"; };
 		4C6638D3258023B50028B398 /* Bundle+Convenients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Convenients.swift"; sourceTree = "<group>"; };
 		4C7FA7D425F6A33A00ACECF7 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		4C88EC5C25F804330056E2F7 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		4C90122325A385D500B2E759 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4C90122B25A3890A00B2E759 /* OnboardingViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewProvider.swift; sourceTree = "<group>"; };
 		4C95D66C250178BE00CB4D35 /* NumberFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatting.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				4C7FA7D425F6A33A00ACECF7 /* InfoView.swift */,
+				4C88EC5C25F804330056E2F7 /* TextStyles.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -225,9 +228,9 @@
 				4C6638D3258023B50028B398 /* Bundle+Convenients.swift */,
 				4C95D66C250178BE00CB4D35 /* NumberFormatting.swift */,
 				4C95D66E25017F6500CB4D35 /* DataStore.swift */,
+				4C253A9524FBEF9B0083B66B /* DataProvider */,
 				4C7FA7D325F6A32B00ACECF7 /* DesignSystem */,
 				4C90122225A3859900B2E759 /* Onboarding */,
-				4C253A9524FBEF9B0083B66B /* DataProvider */,
 				4C9FE8A424FBE6D3008062AF /* SharedViews */,
 				4C9FE8A124FBE65E008062AF /* Home */,
 				4C2E95FE25016F0B004A1FB0 /* SetGoal */,
@@ -423,6 +426,7 @@
 				4CC3713F250016F700509583 /* View+Convenients.swift in Sources */,
 				4C6638D4258023B50028B398 /* Bundle+Convenients.swift in Sources */,
 				4C2E960425017144004A1FB0 /* SetGoalViewProvider.swift in Sources */,
+				4C88EC5D25F804330056E2F7 /* TextStyles.swift in Sources */,
 				4C6638C1258017720028B398 /* AboutAppView.swift in Sources */,
 				4C7FA7D525F6A33A00ACECF7 /* InfoView.swift in Sources */,
 				4C9FE88924FBC504008062AF /* ComplicationController.swift in Sources */,

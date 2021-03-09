@@ -13,8 +13,7 @@ struct SetGoalView: View {
 
     var body: some View {
         VStack {
-            Text("Stepgoal".uppercased())
-                .foregroundColor(.appTint)
+            HeadingText("Stepgoal")
             Text("The recommended amount of steps is \(provider.recommendedStepGoal) per day")
                 .font(.footnote)
                 .foregroundColor(.gray)
