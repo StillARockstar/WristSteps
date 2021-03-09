@@ -95,18 +95,10 @@ struct SetColorView: View {
             provider.purchasePremiumColors()
         }, label: {
             VStack(spacing: 5) {
-                Text(provider.premiumColorsInfo?.productTitle ?? "")
-                    .foregroundColor(.appTint)
-                Text(provider.premiumColorsInfo?.productDescription ?? "")
-                    .multilineTextAlignment(.center)
-                Text("for \(provider.premiumColorsInfo?.productPrice ?? "")" )
-                    .foregroundColor(.appTint)
-                    .fontWeight(.semibold)
-                    .multilineTextAlignment(.center)
-                Text("One time purchase")
-                    .font(.footnote)
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.center)
+                HeadingText(provider.premiumColorsInfo?.productTitle ?? "")
+                BodyText(provider.premiumColorsInfo?.productDescription ?? "")
+                HeadingText("for \(provider.premiumColorsInfo?.productPrice ?? "")" )
+                Body1Text("One time purchase")
             }
             .padding([.top, .bottom], 5)
             .frame(maxWidth: .infinity)
