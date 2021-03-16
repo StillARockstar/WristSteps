@@ -51,7 +51,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         self.stepCountPublisher = dataProvider.healthData.stepCountPublisher
             .removeDuplicates()
             .sink { newValue in
-                ComplicationPayload.shared.set(.stepCount, newValue: newValue)
                 CLKComplicationServer.sharedInstance().activeComplications?.forEach {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
@@ -60,7 +59,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         self.stepGoalPublisher = dataProvider.userData.stepGoalPublisher
             .removeDuplicates()
             .sink { newValue in
-                ComplicationPayload.shared.set(.stepGoal, newValue: newValue)
                 CLKComplicationServer.sharedInstance().activeComplications?.forEach {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
@@ -69,7 +67,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         self.colorNamePublisher = dataProvider.userData.colorNamePublisher
             .removeDuplicates()
             .sink { newValue in
-                ComplicationPayload.shared.set(.colorName, newValue: newValue)
                 CLKComplicationServer.sharedInstance().activeComplications?.forEach {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }

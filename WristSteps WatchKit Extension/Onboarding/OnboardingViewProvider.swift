@@ -15,25 +15,32 @@ struct OnboardingPageProvider: Identifiable {
 }
 
 class OnboardingViewProvider: ObservableObject {
-    let pages: [OnboardingPageProvider]
+    var pages: [InfoViewProvider] = []
+    var doneAction: (() -> Void)?
 
     init() {
         self.pages = [
-            OnboardingPageProvider(
-                headline: "Welcome to Wriststeps",
-                description: "Wriststeps is the app to show steps in your prefered style."
+            InfoViewProvider(
+                emoji: "👋",
+                title: "Welcome to Wriststeps",
+                body: "Wriststeps is the app to show steps in your prefered style."
             ),
-            OnboardingPageProvider(
-                headline: "Set a goal",
-                description: "Press the 🏁 icon to set you stepgoal."
+            InfoViewProvider(
+                title: "Set a goal",
+                body: "Tap the 🏁 icon to set your daily stepgoal."
             ),
-            OnboardingPageProvider(
-                headline: "Set a color",
-                description: "Press the 🎨 icon and pick a color for the app and complication."
+            InfoViewProvider(
+                title: "Set a color",
+                body: "Tap the 🎨 icon and pick a color for the app and complication."
             ),
-            OnboardingPageProvider(
-                headline: "Set the complication",
-                description: "Go back to your watch face and long press to edit. From there you can select WristSteps."
+            InfoViewProvider(
+                title: "Set the complication",
+                body: "Go back to your watch face and long press to edit. From there you can select WristSteps as a complication."
+            ),
+            InfoViewProvider(
+                title: "Happy walking!",
+                body: "And that is all you to know!",
+                action: InfoViewAction(label: "Done", actionBlock: { self.doneAction?() })
             )
         ]
     }

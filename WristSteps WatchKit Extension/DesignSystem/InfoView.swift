@@ -7,16 +7,23 @@
 
 import SwiftUI
 
+struct InfoViewAction {
+    let label: String
+    let actionBlock: (() -> Void)
+}
+
 struct InfoViewProvider: Identifiable {
     let id = UUID()
     let emoji: String?
     let title: String
     let body: String
+    let action: InfoViewAction?
 
-    init(emoji: String? = nil, title: String, body: String) {
+    init(emoji: String? = nil, title: String, body: String, action: InfoViewAction? = nil) {
         self.emoji = emoji
         self.title = title
         self.body = body
+        self.action = action
     }
 }
 
@@ -30,14 +37,12 @@ struct InfoView: View {
                     Text(emoji)
                         .font(.largeTitle)
                 }
-                Text(self.provider.title)
-                    .font(.headline)
-                    .foregroundColor(.appTint)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                Text(self.provider.body)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, alignment: .center)
+                HeadingText(self.provider.title)
+                    .padding(.top, self.provider.emoji == nil ? 10 : 0)
+                BodyText(self.provider.body)
+                if let action = self.provider.action {
+                    Button(action.label, action: action.actionBlock)
+                }
             }
         }
     }
@@ -56,6 +61,16 @@ struct InfoView_Previews: PreviewProvider {
             provider: InfoViewProvider(
                 title: "Info View Title",
                 body: "This is the body is of an info view! It is scollable. And it is awesome and my be super long"
+            )
+        )
+        InfoView(
+            provider: InfoViewProvider(
+                title: "Info View Title",
+                body: "This is the body is of an info view! It is scollable. And it is awesome and my be super long",
+                action: InfoViewAction(
+                    label: "Button",
+                    actionBlock: {}
+                )
             )
         )
     }

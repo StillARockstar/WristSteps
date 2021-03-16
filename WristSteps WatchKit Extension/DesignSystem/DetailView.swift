@@ -19,7 +19,7 @@ struct DetailView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text("TODAY")
+                Text("Today")
                     .foregroundColor(.gray)
                 Text("\(stepPercent, specifier: "%.0f")%")
                     .foregroundColor(appTintColor)
@@ -34,7 +34,7 @@ struct DetailView: View {
                     .padding(.bottom, 5)
             }
             HStack {
-                Text("GOAL")
+                Text("Goal")
                     .foregroundColor(.gray)
                 Text("\(stepGoal) steps")
                     .fontWeight(.medium)
