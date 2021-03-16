@@ -154,13 +154,13 @@
 			path = SetGoal;
 			sourceTree = "<group>";
 		};
-		4C6638BF2580170C0028B398 /* Info */ = {
+		4C6638BF2580170C0028B398 /* AboutApp */ = {
 			isa = PBXGroup;
 			children = (
 				4C6638C825801DF80028B398 /* AboutAppViewProvider.swift */,
 				4C6638C0258017720028B398 /* AboutAppView.swift */,
 			);
-			path = Info;
+			path = AboutApp;
 			sourceTree = "<group>";
 		};
 		4C7FA7D325F6A32B00ACECF7 /* DesignSystem */ = {
@@ -235,7 +235,7 @@
 				4C9FE8A124FBE65E008062AF /* Home */,
 				4C2E95FE25016F0B004A1FB0 /* SetGoal */,
 				4C95D6702501853F00CB4D35 /* SetColor */,
-				4C6638BF2580170C0028B398 /* Info */,
+				4C6638BF2580170C0028B398 /* AboutApp */,
 				4C9FE88624FBC504008062AF /* WristStepsApp.swift */,
 				4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */,
 				4CD0B75825001E1800D13426 /* ComplicationPayload.swift */,
