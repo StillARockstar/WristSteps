@@ -11,25 +11,19 @@ struct AboutAppView: View {
     @EnvironmentObject var provider: AboutAppViewProvider
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("About WristSteps".uppercased())
-                .font(.headline)
-                .foregroundColor(.appTint)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding([.top, .bottom], 4)
+        VStack(alignment: .leading, spacing: 4) {
+            HeadingText("About WristSteps")
+                .padding(.bottom, 12)
 
-            Text("App Version")
-            Text(provider.versionNumber)
-                .font(.caption)
-                .foregroundColor(.gray)
-                .padding(.bottom, 4)
+            BodyText("App Version")
+            Body1Text(provider.versionNumber)
+                .padding(.bottom, 6)
 
-            Text("Copyright")
-            Text(provider.copyrightText)
-                .font(.caption)
-                .foregroundColor(.gray)
+            BodyText("Copyright")
+            Body1Text(provider.copyrightText)
+
+            Spacer()
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
     }
 }
 

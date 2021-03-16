@@ -25,23 +25,28 @@ struct HeadingText: View {
 
 struct BodyText: View {
     let text: String
+    let textAlignment: Alignment
 
-    init(_ text: String) {
+    init(_ text: String, alignment: Alignment = .center) {
         self.text = text
+        self.textAlignment = alignment
+        
     }
 
     var body: some View {
         Text(text)
             .multilineTextAlignment(.center)
-            .frame(maxWidth: .infinity, alignment: .center)
+            .frame(maxWidth: .infinity, alignment: textAlignment)
     }
 }
 
 struct Body1Text: View {
     let text: String
+    let textAlignment: Alignment
 
-    init(_ text: String) {
+    init(_ text: String, alignment: Alignment = .center) {
         self.text = text
+        self.textAlignment = alignment
     }
 
     var body: some View {
@@ -49,6 +54,6 @@ struct Body1Text: View {
             .font(.footnote)
             .foregroundColor(.gray)
             .multilineTextAlignment(.center)
-            .frame(maxWidth: .infinity, alignment: .center)
+            .frame(maxWidth: .infinity, alignment: textAlignment)
     }
 }
