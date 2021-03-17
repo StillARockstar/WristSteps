@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SetGoalView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var provider: SetGoalViewProvider
+    @ObservedObject var provider: SetGoalViewProvider
 
     var body: some View {
         VStack {
@@ -57,8 +57,11 @@ struct SetGoalView: View {
 
 struct SetGoalView_Previews: PreviewProvider {
     static var previews: some View {
-        SetGoalView()
-            .environmentObject(SetGoalViewProvider(dataProvider: SimulatorDataProvider()))
+        SetGoalView(
+            provider: SetGoalViewProvider(
+                dataProvider: SimulatorDataProvider()
+            )
+        )
     }
 }
 
