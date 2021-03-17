@@ -11,6 +11,9 @@ class ContentViewProvider {
     private let dataProvider: DataProvider
     private let iapManager: IAPManager
 
+    lazy var onboardingProvider = {
+        OnboardingViewProvider()
+    }()
     lazy var settingsViewProvider = {
         SettingsViewProvider(
             dataProvider: dataProvider,
@@ -27,5 +30,13 @@ class ContentViewProvider {
     init(dataProvider: DataProvider, iapManager: IAPManager) {
         self.dataProvider = dataProvider
         self.iapManager = iapManager
+    }
+
+    func shouldShowOnboardingAndSetFlag() -> Bool {
+        if !dataProvider.appData.onboardingDone {
+            dataProvider.appData.setOnboardingDone(true)
+            return true
+        }
+        return false
     }
 }

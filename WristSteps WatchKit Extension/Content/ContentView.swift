@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     let provider: ContentViewProvider
-    @State var tabSelection: Int = 1
+    @State private var tabSelection: Int = 1
+    @State private var showingOnboarding = false
 
     var body: some View {
         TabView(
@@ -25,7 +26,14 @@ struct ContentView: View {
                     .tag(1)
             }
         )
-
+        .sheet(isPresented: $showingOnboarding) {
+            OnboardingView(
+                provider: provider.onboardingProvider
+            )
+        }
+        .onAppear(perform: {
+            showingOnboarding = provider.shouldShowOnboardingAndSetFlag()
+        })
     }
 }
 
