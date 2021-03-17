@@ -15,7 +15,7 @@ struct ContentView: View {
         TabView(
             selection: $tabSelection,
             content:  {
-                SettingsView()
+                SettingsView(provider: provider.settingsViewProvider)
                     .navigationBarTitle("Settings")
                     .embedInNavigation()
                     .tag(0)

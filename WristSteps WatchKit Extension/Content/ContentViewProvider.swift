@@ -11,6 +11,12 @@ class ContentViewProvider {
     private let dataProvider: DataProvider
     private let iapManager: IAPManager
 
+    lazy var settingsViewProvider = {
+        SettingsViewProvider(
+            dataProvider: dataProvider,
+            iapManager: iapManager
+        )
+    }()
     lazy var homeViewProvider = {
         HomeViewProvider(
             dataProvider: dataProvider,
