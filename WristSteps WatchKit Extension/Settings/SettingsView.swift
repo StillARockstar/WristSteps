@@ -9,15 +9,25 @@ import SwiftUI
 
 struct SettingsView: View {
     let provider: SettingsViewProvider
+    @State private var showingSetGoal = false
 
     var body: some View {
         ScrollView {
-            VStack {
-                SettingsButton(emoji: "🏁", label: "Goal")
-                SettingsButton(emoji: "🎨", label: "Color")
-                SettingsButton(emoji: "👋", label: "Help")
-                SettingsButton(emoji: "ℹ️", label: "About App")
+            SettingsButton(emoji: "🏁", label: "Goal", action: {
+                showingSetGoal = true
+            })
+            .sheet(isPresented: $showingSetGoal) {
+                SetGoalView(provider: provider.setGoalViewProvider)
             }
+            SettingsButton(emoji: "🎨", label: "Color", action: {
+
+            })
+            SettingsButton(emoji: "👋", label: "Help", action: {
+
+            })
+            SettingsButton(emoji: "ℹ️", label: "About App", action: {
+
+            })
         }
     }
 }
@@ -25,10 +35,11 @@ struct SettingsView: View {
 private struct SettingsButton: View {
     let emoji: String
     let label: String
+    let action: () -> Void
 
     var body: some View {
         Button(
-            action: {},
+            action: action,
             label: {
                 HStack(spacing: 10) {
                     Text(emoji)

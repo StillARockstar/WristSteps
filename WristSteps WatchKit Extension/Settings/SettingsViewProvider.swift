@@ -11,6 +11,12 @@ class SettingsViewProvider {
     private let dataProvider: DataProvider
     private let iapManager: IAPManager
 
+    lazy var setGoalViewProvider = {
+        SetGoalViewProvider(
+            dataProvider: dataProvider
+        )
+    }()
+
     init(dataProvider: DataProvider, iapManager: IAPManager) {
         self.dataProvider = dataProvider
         self.iapManager = iapManager
