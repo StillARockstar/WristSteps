@@ -16,6 +16,12 @@ class SettingsViewProvider {
             dataProvider: dataProvider
         )
     }()
+    lazy var setColorViewProvider = {
+        SetColorViewProvider(
+            dataProvider: dataProvider,
+            iapManager: iapManager
+        )
+    }()
 
     init(dataProvider: DataProvider, iapManager: IAPManager) {
         self.dataProvider = dataProvider

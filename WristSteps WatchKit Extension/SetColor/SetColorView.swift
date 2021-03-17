@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SetColorView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var provider: SetColorViewProvider
+    @ObservedObject var provider: SetColorViewProvider
 
     let columns = [
         GridItem(.flexible()),
@@ -117,12 +117,11 @@ struct SetColorView: View {
 
 struct SetColorView_Previews: PreviewProvider {
     static var previews: some View {
-        SetColorView()
-            .environmentObject(
-                SetColorViewProvider(
-                    dataProvider: SimulatorDataProvider(),
-                    iapManager: IAPManager()
-                )
+        SetColorView(
+            provider: SetColorViewProvider(
+                dataProvider: SimulatorDataProvider(),
+                iapManager: IAPManager()
             )
+        )
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     let provider: SettingsViewProvider
     @State private var showingSetGoal = false
+    @State private var showingSetColor = false
 
     var body: some View {
         ScrollView {
@@ -17,11 +18,18 @@ struct SettingsView: View {
                 showingSetGoal = true
             })
             .sheet(isPresented: $showingSetGoal) {
-                SetGoalView(provider: provider.setGoalViewProvider)
+                SetGoalView(
+                    provider: provider.setGoalViewProvider
+                )
             }
             SettingsButton(emoji: "🎨", label: "Color", action: {
-
+                showingSetColor = true
             })
+            .sheet(isPresented: $showingSetColor) {
+                SetColorView(
+                    provider: provider.setColorViewProvider
+                )
+            }
             SettingsButton(emoji: "👋", label: "Help", action: {
 
             })

@@ -52,11 +52,14 @@ struct HomeView: View {
                     .environmentObject(provider.onboardingProvider)
                     .asAnyView()
             case .setGoal:
-                return SetGoalView(provider: provider.setGoalViewProvider)
+                return SetGoalView(
+                    provider: provider.setGoalViewProvider
+                )
                     .asAnyView()
             case .setColor:
-                return SetColorView()
-                    .environmentObject(provider.setColorViewProvider)
+                return SetColorView(
+                    provider: provider.setColorViewProvider
+                )
                     .asAnyView()
             case .info:
                 return AboutAppView()
