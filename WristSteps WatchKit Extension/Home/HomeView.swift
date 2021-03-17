@@ -65,7 +65,6 @@ struct HomeView: View {
                     .asAnyView()
             }
         })
-        .navigationBarTitle("WristSteps")
     }
 }
 

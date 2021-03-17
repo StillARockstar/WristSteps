@@ -9,10 +9,23 @@ import SwiftUI
 
 struct ContentView: View {
     let provider: ContentViewProvider
+    @State var tabSelection: Int = 1
 
     var body: some View {
-        HomeView(provider: provider.homeViewProvider)
-            .embedInNavigation()
+        TabView(
+            selection: $tabSelection,
+            content:  {
+                SettingsView()
+                    .navigationBarTitle("Settings")
+                    .embedInNavigation()
+                    .tag(0)
+                HomeView(provider: provider.homeViewProvider)
+                    .navigationBarTitle("WristSteps")
+                    .embedInNavigation()
+                    .tag(1)
+            }
+        )
+
     }
 }
 
