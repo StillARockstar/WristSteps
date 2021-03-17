@@ -15,14 +15,12 @@ struct WristStepsApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
-                .environmentObject(
-                    HomeViewProvider(
-                        dataProvider: extensionDelegate.dataProvider,
-                        iapManager: extensionDelegate.iapManager
-                    )
+            ContentView(
+                provider: ContentViewProvider(
+                    dataProvider: extensionDelegate.dataProvider,
+                    iapManager: extensionDelegate.iapManager
                 )
-                .embedInNavigation()
+            )
         }
     }
 }

@@ -17,8 +17,8 @@ enum HomeViewSheetItemType: Identifiable {
 }
 
 struct HomeView: View {
-    @State var sheetItem: HomeViewSheetItemType?
-    @EnvironmentObject var provider: HomeViewProvider
+    @ObservedObject var provider: HomeViewProvider
+    @State var sheetItem: HomeViewSheetItemType? = nil
 
     var body: some View {
         VStack {
@@ -71,12 +71,11 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
-            .environmentObject(
-                HomeViewProvider(
-                    dataProvider: SimulatorDataProvider(),
-                    iapManager: IAPManager()
-                )
+        HomeView(
+            provider: HomeViewProvider(
+                dataProvider: SimulatorDataProvider(),
+                iapManager: IAPManager()
             )
+        )
     }
 }
