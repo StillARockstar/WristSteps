@@ -12,6 +12,7 @@ struct SettingsView: View {
     @State private var showingSetGoal = false
     @State private var showingSetColor = false
     @State private var showingHelp = false
+    @State private var showingAboutApp = false
 
     var body: some View {
         ScrollView {
@@ -40,8 +41,13 @@ struct SettingsView: View {
                 )
             }
             SettingsButton(emoji: "ℹ️", label: "About App", action: {
-
+                showingAboutApp = true
             })
+            .sheet(isPresented: $showingAboutApp) {
+                AboutAppView(
+                    provider: provider.aboutAppProvider
+                )
+            }
         }
     }
 }

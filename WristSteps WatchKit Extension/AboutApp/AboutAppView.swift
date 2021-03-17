@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AboutAppView: View {
-    @EnvironmentObject var provider: AboutAppViewProvider
+    let provider: AboutAppViewProvider
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -29,7 +29,6 @@ struct AboutAppView: View {
 
 struct AboutAppView_Previews: PreviewProvider {
     static var previews: some View {
-        AboutAppView()
-            .environmentObject(AboutAppViewProvider(dataProvider: SimulatorDataProvider()))
+        AboutAppView(provider: AboutAppViewProvider())
     }
 }

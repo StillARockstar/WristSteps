@@ -8,12 +8,10 @@
 import Foundation
 
 class AboutAppViewProvider: ObservableObject {
-    private let dataProvider: DataProvider
     let versionNumber: String
     let copyrightText: String
 
-    init(dataProvider: DataProvider) {
-        self.dataProvider = dataProvider
+    init() {
         self.versionNumber = "\(Bundle.main.releaseVersionNumber) (\(Bundle.main.buildVersionNumber))"
         self.copyrightText = "© 2021 Michael Schoder"
     }

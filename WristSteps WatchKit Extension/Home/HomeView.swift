@@ -61,8 +61,7 @@ struct HomeView: View {
                 )
                     .asAnyView()
             case .info:
-                return AboutAppView()
-                    .environmentObject(provider.aboutAppViewProvider)
+                return AboutAppView(provider: provider.aboutAppViewProvider)
                     .asAnyView()
             }
         })

@@ -27,6 +27,9 @@ class SettingsViewProvider {
             showIntroPage: false
         )
     }()
+    lazy var aboutAppProvider = {
+        AboutAppViewProvider()
+    }()
 
     init(dataProvider: DataProvider, iapManager: IAPManager) {
         self.dataProvider = dataProvider

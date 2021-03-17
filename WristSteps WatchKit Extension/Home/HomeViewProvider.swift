@@ -16,7 +16,7 @@ class HomeViewProvider: ObservableObject {
     var onboardingProvider: OnboardingViewProvider { OnboardingViewProvider() }
     var setGoalViewProvider: SetGoalViewProvider { SetGoalViewProvider(dataProvider: dataProvider) }
     var setColorViewProvider: SetColorViewProvider { SetColorViewProvider(dataProvider: dataProvider, iapManager: iapManager) }
-    var aboutAppViewProvider: AboutAppViewProvider { AboutAppViewProvider(dataProvider: dataProvider)}
+    var aboutAppViewProvider: AboutAppViewProvider { AboutAppViewProvider()}
 
     @Published var stepCount: Int = 0
     @Published var stepGoal: Int = 0
