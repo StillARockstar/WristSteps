@@ -48,8 +48,7 @@ struct HomeView: View {
         .sheet(item: $sheetItem, content: { item -> AnyView in
             switch item {
             case .onboarding:
-                return OnboardingView()
-                    .environmentObject(provider.onboardingProvider)
+                return OnboardingView(provider: provider.onboardingProvider)
                     .asAnyView()
             case .setGoal:
                 return SetGoalView(

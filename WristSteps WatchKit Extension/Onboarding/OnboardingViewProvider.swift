@@ -18,13 +18,8 @@ class OnboardingViewProvider: ObservableObject {
     var pages: [InfoViewProvider] = []
     var doneAction: (() -> Void)?
 
-    init() {
-        self.pages = [
-            InfoViewProvider(
-                emoji: "👋",
-                title: "Welcome to Wriststeps",
-                body: "Wriststeps is the app to show steps in your prefered style."
-            ),
+    init(showIntroPage: Bool = true) {
+        pages = [
             InfoViewProvider(
                 title: "Set a goal",
                 body: "Tap the 🏁 icon to set your daily stepgoal."
@@ -43,5 +38,16 @@ class OnboardingViewProvider: ObservableObject {
                 action: InfoViewAction(label: "Done", actionBlock: { self.doneAction?() })
             )
         ]
+
+        if showIntroPage {
+            pages.insert(
+                InfoViewProvider(
+                    emoji: "👋",
+                    title: "Welcome to Wriststeps",
+                    body: "Wriststeps is the app to show steps in your prefered style."
+                ),
+                at: 0
+            )
+        }
     }
 }

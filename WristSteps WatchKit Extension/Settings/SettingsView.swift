@@ -11,6 +11,7 @@ struct SettingsView: View {
     let provider: SettingsViewProvider
     @State private var showingSetGoal = false
     @State private var showingSetColor = false
+    @State private var showingHelp = false
 
     var body: some View {
         ScrollView {
@@ -31,8 +32,13 @@ struct SettingsView: View {
                 )
             }
             SettingsButton(emoji: "👋", label: "Help", action: {
-
+                showingHelp = true
             })
+            .sheet(isPresented: $showingHelp) {
+                OnboardingView(
+                    provider: provider.onboardingProvider
+                )
+            }
             SettingsButton(emoji: "ℹ️", label: "About App", action: {
 
             })

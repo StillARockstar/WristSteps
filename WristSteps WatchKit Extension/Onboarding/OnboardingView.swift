@@ -8,27 +8,28 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    @EnvironmentObject var provider: OnboardingViewProvider
     @Environment(\.presentationMode) var presentationMode
+    let provider: OnboardingViewProvider
 
     var body: some View {
-        TabView {
+        registerDoneAction()
+        return TabView {
             ForEach(provider.pages, content: { infoViewProvider in
                 InfoView(provider: infoViewProvider)
             })
         }
         .tabViewStyle(PageTabViewStyle())
-        .onAppear(perform: {
-            provider.doneAction = {
-                presentationMode.wrappedValue.dismiss()
-            }
-        })
+    }
+
+    func registerDoneAction() {
+        provider.doneAction = {
+            presentationMode.wrappedValue.dismiss()
+        }
     }
 }
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView()
-            .environmentObject(OnboardingViewProvider())
+        OnboardingView(provider: OnboardingViewProvider())
     }
 }
