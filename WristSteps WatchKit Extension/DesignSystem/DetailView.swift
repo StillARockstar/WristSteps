@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DetailView: View {
-    @Environment(\.appTint) var appTintColor: Color
+    let tintColor: Color
     let stepCount: Int
     let stepGoal: Int
 
@@ -22,12 +22,12 @@ struct DetailView: View {
                 Text("Today")
                     .foregroundColor(.gray)
                 Text("\(stepPercent, specifier: "%.0f")%")
-                    .foregroundColor(appTintColor)
+                    .foregroundColor(tintColor)
                     .fontWeight(.semibold)
             }
             HStack(alignment: .bottom) {
                 Text("\(stepCount)")
-                    .foregroundColor(appTintColor)
+                    .foregroundColor(tintColor)
                     .font(.title)
                 Text("steps")
                     .fontWeight(.medium)
@@ -46,6 +46,10 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(stepCount: 5000, stepGoal: 10000)
+        DetailView(
+            tintColor: AppColor.appBlue.color,
+            stepCount: 5000,
+            stepGoal: 10000
+        )
     }
 }

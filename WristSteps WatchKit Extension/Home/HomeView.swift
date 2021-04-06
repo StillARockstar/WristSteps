@@ -8,16 +8,23 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Environment(\.appTint) var appTintColor: Color
     @ObservedObject var provider: HomeViewProvider
 
     var body: some View {
         VStack {
-            Spacer()
             DetailView(
+                tintColor: appTintColor,
                 stepCount: provider.stepCount,
                 stepGoal: provider.stepGoal
             )
-            Spacer()
+            .padding(.bottom, 6)
+            BarChartView(
+                provider: BarChartViewProvider(
+                    color: appTintColor,
+                    data: provider.hourlySteps
+                )
+            )
         }
     }
 }
