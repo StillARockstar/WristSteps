@@ -48,6 +48,7 @@
 		4CDFAD5925CC782F003EA090 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 4CDFAD5425CC7829003EA090 /* Configuration.storekit */; };
 		4CDFAD5A25CC7830003EA090 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 4CDFAD5425CC7829003EA090 /* Configuration.storekit */; };
 		4CDFAD5F25CC9D09003EA090 /* ColorDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDFAD5E25CC9D09003EA090 /* ColorDefinitions.swift */; };
+		4CE70560261CE85600A8A642 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE7055F261CE85600A8A642 /* BarChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,7 @@
 		4CDBF15E26591A0400F6A0B9 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		4CDFAD5425CC7829003EA090 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		4CDFAD5E25CC9D09003EA090 /* ColorDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDefinitions.swift; sourceTree = "<group>"; };
+		4CE7055F261CE85600A8A642 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 				4CDFAD5E25CC9D09003EA090 /* ColorDefinitions.swift */,
 				4C7FA7D425F6A33A00ACECF7 /* InfoView.swift */,
 				4C9FE8A524FBE6E4008062AF /* DetailView.swift */,
+				4CE7055F261CE85600A8A642 /* BarChartView.swift */,
 				4C88EC5C25F804330056E2F7 /* TextStyles.swift */,
 				4C9FE89D24FBC67C008062AF /* Color+Convenients.swift */,
 				4CC3713E250016F700509583 /* View+Convenients.swift */,
@@ -480,6 +483,7 @@
 				4CDFAD5F25CC9D09003EA090 /* ColorDefinitions.swift in Sources */,
 				4C95D6722501856600CB4D35 /* SetColorView.swift in Sources */,
 				4C2E95FD250030B1004A1FB0 /* LifeCycleHandler.swift in Sources */,
+				4CE70560261CE85600A8A642 /* BarChartView.swift in Sources */,
 				4C6638C925801DF80028B398 /* AboutAppViewProvider.swift in Sources */,
 				4C9FE8A324FBE673008062AF /* HomeView.swift in Sources */,
 				4C90122C25A3890A00B2E759 /* OnboardingViewProvider.swift in Sources */,
@@ -632,7 +636,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_ASSET_PATHS = "\"WristSteps WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = GQQ4RZBUL3;
 				ENABLE_PREVIEWS = YES;
@@ -642,7 +646,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 2.3.0;
 				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-D TARGET_WATCH";
 				PRODUCT_BUNDLE_IDENTIFIER = at.Schoder.WristSteps.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -659,7 +663,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_ASSET_PATHS = "\"WristSteps WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = GQQ4RZBUL3;
 				ENABLE_PREVIEWS = YES;
@@ -669,7 +673,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 2.3.0;
 				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-D TARGET_WATCH";
 				PRODUCT_BUNDLE_IDENTIFIER = at.Schoder.WristSteps.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -688,11 +692,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = GQQ4RZBUL3;
 				IBSC_MODULE = WristSteps_WatchKit_Extension;
 				INFOPLIST_FILE = "WristSteps WatchKit App/Info.plist";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = at.Schoder.WristSteps.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -710,11 +714,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = GQQ4RZBUL3;
 				IBSC_MODULE = WristSteps_WatchKit_Extension;
 				INFOPLIST_FILE = "WristSteps WatchKit App/Info.plist";
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = at.Schoder.WristSteps.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -729,9 +733,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = GQQ4RZBUL3;
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = at.Schoder.WristSteps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -742,9 +746,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = GQQ4RZBUL3;
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = at.Schoder.WristSteps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

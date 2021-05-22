@@ -27,3 +27,12 @@ extension Double {
         return Darwin.round(self * divisor) / divisor
     }
 }
+
+extension Float {
+    init?(_ optionalInt: Int?) {
+        guard let int = optionalInt else {
+            return nil
+        }
+        self.init(int)
+    }
+}

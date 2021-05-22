@@ -16,6 +16,7 @@ class LifeCycleHandler {
 
     func appWillEnterForeground() {
         dataProvider.healthData.update(completion: { _ in })
+        dataProvider.healthData.updateHourly(completion: { _ in })
     }
 
     func appDidEnterBackground() {
