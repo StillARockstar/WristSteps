@@ -14,6 +14,10 @@ class LifeCycleHandler {
         self.dataProvider = dataProvider
     }
 
+    func applicationDidFinishLaunching() {
+        dataProvider.healthData.updateBulk(completion: { })
+    }
+
     func appWillEnterForeground() {
         dataProvider.healthData.updateBulk(completion: { })
     }

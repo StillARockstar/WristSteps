@@ -24,6 +24,11 @@ protocol HealthData {
     func clearHourlyStepCounts()
 }
 
+private struct HealthDataDataStoreEntity: DataStoreEntity {
+    static let namespace = "health_data"
+    var hourlyStepCounts: [Int?]
+}
+
 class AppHealthData: HealthData {
     @Published var stepCount: Int = 0
     var stepCountPublished: Published<Int> { _stepCount }
@@ -50,6 +55,7 @@ class AppHealthData: HealthData {
             updateHour(hour: i, completion: { [weak self] in
                 completedUpdates += 1
                 if completedUpdates == self?.hourlyStepCounts.count ?? 0 - 1 {
+                    self?.persist()
                     completion()
                 }
             })
@@ -57,6 +63,31 @@ class AppHealthData: HealthData {
     }
 
     func updateHour(hour: Int, completion: @escaping (() -> Void)) {
+        loadHour(hour: hour, completion: { [weak self] hourlyStepCount in
+            self?.hourlyStepCounts[hour] = hourlyStepCount
+            self?.persist()
+            completion()
+        })
+    }
+
+    func loadPersistedStepCounts() {
+        if let persistedData: HealthDataDataStoreEntity = DataStore.load() {
+            self.hourlyStepCounts = persistedData.hourlyStepCounts
+        }
+    }
+
+    func clearHourlyStepCounts() {
+        for i in 0..<self.hourlyStepCounts.count {
+            self.hourlyStepCounts[i] = nil
+        }
+    }
+
+    private func persist() {
+        let entity = HealthDataDataStoreEntity(hourlyStepCounts: self.hourlyStepCounts)
+        DataStore.persist(entity)
+    }
+
+    private func loadHour(hour: Int, completion: @escaping ((Int?) -> Void)) {
         let calendar = Calendar(identifier: .gregorian)
         let nowDate = Date()
         let nowDateComponent = calendar.dateComponents([.year, .month, .day], from: nowDate)
@@ -70,8 +101,7 @@ class AppHealthData: HealthData {
         startDateComponents.second = 0
         let startDate = calendar.date(from: startDateComponents) ?? nowDate
         if startDate > nowDate {
-            self.hourlyStepCounts[hour] = nil
-            completion()
+            completion(nil)
             return
         }
 
@@ -92,25 +122,13 @@ class AppHealthData: HealthData {
         pedometer.queryPedometerData(
             from: startDate,
             to: endDate,
-            withHandler: { [weak self] pedometerData, error in
+            withHandler: { pedometerData, error in
                 guard let pedometerData = pedometerData else {
-                    self?.hourlyStepCounts[hour] = nil
-                    completion()
+                    completion(nil)
                     return
                 }
-                self?.hourlyStepCounts[hour] = pedometerData.numberOfSteps.intValue
-                completion()
+                completion(pedometerData.numberOfSteps.intValue)
         })
-    }
-
-    func loadPersistedStepCounts() {
-
-    }
-
-    func clearHourlyStepCounts() {
-        for i in 0..<self.hourlyStepCounts.count {
-            self.hourlyStepCounts[i] = nil
-        }
     }
 }
 
@@ -144,6 +162,7 @@ class SimulatorHealthData: HealthData {
                         self?.hourlyStepCounts[i] = nil
                     }
                 }
+                self?.persist()
                 completion()
         })
     }
@@ -157,18 +176,26 @@ class SimulatorHealthData: HealthData {
                 } else {
                     self?.hourlyStepCounts[hour] = nil
                 }
+                self?.persist()
                 completion()
         })
     }
 
     func loadPersistedStepCounts() {
-
+        if let persistedData: HealthDataDataStoreEntity = DataStore.load() {
+            self.hourlyStepCounts = persistedData.hourlyStepCounts
+        }
     }
 
     func clearHourlyStepCounts() {
         for i in 0..<self.hourlyStepCounts.count {
             self.hourlyStepCounts[i] = nil
         }
+    }
+
+    private func persist() {
+        let entity = HealthDataDataStoreEntity(hourlyStepCounts: self.hourlyStepCounts)
+        DataStore.persist(entity)
     }
 }
 
