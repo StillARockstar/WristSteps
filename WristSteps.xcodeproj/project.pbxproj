@@ -151,14 +151,9 @@
 		4C253A9524FBEF9B0083B66B /* DataProvider */ = {
 			isa = PBXGroup;
 			children = (
-				4C95D66E25017F6500CB4D35 /* DataStore.swift */,
-				4C253A9624FBEFAE0083B66B /* DataProvider.swift */,
-				4CDBF1542659195C00F6A0B9 /* AppData.swift */,
-				4CDBF1592659199400F6A0B9 /* HealthData.swift */,
-				4CDBF15E26591A0400F6A0B9 /* UserData.swift */,
-				4C439FA725CC731100B47C18 /* InAppPurchase.swift */,
-				4C95D66C250178BE00CB4D35 /* NumberFormatting.swift */,
-				4C6638D3258023B50028B398 /* Bundle+Convenients.swift */,
+				4CDBF16526591ABE00F6A0B9 /* DataStore */,
+				4CDBF16426591AB000F6A0B9 /* DataProvider */,
+				4CDBF16326591AA100F6A0B9 /* Helpers */,
 			);
 			path = DataProvider;
 			sourceTree = "<group>";
@@ -306,6 +301,35 @@
 				4CA5D632260298F600394872 /* SettingsView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		4CDBF16326591AA100F6A0B9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4C95D66C250178BE00CB4D35 /* NumberFormatting.swift */,
+				4C6638D3258023B50028B398 /* Bundle+Convenients.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4CDBF16426591AB000F6A0B9 /* DataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				4C253A9624FBEFAE0083B66B /* DataProvider.swift */,
+				4CDBF1542659195C00F6A0B9 /* AppData.swift */,
+				4CDBF1592659199400F6A0B9 /* HealthData.swift */,
+				4CDBF15E26591A0400F6A0B9 /* UserData.swift */,
+				4C439FA725CC731100B47C18 /* InAppPurchase.swift */,
+			);
+			path = DataProvider;
+			sourceTree = "<group>";
+		};
+		4CDBF16526591ABE00F6A0B9 /* DataStore */ = {
+			isa = PBXGroup;
+			children = (
+				4C95D66E25017F6500CB4D35 /* DataStore.swift */,
+			);
+			path = DataStore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
