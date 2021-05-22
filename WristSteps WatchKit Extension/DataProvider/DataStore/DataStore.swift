@@ -12,26 +12,6 @@ protocol DataStoreEntity: Codable {
 }
 
 final class DataStore {
-    private let namespace: String
-
-    private init(namespace: String) {
-        self.namespace = namespace
-    }
-
-    static func namespace(_ namespace: String) -> DataStore {
-        return DataStore(namespace: namespace)
-    }
-
-    func set(value: Any, for key: String) {
-        UserDefaults.standard.setValue(value, forKey: "\(namespace)_\(key)")
-    }
-
-    func get(key: String) -> Any? {
-        UserDefaults.standard.value(forKey: "\(namespace)_\(key)")
-    }
-}
-
-extension DataStore {
     static func persist<T : DataStoreEntity>(_ entitiy: T) {
         guard let jsonData = try? JSONEncoder().encode(entitiy) else {
             return
