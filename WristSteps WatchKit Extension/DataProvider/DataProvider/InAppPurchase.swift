@@ -19,6 +19,11 @@ enum RestoreEventState {
     case failed
 }
 
+private struct IAPDataStoreEntity: DataStoreEntity {
+    static let namespace = "purchase_data"
+    var premiumColors: Bool
+}
+
 // MARK: - IAPManager
 
 class IAPManager: NSObject {
@@ -54,11 +59,16 @@ extension IAPManager {
     }
 
     private func isProductPurchsed(identifier: String) -> Bool {
-        DataStore.namespace(DataStoreConstants.namespace).get(key: DataStoreConstants.premiumColorsKey) as? Bool ?? false
+        // TODO Cleanup - only handling premium colos
+        if let persistedData: IAPDataStoreEntity = DataStore.load() {
+            return persistedData.premiumColors
+        }
+        return false
     }
 
     private func setProductPurchased(identifier: String, _ value: Bool) {
-        DataStore.namespace(DataStoreConstants.namespace).set(value: value, for: DataStoreConstants.premiumColorsKey)
+        // TODO Cleanup - only handling premium colos
+        DataStore.persist(IAPDataStoreEntity(premiumColors: value))
     }
 
     private struct DataStoreConstants {

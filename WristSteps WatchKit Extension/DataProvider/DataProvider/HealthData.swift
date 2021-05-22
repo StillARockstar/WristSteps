@@ -1,24 +1,12 @@
 //
-//  DataProvider.swift
+//  HealthData.swift
 //  WristSteps WatchKit Extension
 //
-//  Created by Michael Schoder on 30.08.20.
+//  Created by Michael Schoder on 22.05.21.
 //
 
 import Foundation
 import CoreMotion
-
-protocol DataProvider {
-    var appData: AppData { get }
-    var healthData: HealthData { get }
-    var userData: UserData { get }
-}
-
-protocol AppData {
-    var onboardingDone: Bool { get }
-
-    func setOnboardingDone(_ flag: Bool)
-}
 
 protocol HealthData {
     var stepCount: Int { get }
@@ -31,53 +19,6 @@ protocol HealthData {
 
     func update(completion: @escaping ((Bool) -> Void))
     func updateHourly(completion: @escaping ((Bool) -> Void))
-}
-
-protocol UserData {
-    var stepGoal: Int { get }
-    var stepGoalPublished: Published<Int> { get }
-    var stepGoalPublisher: Published<Int>.Publisher { get }
-
-    var colorName: String { get }
-    var colorNamePublished: Published<String> { get }
-    var colorNamePublisher: Published<String>.Publisher { get }
-
-    func update(stepGoal: Int)
-    func update(colorName: String)
-}
-
-
-
-// - MARK: App Data Provider
-
-class AppDataProvider: DataProvider {
-    let appData: AppData
-    let healthData: HealthData
-    let userData: UserData
-
-    init() {
-        self.appData = AppAppData()
-        self.healthData = AppHealthData()
-        self.userData = AppUserData()
-    }
-}
-
-class AppAppData: AppData {
-    private(set) var onboardingDone: Bool
-
-    init() {
-        self.onboardingDone = DataStore.namespace(DataStoreConstants.namespace).get(key: DataStoreConstants.onboardingDoneKey) as? Bool ?? false
-    }
-
-    func setOnboardingDone(_ flag: Bool) {
-        self.onboardingDone = flag
-        DataStore.namespace(DataStoreConstants.namespace).set(value: flag, for: DataStoreConstants.onboardingDoneKey)
-    }
-
-    private struct DataStoreConstants {
-        static let namespace = "app_data"
-        static let onboardingDoneKey = "onboarding_done"
-    }
 }
 
 class AppHealthData: HealthData {
@@ -170,53 +111,6 @@ class AppHealthData: HealthData {
     }
 }
 
-class AppUserData: UserData {
-    @Published var stepGoal: Int = 10000
-    var stepGoalPublished: Published<Int> { _stepGoal }
-    var stepGoalPublisher: Published<Int>.Publisher { $stepGoal }
-
-    @Published var colorName: String = AppColor.appBlue.name
-    var colorNamePublished: Published<String> { _colorName }
-    var colorNamePublisher: Published<String>.Publisher { $colorName}
-
-    init() {
-        self.stepGoal = DataStore.namespace(DataStoreConstants.namespace).get(key: DataStoreConstants.stepGoalKey) as? Int ?? 10000
-        self.colorName = DataStore.namespace(DataStoreConstants.namespace).get(key: DataStoreConstants.colorKey) as? String ?? AppColor.appBlue.name
-    }
-
-    func update(stepGoal: Int) {
-        self.stepGoal = stepGoal
-        DataStore.namespace(DataStoreConstants.namespace).set(value: stepGoal, for: DataStoreConstants.stepGoalKey)
-    }
-
-    func update(colorName: String) {
-        self.colorName = colorName
-        DataStore.namespace(DataStoreConstants.namespace).set(value: colorName, for: DataStoreConstants.colorKey)
-    }
-
-    private struct DataStoreConstants {
-        static let namespace = "user_data"
-        static let stepGoalKey = "step_goal"
-        static let colorKey = "app_color"
-    }
-}
-
-
-
-// - MARK: Simulator Data Provider
-
-class SimulatorDataProvider: DataProvider {
-    let appData: AppData
-    let healthData: HealthData
-    let userData: UserData
-
-    init() {
-        self.appData = AppAppData()
-        self.healthData = SimulatorHealthData()
-        self.userData = AppUserData()
-    }
-}
-
 class SimulatorHealthData: HealthData {
     @Published var stepCount: Int = 0
     var stepCountPublished: Published<Int> { _stepCount }
@@ -248,21 +142,6 @@ class SimulatorHealthData: HealthData {
     }
 }
 
-
-// - MARK: SampleDataProvider
-
-class SampleDataProvider: DataProvider {
-    let appData: AppData
-    let healthData: HealthData
-    let userData: UserData
-
-    init() {
-        self.appData = AppAppData()
-        self.healthData = SampleHealthData()
-        self.userData = SampleUserData()
-    }
-}
-
 class SampleHealthData: HealthData {
     @Published var stepCount: Int = 5000
     var stepCountPublished: Published<Int> { _stepCount }
@@ -278,28 +157,5 @@ class SampleHealthData: HealthData {
 
     func updateHourly(completion: @escaping ((Bool) -> Void)) {
         completion(true)
-    }
-}
-
-class SampleUserData: UserData {
-    @Published var stepGoal: Int = 10000
-    var stepGoalPublished: Published<Int> { _stepGoal }
-    var stepGoalPublisher: Published<Int>.Publisher { $stepGoal }
-
-    @Published var colorName: String = AppColor.appBlue.name
-    var colorNamePublished: Published<String> { _colorName }
-    var colorNamePublisher: Published<String>.Publisher { $colorName}
-
-    init() {
-        self.colorName = DataStore.namespace(DataStoreConstants.namespace).get(key: DataStoreConstants.colorKey) as? String ?? AppColor.appBlue.name
-    }
-
-    func update(stepGoal: Int) { }
-
-    func update(colorName: String) { }
-
-    private struct DataStoreConstants {
-        static let namespace = "user_data"
-        static let colorKey = "app_color"
     }
 }
