@@ -11,25 +11,25 @@ class SettingsViewProvider {
     private let dataProvider: DataProvider
     private let iapManager: IAPManager
 
-    lazy var setGoalViewProvider = {
+    var setGoalViewProvider: SetGoalViewProvider {
         SetGoalViewProvider(
             dataProvider: dataProvider
         )
-    }()
-    lazy var setColorViewProvider = {
+    }
+    var setColorViewProvider: SetColorViewProvider {
         SetColorViewProvider(
             dataProvider: dataProvider,
             iapManager: iapManager
         )
-    }()
-    lazy var onboardingProvider = {
+    }
+    var onboardingProvider: OnboardingViewProvider {
         OnboardingViewProvider(
             showIntroPage: false
         )
-    }()
-    lazy var aboutAppProvider = {
+    }
+    var aboutAppProvider: AboutAppViewProvider {
         AboutAppViewProvider()
-    }()
+    }
 
     init(dataProvider: DataProvider, iapManager: IAPManager) {
         self.dataProvider = dataProvider
