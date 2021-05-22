@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 import CoreMotion
 
 protocol HealthData {
@@ -17,8 +18,10 @@ protocol HealthData {
     var hourlyStepCountsPublished: Published<[Int?]> { get }
     var hourlyStepCountsPublisher: Published<[Int?]>.Publisher { get }
 
-    func update(completion: @escaping ((Bool) -> Void))
-    func updateHourly(completion: @escaping ((Bool) -> Void))
+    func updateBulk(completion: @escaping (() -> Void))
+    func updateHour(hour: Int, completion: @escaping (() -> Void))
+    func loadPersistedStepCounts()
+    func clearHourlyStepCounts()
 }
 
 class AppHealthData: HealthData {
@@ -26,50 +29,34 @@ class AppHealthData: HealthData {
     var stepCountPublished: Published<Int> { _stepCount }
     var stepCountPublisher: Published<Int>.Publisher { $stepCount }
 
-    @Published var hourlyStepCounts: [Int?] = []
+    @Published var hourlyStepCounts: [Int?] = [Int?](repeating: nil, count: 24)
     var hourlyStepCountsPublished: Published<[Int?]> { _hourlyStepCounts }
     var hourlyStepCountsPublisher: Published<[Int?]>.Publisher { $hourlyStepCounts }
 
+    private var subscriptions: Set<AnyCancellable> = Set()
     private let pedometer = CMPedometer()
 
-    func update(completion: @escaping ((Bool) -> Void)) {
-        let endDate = Date()
-        let startDate = Calendar.current.startOfDay(for: endDate)
-
-        pedometer.queryPedometerData(from: startDate, to: endDate, withHandler: { [weak self] pedometerData, error in
-            guard let pedometerData = pedometerData else {
-                completion(false)
-                return
-            }
-            self?.stepCount = pedometerData.numberOfSteps.intValue
-            completion(true)
+    init() {
+        clearHourlyStepCounts()
+        self.$hourlyStepCounts.sink(receiveValue: { hourlyStepCounts in
+            self.stepCount = hourlyStepCounts.compactMap({$0}).reduce(0, +)
         })
+        .store(in: &subscriptions)
     }
 
-    func updateHourly(completion: @escaping ((Bool) -> Void)) {
-        let taskGroup = DispatchGroup()
-        var temporarySteps: [Int: Int?] = [:]
-
-        for hour in 0..<24 {
-            taskGroup.enter()
-            self.steps(for: hour, completion: { steps in
-                temporarySteps[hour] = steps
-                taskGroup.leave()
+    func updateBulk(completion: @escaping (() -> Void)) {
+        var completedUpdates = 0
+        for i in 0..<self.hourlyStepCounts.count {
+            updateHour(hour: i, completion: { [weak self] in
+                completedUpdates += 1
+                if completedUpdates == self?.hourlyStepCounts.count ?? 0 - 1 {
+                    completion()
+                }
             })
         }
-
-        taskGroup.notify(queue: .main, execute: { [weak self] in
-            let sortedKeys = Array(temporarySteps.keys).sorted()
-            var sortedSteps = [Int?]()
-            for key in sortedKeys {
-                sortedSteps.append(temporarySteps[key] ?? nil)
-            }
-            self?.hourlyStepCounts = sortedSteps
-            completion(true)
-        })
     }
 
-    private func steps(for hour: Int, completion: @escaping (Int?) -> Void) {
+    func updateHour(hour: Int, completion: @escaping (() -> Void)) {
         let calendar = Calendar(identifier: .gregorian)
         let nowDate = Date()
         let nowDateComponent = calendar.dateComponents([.year, .month, .day], from: nowDate)
@@ -83,7 +70,8 @@ class AppHealthData: HealthData {
         startDateComponents.second = 0
         let startDate = calendar.date(from: startDateComponents) ?? nowDate
         if startDate > nowDate {
-            completion(nil)
+            self.hourlyStepCounts[hour] = nil
+            completion()
             return
         }
 
@@ -101,13 +89,28 @@ class AppHealthData: HealthData {
             endDate = nowDate
         }
 
-        pedometer.queryPedometerData(from: startDate, to: endDate, withHandler: { pedometerData, error in
-            guard let pedometerData = pedometerData else {
-                completion(nil)
-                return
-            }
-            completion(pedometerData.numberOfSteps.intValue)
+        pedometer.queryPedometerData(
+            from: startDate,
+            to: endDate,
+            withHandler: { [weak self] pedometerData, error in
+                guard let pedometerData = pedometerData else {
+                    self?.hourlyStepCounts[hour] = nil
+                    completion()
+                    return
+                }
+                self?.hourlyStepCounts[hour] = pedometerData.numberOfSteps.intValue
+                completion()
         })
+    }
+
+    func loadPersistedStepCounts() {
+
+    }
+
+    func clearHourlyStepCounts() {
+        for i in 0..<self.hourlyStepCounts.count {
+            self.hourlyStepCounts[i] = nil
+        }
     }
 }
 
@@ -116,28 +119,55 @@ class SimulatorHealthData: HealthData {
     var stepCountPublished: Published<Int> { _stepCount }
     var stepCountPublisher: Published<Int>.Publisher { $stepCount }
 
-    @Published var hourlyStepCounts: [Int?] = []
+    @Published var hourlyStepCounts: [Int?] = [Int?](repeating: nil, count: 24)
     var hourlyStepCountsPublished: Published<[Int?]> { _hourlyStepCounts }
     var hourlyStepCountsPublisher: Published<[Int?]>.Publisher { $hourlyStepCounts }
 
-    func update(completion: @escaping ((Bool) -> Void)) {
-        DispatchQueue(label: "simulated_data").asyncAfter(deadline: .now() + 0.2) { [weak self] in
-            self?.stepCount = Int.random(in: 0...10000)
-            completion(true)
-        }
+    private var subscriptions: Set<AnyCancellable> = Set()
+
+    init() {
+        clearHourlyStepCounts()
+        self.$hourlyStepCounts.sink(receiveValue: { hourlyStepCounts in
+            self.stepCount = hourlyStepCounts.compactMap({$0}).reduce(0, +)
+        })
+        .store(in: &subscriptions)
     }
 
-    func updateHourly(completion: @escaping ((Bool) -> Void)) {
-        DispatchQueue(label: "simulated_data").asyncAfter(deadline: .now() + 0.2) { [weak self] in
-            var hourlySteps = [Int?]()
-            for _ in 0..<12 {
-                hourlySteps.append(Int.random(in: 0...1000))
-            }
-            for _ in 0..<12 {
-                hourlySteps.append(nil)
-            }
-            self?.hourlyStepCounts = hourlySteps
-            completion(true)
+    func updateBulk(completion: @escaping (() -> Void)) {
+        DispatchQueue(label: "simulated_data").asyncAfter(
+            deadline: .now() + 0.1,
+            execute: { [weak self] in
+                for i in 0..<24 {
+                    if i <= 12 {
+                        self?.hourlyStepCounts[i] = Int.random(in: 0...1000)
+                    } else {
+                        self?.hourlyStepCounts[i] = nil
+                    }
+                }
+                completion()
+        })
+    }
+
+    func updateHour(hour: Int, completion: @escaping (() -> Void)) {
+        DispatchQueue(label: "simulated_data").asyncAfter(
+            deadline: .now() + 0.1,
+            execute: { [weak self] in
+                if hour <= 12 {
+                    self?.hourlyStepCounts[hour] = Int.random(in: 0...1000)
+                } else {
+                    self?.hourlyStepCounts[hour] = nil
+                }
+                completion()
+        })
+    }
+
+    func loadPersistedStepCounts() {
+
+    }
+
+    func clearHourlyStepCounts() {
+        for i in 0..<self.hourlyStepCounts.count {
+            self.hourlyStepCounts[i] = nil
         }
     }
 }
@@ -147,15 +177,21 @@ class SampleHealthData: HealthData {
     var stepCountPublished: Published<Int> { _stepCount }
     var stepCountPublisher: Published<Int>.Publisher { $stepCount }
 
-    @Published var hourlyStepCounts: [Int?] = []
+    @Published var hourlyStepCounts: [Int?] = [Int?](repeating: nil, count: 24)
     var hourlyStepCountsPublished: Published<[Int?]> { _hourlyStepCounts }
     var hourlyStepCountsPublisher: Published<[Int?]>.Publisher { $hourlyStepCounts }
 
-    func update(completion: @escaping ((Bool) -> Void)) {
-        completion(true)
+    func updateBulk(completion: @escaping (() -> Void)) {
+        completion()
     }
 
-    func updateHourly(completion: @escaping ((Bool) -> Void)) {
-        completion(true)
+    func updateHour(hour: Int, completion: @escaping (() -> Void)) {
+        completion()
+    }
+
+    func loadPersistedStepCounts() {
+    }
+
+    func clearHourlyStepCounts() {
     }
 }
