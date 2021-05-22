@@ -54,7 +54,6 @@ extension DataStore {
         var fileURL = url.appendingPathComponent(filename)
         fileURL = fileURL.appendingPathExtension("json")
         try? data.write(to: fileURL, options: [.atomicWrite])
-        print("Saved to: \(fileURL)")
     }
 
     private static func loadJSON(withFilename filename: String) -> Data? {

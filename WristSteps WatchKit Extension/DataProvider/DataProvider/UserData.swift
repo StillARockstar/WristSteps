@@ -20,7 +20,7 @@ protocol UserData {
     func update(colorName: String)
 }
 
-struct UserDataDataStoreEntity: DataStoreEntity {
+private struct UserDataDataStoreEntity: DataStoreEntity {
     static let namespace = "user_data"
     var stepGoal: Int
     var colorName: String

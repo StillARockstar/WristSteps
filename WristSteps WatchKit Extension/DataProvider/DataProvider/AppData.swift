@@ -13,20 +13,27 @@ protocol AppData {
     func setOnboardingDone(_ flag: Bool)
 }
 
+private struct AppDataDataStoreEntity: DataStoreEntity {
+    static let namespace = "app_data"
+    var onboardingDone: Bool
+}
+
 class AppAppData: AppData {
-    private(set) var onboardingDone: Bool
+    private(set) var onboardingDone: Bool = false
 
     init() {
-        self.onboardingDone = DataStore.namespace(DataStoreConstants.namespace).get(key: DataStoreConstants.onboardingDoneKey) as? Bool ?? false
+        if let persistedData: AppDataDataStoreEntity = DataStore.load() {
+            self.onboardingDone = persistedData.onboardingDone
+        }
     }
 
     func setOnboardingDone(_ flag: Bool) {
         self.onboardingDone = flag
-        DataStore.namespace(DataStoreConstants.namespace).set(value: flag, for: DataStoreConstants.onboardingDoneKey)
+        persist()
     }
 
-    private struct DataStoreConstants {
-        static let namespace = "app_data"
-        static let onboardingDoneKey = "onboarding_done"
+    private func persist() {
+        let entity = AppDataDataStoreEntity(onboardingDone: self.onboardingDone)
+        DataStore.persist(entity)
     }
 }
