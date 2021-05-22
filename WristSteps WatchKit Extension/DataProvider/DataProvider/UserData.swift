@@ -20,6 +20,12 @@ protocol UserData {
     func update(colorName: String)
 }
 
+struct UserDataDataStoreEntity: DataStoreEntity {
+    static let namespace = "user_data"
+    var stepGoal: Int
+    var colorName: String
+}
+
 class AppUserData: UserData {
     @Published var stepGoal: Int = 10000
     var stepGoalPublished: Published<Int> { _stepGoal }
@@ -30,24 +36,25 @@ class AppUserData: UserData {
     var colorNamePublisher: Published<String>.Publisher { $colorName}
 
     init() {
-        self.stepGoal = DataStore.namespace(DataStoreConstants.namespace).get(key: DataStoreConstants.stepGoalKey) as? Int ?? 10000
-        self.colorName = DataStore.namespace(DataStoreConstants.namespace).get(key: DataStoreConstants.colorKey) as? String ?? AppColor.appBlue.name
+        if let persistedData: UserDataDataStoreEntity = DataStore.load() {
+            self.stepGoal = persistedData.stepGoal
+            self.colorName = persistedData.colorName
+        }
     }
 
     func update(stepGoal: Int) {
         self.stepGoal = stepGoal
-        DataStore.namespace(DataStoreConstants.namespace).set(value: stepGoal, for: DataStoreConstants.stepGoalKey)
+        persist()
     }
 
     func update(colorName: String) {
         self.colorName = colorName
-        DataStore.namespace(DataStoreConstants.namespace).set(value: colorName, for: DataStoreConstants.colorKey)
+        persist()
     }
 
-    private struct DataStoreConstants {
-        static let namespace = "user_data"
-        static let stepGoalKey = "step_goal"
-        static let colorKey = "app_color"
+    private func persist() {
+        let entity = UserDataDataStoreEntity(stepGoal: self.stepGoal, colorName: self.colorName)
+        DataStore.persist(entity)
     }
 }
 
@@ -61,15 +68,13 @@ class SampleUserData: UserData {
     var colorNamePublisher: Published<String>.Publisher { $colorName}
 
     init() {
-        self.colorName = DataStore.namespace(DataStoreConstants.namespace).get(key: DataStoreConstants.colorKey) as? String ?? AppColor.appBlue.name
+        // StepGoal is not loaded for SampleData. For Sample it is always 10k
+        if let persistedData: UserDataDataStoreEntity = DataStore.load() {
+            self.colorName = persistedData.colorName
+        }
     }
 
     func update(stepGoal: Int) { }
 
     func update(colorName: String) { }
-
-    private struct DataStoreConstants {
-        static let namespace = "user_data"
-        static let colorKey = "app_color"
-    }
 }
