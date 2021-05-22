@@ -14,9 +14,12 @@ class LifeCycleHandler {
         self.dataProvider = dataProvider
     }
 
+    func applicationDidFinishLaunching() {
+        dataProvider.healthData.updateBulk(completion: { })
+    }
+
     func appWillEnterForeground() {
-        dataProvider.healthData.update(completion: { _ in })
-        dataProvider.healthData.updateHourly(completion: { _ in })
+        dataProvider.healthData.updateBulk(completion: { })
     }
 
     func appDidEnterBackground() {
@@ -67,7 +70,8 @@ private extension LifeCycleHandler {
         }
         let operation2 = BlockOperation { [weak self] in
             let sema = DispatchSemaphore(value: 0)
-            self?.dataProvider.healthData.update(completion: { _ in
+            let hour = Calendar.current.component(.hour, from: Date())
+            self?.dataProvider.healthData.updateHour(hour: hour, completion: {
                 sema.signal()
             })
             sema.wait()

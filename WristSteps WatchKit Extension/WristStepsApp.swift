@@ -76,6 +76,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         super.init()
     }
 
+    func applicationDidFinishLaunching() {
+        lifeCycleHandler.applicationDidFinishLaunching()
+    }
+
     func applicationWillEnterForeground() {
         lifeCycleHandler.appWillEnterForeground()
     }
