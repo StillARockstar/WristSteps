@@ -71,9 +71,15 @@ private extension LifeCycleHandler {
         let operation2 = BlockOperation { [weak self] in
             let sema = DispatchSemaphore(value: 0)
             let hour = Calendar.current.component(.hour, from: Date())
-            self?.dataProvider.healthData.updateHour(hour: hour, completion: {
-                sema.signal()
-            })
+            if hour == 0 {
+                self?.dataProvider.healthData.updateBulk(completion: {
+                    sema.signal()
+                })
+            } else {
+                self?.dataProvider.healthData.updateHour(hour: hour, completion: {
+                    sema.signal()
+                })
+            }
             sema.wait()
         }
 
