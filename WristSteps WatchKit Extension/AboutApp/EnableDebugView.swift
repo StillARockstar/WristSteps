@@ -27,6 +27,10 @@ struct EnableDebugView: View {
 
 struct EnableDebugView_Previews: PreviewProvider {
     static var previews: some View {
-        EnableDebugView(provider: AboutAppViewProvider())
+        EnableDebugView(
+            provider: AboutAppViewProvider(
+                dataProvider: SimulatorDataProvider()
+            )
+        )
     }
 }

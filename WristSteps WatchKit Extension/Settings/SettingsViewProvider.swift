@@ -28,7 +28,12 @@ class SettingsViewProvider {
         )
     }
     var aboutAppProvider: AboutAppViewProvider {
-        AboutAppViewProvider()
+        AboutAppViewProvider(
+            dataProvider: dataProvider
+        )
+    }
+    var debugMenuAvailable: Bool {
+        return dataProvider.appData.debuggingEnabled
     }
 
     init(dataProvider: DataProvider, iapManager: IAPManager) {

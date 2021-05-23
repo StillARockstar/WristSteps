@@ -49,14 +49,14 @@ struct SettingsView: View {
                     provider: provider.aboutAppProvider
                 )
             }
-            #if DEBUG
-            SettingsButton(emoji: "🐛", label: "Debug Menu", action: {
-                showingDebugMenu = true
-            })
-            .sheet(isPresented: $showingDebugMenu) {
-                DebugMenuView()
+            if provider.debugMenuAvailable {
+                SettingsButton(emoji: "🐛", label: "Debug Menu", action: {
+                    showingDebugMenu = true
+                })
+                .sheet(isPresented: $showingDebugMenu) {
+                    DebugMenuView()
+                }
             }
-            #endif
         }
     }
 }

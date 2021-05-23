@@ -36,6 +36,10 @@ struct AboutAppView: View {
 
 struct AboutAppView_Previews: PreviewProvider {
     static var previews: some View {
-        AboutAppView(provider: AboutAppViewProvider())
+        AboutAppView(
+            provider: AboutAppViewProvider(
+                dataProvider: SimulatorDataProvider()
+            )
+        )
     }
 }
