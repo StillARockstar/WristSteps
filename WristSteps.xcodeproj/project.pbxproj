@@ -41,6 +41,7 @@
 		4CA5D633260298F600394872 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5D632260298F600394872 /* SettingsView.swift */; };
 		4CA5D63E260299D700394872 /* SettingsViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5D63D260299D700394872 /* SettingsViewProvider.swift */; };
 		4CBA8F55265A7FF500CC6049 /* DebugMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA8F54265A7FF500CC6049 /* DebugMenuView.swift */; };
+		4CBA8F57265A819200CC6049 /* EnableDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA8F56265A819200CC6049 /* EnableDebugView.swift */; };
 		4CC3713F250016F700509583 /* View+Convenients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3713E250016F700509583 /* View+Convenients.swift */; };
 		4CDBF1552659195C00F6A0B9 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBF1542659195C00F6A0B9 /* AppData.swift */; };
 		4CDBF15A2659199400F6A0B9 /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBF1592659199400F6A0B9 /* HealthData.swift */; };
@@ -132,6 +133,7 @@
 		4CA5D632260298F600394872 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4CA5D63D260299D700394872 /* SettingsViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewProvider.swift; sourceTree = "<group>"; };
 		4CBA8F54265A7FF500CC6049 /* DebugMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuView.swift; sourceTree = "<group>"; };
+		4CBA8F56265A819200CC6049 /* EnableDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableDebugView.swift; sourceTree = "<group>"; };
 		4CC3713E250016F700509583 /* View+Convenients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Convenients.swift"; sourceTree = "<group>"; };
 		4CDBF1542659195C00F6A0B9 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		4CDBF1592659199400F6A0B9 /* HealthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				4C6638C825801DF80028B398 /* AboutAppViewProvider.swift */,
 				4C6638C0258017720028B398 /* AboutAppView.swift */,
+				4CBA8F56265A819200CC6049 /* EnableDebugView.swift */,
 			);
 			path = AboutApp;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C2E960025016F21004A1FB0 /* SetGoalView.swift in Sources */,
+				4CBA8F57265A819200CC6049 /* EnableDebugView.swift in Sources */,
 				4C439FA825CC731100B47C18 /* InAppPurchase.swift in Sources */,
 				4CDBF15F26591A0400F6A0B9 /* UserData.swift in Sources */,
 				4C9FE89E24FBC67C008062AF /* Color+Convenients.swift in Sources */,

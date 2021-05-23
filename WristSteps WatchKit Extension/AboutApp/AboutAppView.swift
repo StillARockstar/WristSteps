@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AboutAppView: View {
     let provider: AboutAppViewProvider
+    @State private var showingEnableDebugging = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -23,6 +24,12 @@ struct AboutAppView: View {
             Body1Text(provider.copyrightText)
 
             Spacer()
+        }
+        .onTapGesture(count: 3, perform: {
+            showingEnableDebugging = true
+        })
+        .sheet(isPresented: $showingEnableDebugging) {
+            EnableDebugView(provider: provider)
         }
     }
 }
