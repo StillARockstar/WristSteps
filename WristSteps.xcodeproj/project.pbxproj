@@ -40,6 +40,7 @@
 		4CA5D62A2602965700394872 /* ContentViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5D6292602965700394872 /* ContentViewProvider.swift */; };
 		4CA5D633260298F600394872 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5D632260298F600394872 /* SettingsView.swift */; };
 		4CA5D63E260299D700394872 /* SettingsViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5D63D260299D700394872 /* SettingsViewProvider.swift */; };
+		4CBA8F55265A7FF500CC6049 /* DebugMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA8F54265A7FF500CC6049 /* DebugMenuView.swift */; };
 		4CC3713F250016F700509583 /* View+Convenients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3713E250016F700509583 /* View+Convenients.swift */; };
 		4CDBF1552659195C00F6A0B9 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBF1542659195C00F6A0B9 /* AppData.swift */; };
 		4CDBF15A2659199400F6A0B9 /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBF1592659199400F6A0B9 /* HealthData.swift */; };
@@ -130,6 +131,7 @@
 		4CA5D6292602965700394872 /* ContentViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewProvider.swift; sourceTree = "<group>"; };
 		4CA5D632260298F600394872 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4CA5D63D260299D700394872 /* SettingsViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewProvider.swift; sourceTree = "<group>"; };
+		4CBA8F54265A7FF500CC6049 /* DebugMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuView.swift; sourceTree = "<group>"; };
 		4CC3713E250016F700509583 /* View+Convenients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Convenients.swift"; sourceTree = "<group>"; };
 		4CDBF1542659195C00F6A0B9 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		4CDBF1592659199400F6A0B9 /* HealthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				4C95D6702501853F00CB4D35 /* SetColor */,
 				4C90122225A3859900B2E759 /* Onboarding */,
 				4C6638BF2580170C0028B398 /* AboutApp */,
+				4CBA8F53265A7FB000CC6049 /* DebugMenu */,
 				4C8CE64C26014DF300CF0452 /* Complication */,
 				4C9FE88A24FBC504008062AF /* Assets.xcassets */,
 				4C9FE89F24FBC6C8008062AF /* Colors.xcassets */,
@@ -304,6 +307,14 @@
 				4CA5D632260298F600394872 /* SettingsView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		4CBA8F53265A7FB000CC6049 /* DebugMenu */ = {
+			isa = PBXGroup;
+			children = (
+				4CBA8F54265A7FF500CC6049 /* DebugMenuView.swift */,
+			);
+			path = DebugMenu;
 			sourceTree = "<group>";
 		};
 		4CDBF16326591AA100F6A0B9 /* Helpers */ = {
@@ -498,6 +509,7 @@
 				4CDBF15A2659199400F6A0B9 /* HealthData.swift in Sources */,
 				4C9FE88924FBC504008062AF /* ComplicationController.swift in Sources */,
 				4CDBF1552659195C00F6A0B9 /* AppData.swift in Sources */,
+				4CBA8F55265A7FF500CC6049 /* DebugMenuView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
