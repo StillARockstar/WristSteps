@@ -8,8 +8,31 @@
 import SwiftUI
 
 struct DebugMenuView: View {
+    @State private var showingResetAlert = false
+
     var body: some View {
-        Text("Debug Menu")
+        VStack {
+            NavigationLink("Files", destination: DebugMenuView())
+            Button("Reset App", action: {
+                showingResetAlert = true
+            })
+            .alert(isPresented: $showingResetAlert) {
+                Alert(
+                    title: Text("Reset App"),
+                    message: Text("Delete all data and restart"),
+                    primaryButton: .destructive(
+                        Text("Reset"),
+                        action: {
+                            print("Reset")
+                        }),
+                    secondaryButton:
+                        .cancel()
+                )
+            }
+            .foregroundColor(.red)
+            Spacer()
+        }
+        .embedInNavigation()
     }
 }
 
