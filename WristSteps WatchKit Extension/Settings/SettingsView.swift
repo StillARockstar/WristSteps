@@ -13,6 +13,7 @@ struct SettingsView: View {
     @State private var showingSetColor = false
     @State private var showingHelp = false
     @State private var showingAboutApp = false
+    @State private var showingDebugMenu = false
 
     var body: some View {
         ScrollView {
@@ -47,6 +48,16 @@ struct SettingsView: View {
                 AboutAppView(
                     provider: provider.aboutAppProvider
                 )
+            }
+            if provider.debugMenuAvailable {
+                SettingsButton(emoji: "🐛", label: "Debug Menu", action: {
+                    showingDebugMenu = true
+                })
+                .sheet(isPresented: $showingDebugMenu) {
+                    DebugMenuView(
+                        provider: provider.debugMenuProvider
+                    )
+                }
             }
         }
     }
