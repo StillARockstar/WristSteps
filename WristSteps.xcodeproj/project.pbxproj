@@ -17,6 +17,7 @@
 		4C6638C1258017720028B398 /* AboutAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638C0258017720028B398 /* AboutAppView.swift */; };
 		4C6638C925801DF80028B398 /* AboutAppViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638C825801DF80028B398 /* AboutAppViewProvider.swift */; };
 		4C6638D4258023B50028B398 /* Bundle+Convenients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638D3258023B50028B398 /* Bundle+Convenients.swift */; };
+		4C6DA385265EDA9000520C7D /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6DA384265EDA9000520C7D /* DateFormatting.swift */; };
 		4C7FA7D525F6A33A00ACECF7 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7FA7D425F6A33A00ACECF7 /* InfoView.swift */; };
 		4C84905D265EC4E30014C92A /* DebugMenuFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84905C265EC4E30014C92A /* DebugMenuFilesView.swift */; };
 		4C84905F265ED0E90014C92A /* DebugMenuFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84905E265ED0E90014C92A /* DebugMenuFileView.swift */; };
@@ -109,6 +110,7 @@
 		4C6638C0258017720028B398 /* AboutAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppView.swift; sourceTree = "<group>"; };
 		4C6638C825801DF80028B398 /* AboutAppViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewProvider.swift; sourceTree = "<group>"; };
 		4C6638D3258023B50028B398 /* Bundle+Convenients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Convenients.swift"; sourceTree = "<group>"; };
+		4C6DA384265EDA9000520C7D /* DateFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
 		4C7FA7D425F6A33A00ACECF7 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		4C84905C265EC4E30014C92A /* DebugMenuFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuFilesView.swift; sourceTree = "<group>"; };
 		4C84905E265ED0E90014C92A /* DebugMenuFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuFileView.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 			children = (
 				4C95D66C250178BE00CB4D35 /* NumberFormatting.swift */,
 				4C6638D3258023B50028B398 /* Bundle+Convenients.swift */,
+				4C6DA384265EDA9000520C7D /* DateFormatting.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				4C88EC5D25F804330056E2F7 /* TextStyles.swift in Sources */,
 				4C6638C1258017720028B398 /* AboutAppView.swift in Sources */,
 				4C7FA7D525F6A33A00ACECF7 /* InfoView.swift in Sources */,
+				4C6DA385265EDA9000520C7D /* DateFormatting.swift in Sources */,
 				4CDBF15A2659199400F6A0B9 /* HealthData.swift in Sources */,
 				4C9FE88924FBC504008062AF /* ComplicationController.swift in Sources */,
 				4CDBF1552659195C00F6A0B9 /* AppData.swift in Sources */,

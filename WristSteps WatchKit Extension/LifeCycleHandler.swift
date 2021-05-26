@@ -98,9 +98,7 @@ private extension LifeCycleHandler {
         loadingQueue.addOperation(operation2)
         loadingQueue.waitUntilAllOperationsAreFinished()
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        self.dataProvider.appData.setLastBackgroundUpdate(dateFormatter.string(from: Date()))
+        self.dataProvider.appData.setLastBackgroundUpdate(Date().yyyymmddhhmmString)
 
         completion()
     }
