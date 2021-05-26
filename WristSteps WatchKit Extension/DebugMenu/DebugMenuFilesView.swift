@@ -11,7 +11,7 @@ struct DebugMenuFilesView: View {
     let provider: DebugMenuViewProvider
 
     var body: some View {
-        VStack {
+        ScrollView {
             ForEach(provider.files, id: \.self, content: { filename in
                 NavigationLink(
                     destination: DebugMenuFileView(content: provider.content(of: filename)),
