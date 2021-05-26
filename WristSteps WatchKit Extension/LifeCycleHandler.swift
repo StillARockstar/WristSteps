@@ -55,8 +55,11 @@ private extension LifeCycleHandler {
             return
         }
 
-        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: updateDate, userInfo: nil, scheduledCompletion: { error in
-            completion(error == nil)
+        WKExtension.shared().scheduleBackgroundRefresh(
+            withPreferredDate: updateDate,
+            userInfo: nil,
+            scheduledCompletion: { error in
+                completion(error == nil)
         })
     }
 
@@ -69,18 +72,25 @@ private extension LifeCycleHandler {
             sema.wait()
         }
         let operation2 = BlockOperation { [weak self] in
-            let sema = DispatchSemaphore(value: 0)
             let hour = Calendar.current.component(.hour, from: Date())
             if hour == 0 {
+                let sema = DispatchSemaphore(value: 0)
                 self?.dataProvider.healthData.updateBulk(completion: {
                     sema.signal()
                 })
+                sema.wait()
             } else {
-                self?.dataProvider.healthData.updateHour(hour: hour, completion: {
-                    sema.signal()
+                let sema0 = DispatchSemaphore(value: 0)
+                let sema1 = DispatchSemaphore(value: 0)
+                self?.dataProvider.healthData.updateHour(hour: hour - 1, completion: {
+                    sema0.signal()
                 })
+                self?.dataProvider.healthData.updateHour(hour: hour, completion: {
+                    sema1.signal()
+                })
+                sema0.wait()
+                sema1.wait()
             }
-            sema.wait()
         }
 
         let loadingQueue = OperationQueue()
