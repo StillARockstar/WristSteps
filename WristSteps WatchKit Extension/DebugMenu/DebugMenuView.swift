@@ -13,7 +13,10 @@ struct DebugMenuView: View {
 
     var body: some View {
         VStack {
-            NavigationLink("Files", destination: DebugMenuView(provider: provider))
+            NavigationLink(
+                "Files",
+                destination: DebugMenuFilesView(provider: provider)
+            )
             Button("Reset App", action: {
                 showingResetAlert = true
             })

@@ -30,20 +30,6 @@ final class DataStore {
         return try? JSONDecoder().decode(T.self, from: jsonData)
     }
 
-    static func dumpAllFiles() {
-        guard let rootDirectory = Self.rootDirectory else {
-            return
-        }
-        guard let fileUrls = try? FileManager.default.contentsOfDirectory(
-            at: rootDirectory,
-            includingPropertiesForKeys: nil,
-            options: [.skipsHiddenFiles]
-        ) else {
-            return
-        }
-        fileUrls.forEach({ try? FileManager.default.removeItem(at: $0) })
-    }
-
     private static func saveJSON(data: Data, withFilename filename: String) {
         guard let rootDirectory = Self.rootDirectory else {
             return
@@ -60,5 +46,40 @@ final class DataStore {
         var fileURL = rootDirectory.appendingPathComponent(filename)
         fileURL = fileURL.appendingPathExtension("json")
         return try? Data(contentsOf: fileURL)
+    }
+}
+extension DataStore {
+    static var allFileURLs: [URL]? {
+        guard let rootDirectory = Self.rootDirectory else {
+            return nil
+        }
+        return try? FileManager.default.contentsOfDirectory(
+            at: rootDirectory,
+            includingPropertiesForKeys: nil,
+            options: [.skipsHiddenFiles]
+        )
+    }
+
+    static func dumpAllFiles() {
+        allFileURLs?.forEach({ try? FileManager.default.removeItem(at: $0) })
+    }
+
+    static func lastChanged(of url: URL) -> Date? {
+        let attr = try? FileManager.default.attributesOfItem(atPath: url.path)
+        return attr?[FileAttributeKey.modificationDate] as? Date
+    }
+
+    static func contentOf(url: URL) -> String? {
+        guard let data = loadJSON(withFilename: url.lastPathComponent) else {
+            return nil
+        }
+        guard let object = try? JSONSerialization.jsonObject(with: data, options: []),
+              let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),
+              let prettyPrintedString = String(data: data, encoding: .utf8)
+        else {
+            return nil
+        }
+
+        return prettyPrintedString
     }
 }
