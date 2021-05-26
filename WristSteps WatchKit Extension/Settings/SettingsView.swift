@@ -54,7 +54,9 @@ struct SettingsView: View {
                     showingDebugMenu = true
                 })
                 .sheet(isPresented: $showingDebugMenu) {
-                    DebugMenuView()
+                    DebugMenuView(
+                        provider: provider.debugMenuProvider
+                    )
                 }
             }
         }

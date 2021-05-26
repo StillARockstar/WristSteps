@@ -41,6 +41,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         self.dataProvider = SimulatorDataProvider()
         #endif
 
+        if self.dataProvider.appData.debuggingEnabled {
+            print("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
+        }
+
         self.iapManager = IAPManager()
         self.iapManager.generateProducts(with: ProductIds.allCases.map({ $0.rawValue }))
 

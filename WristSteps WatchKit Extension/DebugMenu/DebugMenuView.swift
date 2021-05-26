@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct DebugMenuView: View {
+    let provider: DebugMenuViewProvider
     @State private var showingResetAlert = false
 
     var body: some View {
         VStack {
-            NavigationLink("Files", destination: DebugMenuView())
+            NavigationLink("Files", destination: DebugMenuView(provider: provider))
             Button("Reset App", action: {
                 showingResetAlert = true
             })
@@ -23,7 +24,7 @@ struct DebugMenuView: View {
                     primaryButton: .destructive(
                         Text("Reset"),
                         action: {
-                            print("Reset")
+                            provider.resetApp()
                         }),
                     secondaryButton:
                         .cancel()
@@ -38,6 +39,10 @@ struct DebugMenuView: View {
 
 struct DebugMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        DebugMenuView()
+        DebugMenuView(
+            provider: DebugMenuViewProvider(
+                dataProvider: SimulatorDataProvider()
+            )
+        )
     }
 }
