@@ -36,13 +36,14 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     override init() {
         #if TARGET_WATCH
-        self.dataProvider = AppDataProvider()
+        let dataProvider = AppDataProvider()
         #else
-        self.dataProvider = SimulatorDataProvider()
+        let dataProvider = SimulatorDataProvider()
         #endif
+        self.dataProvider = dataProvider
 
-        if self.dataProvider.appData.debuggingEnabled {
-            print("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
+        if dataProvider.appData.debuggingEnabled {
+            NSLog("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
         }
 
         self.iapManager = IAPManager()
@@ -56,7 +57,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 CLKComplicationServer.sharedInstance().activeComplications?.forEach {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
-                NSLog("New step count: \(newValue)")
+                if dataProvider.appData.debuggingEnabled {
+                    NSLog("New step count: \(newValue)")
+                }
             }
         self.stepGoalPublisher = dataProvider.userData.stepGoalPublisher
             .removeDuplicates()
@@ -64,7 +67,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 CLKComplicationServer.sharedInstance().activeComplications?.forEach {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
-                NSLog("New step goal: \(newValue)")
+                if dataProvider.appData.debuggingEnabled == true {
+                    NSLog("New step goal: \(newValue)")
+                }
             }
         self.colorNamePublisher = dataProvider.userData.colorNamePublisher
             .removeDuplicates()
@@ -74,7 +79,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 }
                 CLKComplicationServer.sharedInstance().reloadComplicationDescriptors()
                 Color.update(appTint: AppColor.color(forName: newValue).color)
-                NSLog("New color name: \(newValue)")
+                if dataProvider.appData.debuggingEnabled == true {
+                    NSLog("New color name: \(newValue)")
+                }
             }
 
         super.init()
