@@ -40,7 +40,7 @@ class LifeCycleHandler {
 
 private extension LifeCycleHandler {
     func scheduleNextUpdate(completion: @escaping ((Bool) -> Void)) {
-        let minuteGranuity = 15
+        let minuteGranuity = 2
 
         let now = Date()
         let calendar = Calendar.current
@@ -97,6 +97,10 @@ private extension LifeCycleHandler {
         loadingQueue.addOperation(operation1)
         loadingQueue.addOperation(operation2)
         loadingQueue.waitUntilAllOperationsAreFinished()
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        self.dataProvider.appData.setLastBackgroundUpdate(dateFormatter.string(from: Date()))
 
         completion()
     }
