@@ -14,7 +14,7 @@ struct DebugMenuFilesView: View {
         VStack {
             ForEach(provider.files, id: \.self, content: { filename in
                 NavigationLink(
-                    destination: DebugMenuFilesView(provider: provider),
+                    destination: DebugMenuFileView(content: provider.content(of: filename)),
                     label: {
                         VStack {
                             BodyText(filename, alignment: .leading)
@@ -25,7 +25,6 @@ struct DebugMenuFilesView: View {
             })
             Spacer()
         }
-        .embedInNavigation()
     }
 }
 

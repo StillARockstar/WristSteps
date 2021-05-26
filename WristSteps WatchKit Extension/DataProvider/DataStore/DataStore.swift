@@ -70,7 +70,8 @@ extension DataStore {
     }
 
     static func contentOf(url: URL) -> String? {
-        guard let data = loadJSON(withFilename: url.lastPathComponent) else {
+        let filename = url.deletingPathExtension().lastPathComponent
+        guard let data = loadJSON(withFilename: filename) else {
             return nil
         }
         guard let object = try? JSONSerialization.jsonObject(with: data, options: []),

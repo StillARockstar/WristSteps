@@ -19,6 +19,7 @@
 		4C6638D4258023B50028B398 /* Bundle+Convenients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638D3258023B50028B398 /* Bundle+Convenients.swift */; };
 		4C7FA7D525F6A33A00ACECF7 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7FA7D425F6A33A00ACECF7 /* InfoView.swift */; };
 		4C84905D265EC4E30014C92A /* DebugMenuFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84905C265EC4E30014C92A /* DebugMenuFilesView.swift */; };
+		4C84905F265ED0E90014C92A /* DebugMenuFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84905E265ED0E90014C92A /* DebugMenuFileView.swift */; };
 		4C88EC5D25F804330056E2F7 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88EC5C25F804330056E2F7 /* TextStyles.swift */; };
 		4C90122425A385D500B2E759 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122325A385D500B2E759 /* OnboardingView.swift */; };
 		4C90122C25A3890A00B2E759 /* OnboardingViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122B25A3890A00B2E759 /* OnboardingViewProvider.swift */; };
@@ -110,6 +111,7 @@
 		4C6638D3258023B50028B398 /* Bundle+Convenients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Convenients.swift"; sourceTree = "<group>"; };
 		4C7FA7D425F6A33A00ACECF7 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		4C84905C265EC4E30014C92A /* DebugMenuFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuFilesView.swift; sourceTree = "<group>"; };
+		4C84905E265ED0E90014C92A /* DebugMenuFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuFileView.swift; sourceTree = "<group>"; };
 		4C88EC5C25F804330056E2F7 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		4C90122325A385D500B2E759 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4C90122B25A3890A00B2E759 /* OnboardingViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewProvider.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				4CBA8F5A265A978E00CC6049 /* DebugMenuViewProvider.swift */,
 				4CBA8F54265A7FF500CC6049 /* DebugMenuView.swift */,
 				4C84905C265EC4E30014C92A /* DebugMenuFilesView.swift */,
+				4C84905E265ED0E90014C92A /* DebugMenuFileView.swift */,
 			);
 			path = DebugMenu;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				4C90122C25A3890A00B2E759 /* OnboardingViewProvider.swift in Sources */,
 				4CC3713F250016F700509583 /* View+Convenients.swift in Sources */,
 				4CA5D63E260299D700394872 /* SettingsViewProvider.swift in Sources */,
+				4C84905F265ED0E90014C92A /* DebugMenuFileView.swift in Sources */,
 				4CA5D633260298F600394872 /* SettingsView.swift in Sources */,
 				4C6638D4258023B50028B398 /* Bundle+Convenients.swift in Sources */,
 				4C2E960425017144004A1FB0 /* SetGoalViewProvider.swift in Sources */,

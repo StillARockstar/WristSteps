@@ -34,4 +34,11 @@ class DebugMenuViewProvider {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         return dateFormatter.string(from: date)
     }
+
+    func content(of filename: String) -> String {
+        guard let url = DataStore.rootDirectory?.appendingPathComponent(filename) else {
+            return ""
+        }
+        return DataStore.contentOf(url: url) ?? ""
+    }
 }
