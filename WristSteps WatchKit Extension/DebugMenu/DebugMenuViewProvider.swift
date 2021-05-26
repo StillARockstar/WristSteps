@@ -30,9 +30,7 @@ class DebugMenuViewProvider {
         else {
             return ""
         }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        return dateFormatter.string(from: date)
+        return date.yyyymmddhhmmString
     }
 
     func content(of filename: String) -> String {
