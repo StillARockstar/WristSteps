@@ -11,7 +11,7 @@ struct DebugMenuFilesView: View {
     let provider: DebugMenuViewProvider
 
     var body: some View {
-        VStack {
+        ScrollView {
             ForEach(provider.files, id: \.self, content: { filename in
                 NavigationLink(
                     destination: DebugMenuFileView(content: provider.content(of: filename)),
@@ -20,7 +20,6 @@ struct DebugMenuFilesView: View {
                             BodyText(filename, alignment: .leading)
                             Body1Text(provider.lastChanged(of: filename), alignment: .leading)
                         }
-                        .padding(.leading, 10)
                     })
             })
             Spacer()
