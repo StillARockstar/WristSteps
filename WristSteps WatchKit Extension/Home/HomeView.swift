@@ -20,10 +20,8 @@ struct HomeView: View {
             )
             .padding(.bottom, 6)
             BarChartView(
-                provider: BarChartViewProvider(
-                    color: appTintColor,
-                    data: provider.hourlySteps
-                )
+                color: appTintColor,
+                data: provider.hourlySteps
             )
         }
     }
