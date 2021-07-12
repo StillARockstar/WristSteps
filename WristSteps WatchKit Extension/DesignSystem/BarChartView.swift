@@ -7,7 +7,18 @@
 
 import SwiftUI
 
-struct BarChartViewProvider {
+struct BarChartBarData {
+    let value: Float?
+}
+
+private struct BarChartBarRenderingData: Identifiable {
+    let id = UUID()
+    let color: Color
+    let transparent: Bool
+    let valuePercent: CGFloat
+}
+
+struct BarChartView: View {
     let color: Color
     let referenceValue: Float?
     let data: [BarChartBarData]
@@ -38,26 +49,11 @@ struct BarChartViewProvider {
             )
         })
     }
-}
-
-struct BarChartBarData {
-    let value: Float?
-}
-
-private struct BarChartBarRenderingData: Identifiable {
-    let id = UUID()
-    let color: Color
-    let transparent: Bool
-    let valuePercent: CGFloat
-}
-
-struct BarChartView: View {
-    let provider: BarChartViewProvider
 
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                if let referenceValuePercent = provider.referenceValuePercent {
+                if let referenceValuePercent = referenceValuePercent {
                     Rectangle()
                         .fill(Color.gray)
                         .frame(height: 1)
@@ -65,17 +61,17 @@ struct BarChartView: View {
 
                 }
                 HStack(alignment: .bottom, spacing: 0) {
-                    ForEach(provider.renderingData) { dataEntry in
+                    ForEach(renderingData) { dataEntry in
                         BarChartBarView(
                             color: dataEntry.color,
                             opacity: dataEntry.transparent ? 0.5 : 1.0,
-                            width: geometry.size.width / CGFloat(provider.data.count) / 3,
+                            width: geometry.size.width / CGFloat(renderingData.count) / 3,
                             height: geometry.size.height,
                             heightPercent: dataEntry.valuePercent
                         )
                         .padding(
                             [.leading, .trailing],
-                            geometry.size.width / CGFloat(provider.data.count) / 3
+                            geometry.size.width / CGFloat(renderingData.count) / 3
                         )
                     }
                 }
@@ -115,22 +111,20 @@ private extension View {
 struct BarChartView_Previews: PreviewProvider {
     static var previews: some View {
         BarChartView(
-            provider: BarChartViewProvider(
-                color: AppColor.appBlue.color,
-                referenceValue: 50,
-                data: [
-                    BarChartBarData(value: 00),
-                    BarChartBarData(value: 10),
-                    BarChartBarData(value: 20),
-                    BarChartBarData(value: 30),
-                    BarChartBarData(value: 40),
-                    BarChartBarData(value: 50),
-                    BarChartBarData(value: 60),
-                    BarChartBarData(value: 70),
-                    BarChartBarData(value: 80),
-                    BarChartBarData(value: 90)
-                ]
-            )
+            color: AppColor.appBlue.color,
+            referenceValue: 50,
+            data: [
+                BarChartBarData(value: 00),
+                BarChartBarData(value: 10),
+                BarChartBarData(value: 20),
+                BarChartBarData(value: 30),
+                BarChartBarData(value: 40),
+                BarChartBarData(value: 50),
+                BarChartBarData(value: 60),
+                BarChartBarData(value: 70),
+                BarChartBarData(value: 80),
+                BarChartBarData(value: 90)
+            ]
         )
     }
 }

@@ -23,6 +23,7 @@ class HomeViewProvider: ObservableObject {
             .assign(to: \.stepCount, on: self)
             .store(in: &subscriptions)
         dataProvider.healthData.hourlyStepCountsPublisher
+            .debounce(for: .milliseconds(50), scheduler: RunLoop.current)
             .receive(on: DispatchQueue.main)
             .map({ $0.map({ BarChartBarData(value: Float($0)) }) })
             .assign(to: \.hourlySteps, on: self)
