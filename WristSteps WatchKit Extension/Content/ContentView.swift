@@ -16,14 +16,27 @@ struct ContentView: View {
         TabView(
             selection: $tabSelection,
             content:  {
-                SettingsView(provider: provider.settingsViewProvider)
-                    .navigationBarTitle("Settings")
-                    .embedInNavigation()
-                    .tag(0)
-                HomeView(provider: provider.homeViewProvider)
-                    .navigationBarTitle("WristSteps")
-                    .embedInNavigation()
-                    .tag(1)
+                if #available(watchOSApplicationExtension 8.0, *) {
+                    SettingsView(provider: provider.settingsViewProvider)
+                        .navigationBarTitle("Settings")
+                        .navigationBarTitleDisplayMode(.inline)
+                        .embedInNavigation()
+                        .tag(0)
+                    HomeView(provider: provider.homeViewProvider)
+                        .navigationBarTitle("WristSteps")
+                        .navigationBarTitleDisplayMode(.inline)
+                        .embedInNavigation()
+                        .tag(1)
+                } else {
+                    SettingsView(provider: provider.settingsViewProvider)
+                        .navigationBarTitle("Settings")
+                        .embedInNavigation()
+                        .tag(0)
+                    HomeView(provider: provider.homeViewProvider)
+                        .navigationBarTitle("WristSteps")
+                        .embedInNavigation()
+                        .tag(1)
+                }
             }
         )
         .sheet(isPresented: $showingOnboarding) {
