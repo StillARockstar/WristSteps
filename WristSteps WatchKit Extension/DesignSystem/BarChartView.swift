@@ -20,12 +20,17 @@ private struct BarChartBarRenderingData: Identifiable {
 }
 
 struct BarChartView: View {
+    @Environment(\.complicationRenderingMode) static var renderingMode
     let color: Color
     let referenceValue: Float?
     let data: [BarChartBarData]
 
     init(color: Color, referenceValue: Float? = nil, data: [BarChartBarData]) {
-        self.color = color
+        if Self.renderingMode == .tinted {
+            self.color = Color.white
+        } else {
+            self.color = color
+        }
         self.referenceValue = referenceValue
         self.data = data
     }
@@ -44,7 +49,7 @@ struct BarChartView: View {
         return data.map({ dataEntry in
             let value = dataEntry.value ?? 0
             return BarChartBarRenderingData(
-                color: value >= colorThreshold ? color : .gray,
+                color: value >= colorThreshold ? color : color.opacity(0.5),
                 transparent: dataEntry.value == nil,
                 valuePercent: CGFloat(value / maxValue)
             )
@@ -65,7 +70,7 @@ struct BarChartView: View {
                     ForEach(renderingData) { dataEntry in
                         BarChartBarView(
                             color: dataEntry.color,
-                            opacity: dataEntry.transparent ? 0.5 : 1.0,
+                            opacity: dataEntry.transparent ? 0.3 : 1.0,
                             width: geometry.size.width / CGFloat(renderingData.count) / 3,
                             height: geometry.size.height,
                             heightPercent: dataEntry.valuePercent
@@ -74,6 +79,7 @@ struct BarChartView: View {
                             [.leading, .trailing],
                             geometry.size.width / CGFloat(renderingData.count) / 3
                         )
+                        .complicationForeground()
                     }
                 }
                 .frame(size: geometry.size)
@@ -113,6 +119,7 @@ struct BarChartView_Previews: PreviewProvider {
     private static let previewPreferedColor: Color = AppColor.appBlue.color
     private static let previewReferenceValue: Float = 50
     private static let previewData: [BarChartBarData] = [
+        BarChartBarData(value: nil),
         BarChartBarData(value: 00),
         BarChartBarData(value: 10),
         BarChartBarData(value: 20),
