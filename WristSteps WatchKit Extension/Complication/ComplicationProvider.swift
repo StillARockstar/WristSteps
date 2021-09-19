@@ -6,6 +6,7 @@
 //
 
 import ClockKit
+import SwiftUI
 
 class ComplicationProvider {
     private let dataProvider: DataProvider
@@ -19,6 +20,7 @@ class ComplicationProvider {
         case ringSteps = "ring_steps"
         case ringPercent = "ring_percent"
         case ringPercentSteps = "ring_percent_steps"
+        case hourlySteps = "hourly_steps"
     }
 
     init(dataProvider: DataProvider) {
@@ -78,7 +80,7 @@ class ComplicationProvider {
                 fillFraction: stepsFraction,
                 ringStyle: .closed
             )
-        case .lineSteps, .linePercent, .ringSteps, .ringPercentSteps:
+        case .lineSteps, .linePercent, .ringSteps, .ringPercentSteps, .hourlySteps:
             return nil
         }
     }
@@ -99,7 +101,7 @@ class ComplicationProvider {
                 headerTextProvider: headerProvider,
                 bodyTextProvider: bodyProvider
             )
-        case .glyph, .lineSteps, .linePercent, .ringSteps, .ringPercent, .ringPercentSteps:
+        case .glyph, .lineSteps, .linePercent, .ringSteps, .ringPercent, .ringPercentSteps, .hourlySteps:
             return nil
         }
     }
@@ -123,7 +125,7 @@ class ComplicationProvider {
                 fillFraction: stepsFraction,
                 ringStyle: .closed
             )
-        case .lineSteps, .linePercent, .ringSteps, .ringPercentSteps:
+        case .lineSteps, .linePercent, .ringSteps, .ringPercentSteps, .hourlySteps:
             return nil
         }
     }
@@ -136,7 +138,7 @@ class ComplicationProvider {
         case .percent:
             let textProvider = CLKSimpleTextProvider(text: mediumStepPercentString)
             return CLKComplicationTemplateUtilitarianSmallFlat(textProvider: textProvider)
-        case .glyph, .lineSteps, .linePercent, .ringSteps, .ringPercent, .ringPercentSteps:
+        case .glyph, .lineSteps, .linePercent, .ringSteps, .ringPercent, .ringPercentSteps, .hourlySteps:
             return nil
         }
     }
@@ -149,7 +151,7 @@ class ComplicationProvider {
         case .percent:
             let textProvider = CLKSimpleTextProvider(text: longStepPercentString)
             return CLKComplicationTemplateUtilitarianLargeFlat(textProvider: textProvider)
-        case .glyph, .lineSteps, .linePercent, .ringSteps, .ringPercent, .ringPercentSteps:
+        case .glyph, .lineSteps, .linePercent, .ringSteps, .ringPercent, .ringPercentSteps, .hourlySteps:
             return nil
         }
     }
@@ -180,7 +182,7 @@ class ComplicationProvider {
                 fillFraction: stepsFraction,
                 ringStyle: .closed
             )
-        case .lineSteps, .linePercent, .ringPercentSteps:
+        case .lineSteps, .linePercent, .ringPercentSteps, .hourlySteps:
             return nil
         }
     }
@@ -197,7 +199,7 @@ class ComplicationProvider {
         case .percent:
             let textProvider = CLKSimpleTextProvider(text: shortStepPercentString)
             return CLKComplicationTemplateExtraLargeSimpleText(textProvider: textProvider)
-        case .lineSteps, .linePercent, .ringSteps, .ringPercent, .ringPercentSteps:
+        case .lineSteps, .linePercent, .ringSteps, .ringPercent, .ringPercentSteps, .hourlySteps:
             return nil
         }
     }
@@ -226,7 +228,7 @@ class ComplicationProvider {
             let textProvider = CLKSimpleTextProvider(text: longStepPercentString)
             let imageProvider = CLKFullColorImageProvider(fullColorImage: percentImage)
             return CLKComplicationTemplateGraphicCornerTextImage(textProvider: textProvider, imageProvider: imageProvider)
-        case .glyph, .steps, .percent, .ringPercentSteps:
+        case .glyph, .steps, .percent, .ringPercentSteps, .hourlySteps:
             return nil
         }
     }
@@ -244,7 +246,7 @@ class ComplicationProvider {
                 circularTemplate: graphicCircularTemplate(with: .ringPercent) as! CLKComplicationTemplateGraphicCircular,
                 textProvider: textProvider
             )
-        case .glyph, .steps, .percent, .lineSteps, .linePercent, .ringSteps:
+        case .glyph, .steps, .percent, .lineSteps, .linePercent, .ringSteps, .hourlySteps:
             return nil
         }
     }
@@ -258,7 +260,7 @@ class ComplicationProvider {
                 gaugeProvider: gaugeProvider,
                 centerTextProvider: textProvider
             )
-        case .glyph, .steps, .percent, .lineSteps, .linePercent, .ringSteps, .ringPercentSteps:
+        case .glyph, .steps, .percent, .lineSteps, .linePercent, .ringSteps, .ringPercentSteps, .hourlySteps:
             return nil
         }
     }
@@ -283,6 +285,8 @@ class ComplicationProvider {
                 body1TextProvider: body1Provider,
                 gaugeProvider: gaugeProvider
             )
+        case .hourlySteps:
+            return CLKComplicationTemplateGraphicRectangularFullView(hourlyStepsView)
         case .glyph, .steps, .percent, .ringSteps, .ringPercent, .ringPercentSteps:
             return nil
         }
@@ -304,7 +308,7 @@ class ComplicationProvider {
                 gaugeProvider: gaugeProvider,
                 centerTextProvider: textProvider
             )
-        case .glyph, .steps, .percent, .lineSteps, .linePercent, .ringPercentSteps:
+        case .glyph, .steps, .percent, .lineSteps, .linePercent, .ringPercentSteps, .hourlySteps:
             return nil
         }
     }
@@ -364,5 +368,19 @@ private extension ComplicationProvider {
 
     var longStepPercentString: String {
         return "\(Int(stepsPercent)) percent"
+    }
+
+    var hourlyStepsView: some View {
+        VStack {
+            BarChartView(
+                color: AppColor.color(forName: dataProvider.userData.colorName).color,
+                referenceValue: nil,
+                data: dataProvider.healthData.hourlyStepCounts.map({ BarChartBarData(value: Float($0)) })
+            )
+            HStack {
+                BodyText(longStepCountString, alignment: .leading)
+                Spacer()
+            }
+        }
     }
 }

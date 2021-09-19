@@ -61,6 +61,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 displayName: "Ring + Percent + Steps",
                 supportedFamilies: [.graphicBezel],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.ringPercentSteps.rawValue]
+            ),
+            CLKComplicationDescriptor(
+                identifier: "\(ComplicationProvider.ComplicationStyle.hourlySteps.rawValue)",
+                displayName: "Hourly Steps",
+                supportedFamilies: [.graphicRectangular],
+                userInfo: ["style": ComplicationProvider.ComplicationStyle.hourlySteps.rawValue]
             )
         ]
         handler(descriptors)
