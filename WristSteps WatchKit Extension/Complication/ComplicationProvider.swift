@@ -371,10 +371,16 @@ private extension ComplicationProvider {
     }
 
     var hourlyStepsView: some View {
-        return BarChartView(
-            color: AppColor.color(forName: dataProvider.userData.colorName).color,
-            referenceValue: nil,
-            data: dataProvider.healthData.hourlyStepCounts.map({ BarChartBarData(value: Float($0)) })
-        )
+        VStack {
+            BarChartView(
+                color: AppColor.color(forName: dataProvider.userData.colorName).color,
+                referenceValue: nil,
+                data: dataProvider.healthData.hourlyStepCounts.map({ BarChartBarData(value: Float($0)) })
+            )
+            HStack {
+                BodyText(longStepCountString, alignment: .leading)
+                Spacer()
+            }
+        }
     }
 }
