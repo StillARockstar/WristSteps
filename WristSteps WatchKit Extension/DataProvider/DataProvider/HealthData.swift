@@ -204,7 +204,7 @@ class SampleHealthData: HealthData {
     var stepCountPublished: Published<Int> { _stepCount }
     var stepCountPublisher: Published<Int>.Publisher { $stepCount }
 
-    @Published var hourlyStepCounts: [Int?] = [Int?](repeating: nil, count: 24)
+    @Published var hourlyStepCounts: [Int?] = [75, 0, 0, 0, 0, 0, 100, 500, 1100, 700, 400, 350, 600, 650, 470, 400, 600, 900, 930, 700, 600, 400, 300, 200]
     var hourlyStepCountsPublished: Published<[Int?]> { _hourlyStepCounts }
     var hourlyStepCountsPublisher: Published<[Int?]>.Publisher { $hourlyStepCounts }
 
