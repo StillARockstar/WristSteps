@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ClockKit
 
 struct BarChartBarData {
     let value: Float?
@@ -109,22 +110,42 @@ private extension View {
 }
 
 struct BarChartView_Previews: PreviewProvider {
+    private static let previewPreferedColor: Color = AppColor.appBlue.color
+    private static let previewReferenceValue: Float = 50
+    private static let previewData: [BarChartBarData] = [
+        BarChartBarData(value: 00),
+        BarChartBarData(value: 10),
+        BarChartBarData(value: 20),
+        BarChartBarData(value: 30),
+        BarChartBarData(value: 40),
+        BarChartBarData(value: 50),
+        BarChartBarData(value: 60),
+        BarChartBarData(value: 70),
+        BarChartBarData(value: 80),
+        BarChartBarData(value: 90)
+    ]
+
     static var previews: some View {
-        BarChartView(
-            color: AppColor.appBlue.color,
-            referenceValue: 50,
-            data: [
-                BarChartBarData(value: 00),
-                BarChartBarData(value: 10),
-                BarChartBarData(value: 20),
-                BarChartBarData(value: 30),
-                BarChartBarData(value: 40),
-                BarChartBarData(value: 50),
-                BarChartBarData(value: 60),
-                BarChartBarData(value: 70),
-                BarChartBarData(value: 80),
-                BarChartBarData(value: 90)
-            ]
-        )
+        Group {
+            BarChartView(
+                color: Self.previewPreferedColor,
+                referenceValue: Self.previewReferenceValue,
+                data: Self.previewData
+            )
+            CLKComplicationTemplateGraphicRectangularFullView(
+                BarChartView(
+                    color: Self.previewPreferedColor,
+                    referenceValue: Self.previewReferenceValue,
+                    data: Self.previewData
+                )
+            ).previewContext(faceColor: .multicolor)
+            CLKComplicationTemplateGraphicRectangularFullView(
+                BarChartView(
+                    color: Self.previewPreferedColor,
+                    referenceValue: Self.previewReferenceValue,
+                    data: Self.previewData
+                )
+            ).previewContext(faceColor: .green)
+        }
     }
 }
