@@ -286,7 +286,15 @@ class ComplicationProvider {
                 gaugeProvider: gaugeProvider
             )
         case .hourlySteps:
-            return CLKComplicationTemplateGraphicRectangularFullView(hourlyStepsView)
+            let stepCountProvider = CLKSimpleTextProvider(text: mediumStepCountString)
+            stepCountProvider.tintColor = color
+            let stepTextProvider = CLKSimpleTextProvider(text: "steps")
+            stepTextProvider.tintColor = .white
+            let headerProvider = CLKSimpleTextProvider(format: "%@ %@", stepCountProvider, stepTextProvider)
+            return CLKComplicationTemplateGraphicRectangularLargeView(
+                headerTextProvider: headerProvider,
+                content: hourlyStepsView
+            )
         case .glyph, .steps, .percent, .ringSteps, .ringPercent, .ringPercentSteps:
             return nil
         }
@@ -371,16 +379,11 @@ private extension ComplicationProvider {
     }
 
     var hourlyStepsView: some View {
-        VStack {
-            BarChartView(
-                color: AppColor.color(forName: dataProvider.userData.colorName).color,
-                referenceValue: nil,
-                data: dataProvider.healthData.hourlyStepCounts.map({ BarChartBarData(value: Float($0)) })
-            )
-            HStack {
-                BodyText(longStepCountString, alignment: .leading)
-                Spacer()
-            }
-        }
+        BarChartView(
+            color: AppColor.color(forName: dataProvider.userData.colorName).color,
+            referenceValue: nil,
+            data: dataProvider.healthData.hourlyStepCounts.map({ BarChartBarData(value: Float($0)) })
+        )
+        .padding(.top, 4)
     }
 }

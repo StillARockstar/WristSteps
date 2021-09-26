@@ -40,18 +40,21 @@ struct BarChartView: View {
             return nil
         }
         let maxValue = data.map({ $0.value ?? 0 }).max() ?? .infinity
+        guard maxValue > 0 else {
+            return nil
+        }
         return 1 - CGFloat(referenceValue / maxValue)
     }
 
     fileprivate var renderingData: [BarChartBarRenderingData] {
         let maxValue = data.map({ $0.value ?? 0 }).max() ?? .infinity
-        let colorThreshold = referenceValue ?? .zero
+        let colorThreshold = maxValue > 0 ? referenceValue ?? 0 : -1
         return data.map({ dataEntry in
             let value = dataEntry.value ?? 0
             return BarChartBarRenderingData(
                 color: value >= colorThreshold ? color : color.opacity(0.5),
                 transparent: dataEntry.value == nil,
-                valuePercent: CGFloat(value / maxValue)
+                valuePercent: maxValue > 0 ? CGFloat(value / maxValue) : 0.0
             )
         })
     }
@@ -68,18 +71,21 @@ struct BarChartView: View {
                 }
                 HStack(alignment: .bottom, spacing: 0) {
                     ForEach(renderingData) { dataEntry in
-                        BarChartBarView(
-                            color: dataEntry.color,
-                            opacity: dataEntry.transparent ? 0.3 : 1.0,
-                            width: geometry.size.width / CGFloat(renderingData.count) / 3,
-                            height: geometry.size.height,
-                            heightPercent: dataEntry.valuePercent
-                        )
-                        .padding(
-                            [.leading, .trailing],
-                            geometry.size.width / CGFloat(renderingData.count) / 3
-                        )
-                        .complicationForeground()
+                        VStack {
+                            Spacer()
+                            BarChartBarView(
+                                color: dataEntry.color,
+                                opacity: dataEntry.transparent ? 0.3 : 1.0,
+                                width: geometry.size.width / CGFloat(renderingData.count) / 3,
+                                height: geometry.size.height,
+                                heightPercent: dataEntry.valuePercent
+                            )
+                            .padding(
+                                [.leading, .trailing],
+                                geometry.size.width / CGFloat(renderingData.count) / 3
+                            )
+                            .complicationForeground()
+                        }
                     }
                 }
                 .frame(size: geometry.size)
@@ -131,6 +137,32 @@ struct BarChartView_Previews: PreviewProvider {
         BarChartBarData(value: 80),
         BarChartBarData(value: 90)
     ]
+    private static let previewDataZero: [BarChartBarData] = [
+        BarChartBarData(value: 00),
+        BarChartBarData(value: 00),
+        BarChartBarData(value: 00),
+        BarChartBarData(value: 00),
+        BarChartBarData(value: 00),
+        BarChartBarData(value: 00),
+        BarChartBarData(value: nil),
+        BarChartBarData(value: nil),
+        BarChartBarData(value: nil),
+        BarChartBarData(value: nil),
+        BarChartBarData(value: nil)
+    ]
+    private static let previewDataNil: [BarChartBarData] = [
+        BarChartBarData(value: nil),
+        BarChartBarData(value: nil),
+        BarChartBarData(value: nil),
+        BarChartBarData(value: nil),
+        BarChartBarData(value: nil),
+        BarChartBarData(value: nil),
+        BarChartBarData(value: nil),
+        BarChartBarData(value: nil),
+        BarChartBarData(value: nil),
+        BarChartBarData(value: nil),
+        BarChartBarData(value: nil)
+    ]
 
     static var previews: some View {
         Group {
@@ -138,6 +170,16 @@ struct BarChartView_Previews: PreviewProvider {
                 color: Self.previewPreferedColor,
                 referenceValue: Self.previewReferenceValue,
                 data: Self.previewData
+            )
+            BarChartView(
+                color: Self.previewPreferedColor,
+                referenceValue: Self.previewReferenceValue,
+                data: Self.previewDataZero
+            )
+            BarChartView(
+                color: Self.previewPreferedColor,
+                referenceValue: Self.previewReferenceValue,
+                data: Self.previewDataNil
             )
             CLKComplicationTemplateGraphicRectangularFullView(
                 BarChartView(
