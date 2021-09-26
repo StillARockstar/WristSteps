@@ -286,11 +286,8 @@ class ComplicationProvider {
                 gaugeProvider: gaugeProvider
             )
         case .hourlySteps:
-            let stepCountProvider = CLKSimpleTextProvider(text: mediumStepCountString)
-            stepCountProvider.tintColor = color
-            let stepTextProvider = CLKSimpleTextProvider(text: "steps")
-            stepTextProvider.tintColor = .white
-            let headerProvider = CLKSimpleTextProvider(format: "%@ %@", stepCountProvider, stepTextProvider)
+            let headerProvider = CLKSimpleTextProvider(text: longStepCountString)
+            headerProvider.tintColor = .white
             return CLKComplicationTemplateGraphicRectangularLargeView(
                 headerTextProvider: headerProvider,
                 content: hourlyStepsView
