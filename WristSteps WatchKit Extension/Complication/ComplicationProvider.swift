@@ -384,6 +384,6 @@ private extension ComplicationProvider {
             referenceValue: nil,
             data: dataProvider.healthData.hourlyStepCounts.map({ BarChartBarData(value: Float($0)) })
         )
-        .padding(.top, 4)
+        .padding(.bottom, 4)
     }
 }
