@@ -57,7 +57,9 @@ class ComplicationProvider {
         @unknown default:
             return nil
         }
-        template?.tintColor = color
+        if template?.acceptsUniversalTint ?? true {
+            template?.tintColor = color
+        }
         return template
     }
 
@@ -288,10 +290,12 @@ class ComplicationProvider {
         case .hourlySteps:
             let headerProvider = CLKSimpleTextProvider(text: longStepCountString)
             headerProvider.tintColor = .white
-            return CLKComplicationTemplateGraphicRectangularLargeView(
+            let template = CLKComplicationTemplateGraphicRectangularLargeView(
                 headerTextProvider: headerProvider,
                 content: hourlyStepsView
             )
+            template.acceptsUniversalTint = false
+            return template
         case .glyph, .steps, .percent, .ringSteps, .ringPercent, .ringPercentSteps:
             return nil
         }
@@ -384,3 +388,18 @@ private extension ComplicationProvider {
         .padding(.bottom, 4)
     }
 }
+
+extension CLKComplicationTemplate {
+    static var _acceptsUniversalTint: Bool = true
+
+    /// Indicates if the generic tint should be applied to the Template. This value is false, if the tint is handled by the Template individually
+    var acceptsUniversalTint: Bool {
+        get {
+            return Self._acceptsUniversalTint
+        }
+        set {
+            Self._acceptsUniversalTint = newValue
+        }
+    }
+}
+
