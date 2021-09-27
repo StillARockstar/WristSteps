@@ -20,6 +20,7 @@ private struct HourlyStepsClusterRenderingData {
 private struct HourlyStepsRenderingData: Identifiable {
     let id = UUID()
     let valuePercent: CGFloat
+    let opacity: CGFloat
 }
 
 struct HourlyStepsChartData {
@@ -34,7 +35,8 @@ struct HourlyStepsChartData {
         let renderingData = data.map({ dataEntry -> HourlyStepsRenderingData in
             let value = dataEntry.value ?? 0
             return HourlyStepsRenderingData(
-                valuePercent: maxValue > 0 ? CGFloat(value / maxValue) : 0.0
+                valuePercent: maxValue > 0 ? CGFloat(value / maxValue) : 0.0,
+                opacity: dataEntry.value != nil ? 1.0 : 0.3
             )
         })
 
@@ -95,7 +97,7 @@ private struct HourlyStepsCluster: View {
                 }
                 HStack(spacing: 2) {
                     ForEach(renderingData.renderingData, content: {
-                        HourlyStepsBar(valuePercent: $0.valuePercent)
+                        HourlyStepsBar(renderingData: $0)
                     })
                 }
                 .padding([.leading, .trailing, .bottom], 2)
@@ -108,13 +110,14 @@ private struct HourlyStepsCluster: View {
 }
 
 private struct HourlyStepsBar: View {
-    let valuePercent: CGFloat
+    let renderingData: HourlyStepsRenderingData
 
     var body: some View {
         GeometryReader { geometry in
-            let height = max(geometry.size.height * valuePercent, geometry.size.width)
+            let height = max(geometry.size.height * renderingData.valuePercent, geometry.size.width)
             Rectangle()
                 .fill(.orange)
+                .opacity(renderingData.opacity)
                 .cornerRadius(geometry.size.width / 2)
                 .frame(width: geometry.size.width, height: height)
                 .offset(y: geometry.size.height - height)
