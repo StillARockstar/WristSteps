@@ -8,6 +8,10 @@
 import SwiftUI
 import ClockKit
 
+private extension Color {
+    static let white30 = Color(white: 1.0, opacity: 0.7)
+}
+
 struct HourlyStepsBarData {
     let value: Float?
 }
@@ -91,13 +95,14 @@ private struct HourlyStepsCluster: View {
             ZStack {
                 GeometryReader { geometry in
                     Rectangle()
-                        .fill(.gray)
+                        .fill(Color.white30)
                         .frame(height: 1)
                         .offset(y: geometry.size.height)
                 }
                 HStack(spacing: 2) {
                     ForEach(renderingData.renderingData, content: {
                         HourlyStepsBar(renderingData: $0)
+                            .complicationForeground()
                     })
                 }
                 .padding([.leading, .trailing, .bottom], 2)
@@ -129,7 +134,7 @@ private struct HourlyStepsClusterSpacer: View {
     var body: some View {
         GeometryReader { geometry in
             Rectangle()
-                .fill(.gray)
+                .fill(Color.white30)
                 .frame(width: 1, height: geometry.size.height)
         }
         .frame(maxWidth: 1, maxHeight: .infinity, alignment: .bottom)
@@ -172,6 +177,9 @@ struct HourlyStepsChart_Previews: PreviewProvider {
             CLKComplicationTemplateGraphicRectangularFullView(
                 HourlyStepsChart(chartData: HourlyStepsChartData(data: Self.previewData)!)
             ).previewContext(faceColor: .multicolor)
+            CLKComplicationTemplateGraphicRectangularFullView(
+                HourlyStepsChart(chartData: HourlyStepsChartData(data: Self.previewData)!)
+            ).previewContext(faceColor: .green)
         }
     }
 }
