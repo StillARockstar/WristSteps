@@ -14,11 +14,11 @@ struct HourlyStepsBarData {
 
 private struct HourlyStepsClusterRenderingData {
     let title: String
+    let renderingData: [HourlyStepsRenderingData]
 }
 
-private struct HourlyStepsRenderingData {
-    let color: Color
-    let transparent: Bool
+private struct HourlyStepsRenderingData: Identifiable {
+    let id = UUID()
     let valuePercent: CGFloat
 }
 
@@ -29,11 +29,32 @@ struct HourlyStepsChartData {
         guard data.count == 24 else {
             return nil
         }
+
+        let maxValue = data.map({ $0.value ?? 0 }).max() ?? .infinity
+        let renderingData = data.map({ dataEntry -> HourlyStepsRenderingData in
+            let value = dataEntry.value ?? 0
+            return HourlyStepsRenderingData(
+                valuePercent: maxValue > 0 ? CGFloat(value / maxValue) : 0.0
+            )
+        })
+
         var clusterData = [HourlyStepsClusterRenderingData]()
-        clusterData.append(HourlyStepsClusterRenderingData(title: "00"))
-        clusterData.append(HourlyStepsClusterRenderingData(title: "06"))
-        clusterData.append(HourlyStepsClusterRenderingData(title: "12"))
-        clusterData.append(HourlyStepsClusterRenderingData(title: "18"))
+        clusterData.append(HourlyStepsClusterRenderingData(
+            title: "00",
+            renderingData: Array(renderingData[0..<6])
+        ))
+        clusterData.append(HourlyStepsClusterRenderingData(
+            title: "06",
+            renderingData: Array(renderingData[6..<12])
+        ))
+        clusterData.append(HourlyStepsClusterRenderingData(
+            title: "12",
+            renderingData: Array(renderingData[12..<18])
+        ))
+        clusterData.append(HourlyStepsClusterRenderingData(
+            title: "18",
+            renderingData: Array(renderingData[18..<24])
+        ))
         self.clusterData = clusterData
     }
 }
@@ -73,12 +94,9 @@ private struct HourlyStepsCluster: View {
                         .offset(y: geometry.size.height)
                 }
                 HStack(spacing: 2) {
-                    HourlyStepsBar()
-                    HourlyStepsBar()
-                    HourlyStepsBar()
-                    HourlyStepsBar()
-                    HourlyStepsBar()
-                    HourlyStepsBar()
+                    ForEach(renderingData.renderingData, content: {
+                        HourlyStepsBar(valuePercent: $0.valuePercent)
+                    })
                 }
                 .padding([.leading, .trailing, .bottom], 2)
             }
@@ -90,15 +108,15 @@ private struct HourlyStepsCluster: View {
 }
 
 private struct HourlyStepsBar: View {
-    let factor = CGFloat.random(in: 0...1)
+    let valuePercent: CGFloat
 
     var body: some View {
         GeometryReader { geometry in
             Rectangle()
                 .fill(.orange)
                 .cornerRadius(geometry.size.width / 2)
-                .frame(width: geometry.size.width, height: geometry.size.height * factor)
-                .offset(y: geometry.size.height * (1 - factor))
+                .frame(width: geometry.size.width, height: geometry.size.height * valuePercent)
+                .offset(y: geometry.size.height * (1 - valuePercent))
         }
     }
 }
@@ -115,19 +133,38 @@ private struct HourlyStepsClusterSpacer: View {
 }
 
 struct HourlyStepsChart_Previews: PreviewProvider {
+    private static let previewData: [HourlyStepsBarData] = [
+        HourlyStepsBarData(value: 00),
+        HourlyStepsBarData(value: 01),
+        HourlyStepsBarData(value: 02),
+        HourlyStepsBarData(value: 03),
+        HourlyStepsBarData(value: 04),
+        HourlyStepsBarData(value: 05),
+        HourlyStepsBarData(value: 06),
+        HourlyStepsBarData(value: 07),
+        HourlyStepsBarData(value: 08),
+        HourlyStepsBarData(value: 09),
+        HourlyStepsBarData(value: 10),
+        HourlyStepsBarData(value: 11),
+        HourlyStepsBarData(value: 12),
+        HourlyStepsBarData(value: 13),
+        HourlyStepsBarData(value: 14),
+        HourlyStepsBarData(value: 15),
+        HourlyStepsBarData(value: 16),
+        HourlyStepsBarData(value: 17),
+        HourlyStepsBarData(value: 18),
+        HourlyStepsBarData(value: 19),
+        HourlyStepsBarData(value: 20),
+        HourlyStepsBarData(value: 21),
+        HourlyStepsBarData(value: 22),
+        HourlyStepsBarData(value: 23)
+    ]
+
     static var previews: some View {
         Group {
-            HourlyStepsChart(
-                chartData: HourlyStepsChartData(
-                    data: [HourlyStepsBarData].init(repeating: HourlyStepsBarData(value: 0.0), count: 24)
-                )!
-            )
+            HourlyStepsChart(chartData: HourlyStepsChartData(data: Self.previewData)!)
             CLKComplicationTemplateGraphicRectangularFullView(
-                HourlyStepsChart(
-                    chartData: HourlyStepsChartData(
-                        data: [HourlyStepsBarData].init(repeating: HourlyStepsBarData(value: 0.0), count: 24)
-                    )!
-                )
+                HourlyStepsChart(chartData: HourlyStepsChartData(data: Self.previewData)!)
             ).previewContext(faceColor: .multicolor)
         }
     }
