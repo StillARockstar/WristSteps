@@ -137,7 +137,7 @@ private struct HourlyStepsClusterSpacer: View {
 }
 
 struct HourlyStepsChart_Previews: PreviewProvider {
-    private static let previewData: [HourlyStepsBarData] = [
+    private static let previewData = [
         HourlyStepsBarData(value: nil),
         HourlyStepsBarData(value: nil),
         HourlyStepsBarData(value: nil),
@@ -163,10 +163,12 @@ struct HourlyStepsChart_Previews: PreviewProvider {
         HourlyStepsBarData(value: 11),
         HourlyStepsBarData(value: 12)
     ]
+    private static let previewDataNil = [HourlyStepsBarData](repeating: HourlyStepsBarData(value: nil), count: 24)
 
     static var previews: some View {
         Group {
             HourlyStepsChart(chartData: HourlyStepsChartData(data: Self.previewData)!)
+            HourlyStepsChart(chartData: HourlyStepsChartData(data: Self.previewDataNil)!)
             CLKComplicationTemplateGraphicRectangularFullView(
                 HourlyStepsChart(chartData: HourlyStepsChartData(data: Self.previewData)!)
             ).previewContext(faceColor: .multicolor)
