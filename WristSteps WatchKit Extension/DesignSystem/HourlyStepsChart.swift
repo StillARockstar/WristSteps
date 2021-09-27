@@ -112,11 +112,12 @@ private struct HourlyStepsBar: View {
 
     var body: some View {
         GeometryReader { geometry in
+            let height = max(geometry.size.height * valuePercent, geometry.size.width)
             Rectangle()
                 .fill(.orange)
                 .cornerRadius(geometry.size.width / 2)
-                .frame(width: geometry.size.width, height: geometry.size.height * valuePercent)
-                .offset(y: geometry.size.height * (1 - valuePercent))
+                .frame(width: geometry.size.width, height: height)
+                .offset(y: geometry.size.height - height)
         }
     }
 }
@@ -134,6 +135,17 @@ private struct HourlyStepsClusterSpacer: View {
 
 struct HourlyStepsChart_Previews: PreviewProvider {
     private static let previewData: [HourlyStepsBarData] = [
+        HourlyStepsBarData(value: nil),
+        HourlyStepsBarData(value: nil),
+        HourlyStepsBarData(value: nil),
+        HourlyStepsBarData(value: nil),
+        HourlyStepsBarData(value: nil),
+        HourlyStepsBarData(value: nil),
+        HourlyStepsBarData(value: nil),
+        HourlyStepsBarData(value: nil),
+        HourlyStepsBarData(value: nil),
+        HourlyStepsBarData(value: nil),
+        HourlyStepsBarData(value: nil),
         HourlyStepsBarData(value: 00),
         HourlyStepsBarData(value: 01),
         HourlyStepsBarData(value: 02),
@@ -146,18 +158,7 @@ struct HourlyStepsChart_Previews: PreviewProvider {
         HourlyStepsBarData(value: 09),
         HourlyStepsBarData(value: 10),
         HourlyStepsBarData(value: 11),
-        HourlyStepsBarData(value: 12),
-        HourlyStepsBarData(value: 13),
-        HourlyStepsBarData(value: 14),
-        HourlyStepsBarData(value: 15),
-        HourlyStepsBarData(value: 16),
-        HourlyStepsBarData(value: 17),
-        HourlyStepsBarData(value: 18),
-        HourlyStepsBarData(value: 19),
-        HourlyStepsBarData(value: 20),
-        HourlyStepsBarData(value: 21),
-        HourlyStepsBarData(value: 22),
-        HourlyStepsBarData(value: 23)
+        HourlyStepsBarData(value: 12)
     ]
 
     static var previews: some View {
