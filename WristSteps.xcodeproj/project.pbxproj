@@ -24,6 +24,7 @@
 		4C88EC5D25F804330056E2F7 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88EC5C25F804330056E2F7 /* TextStyles.swift */; };
 		4C90122425A385D500B2E759 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122325A385D500B2E759 /* OnboardingView.swift */; };
 		4C90122C25A3890A00B2E759 /* OnboardingViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122B25A3890A00B2E759 /* OnboardingViewProvider.swift */; };
+		4C938E532702366F00190173 /* HourlyStepsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C938E522702366F00190173 /* HourlyStepsChart.swift */; };
 		4C95D66D250178BE00CB4D35 /* NumberFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D66C250178BE00CB4D35 /* NumberFormatting.swift */; };
 		4C95D66F25017F6500CB4D35 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D66E25017F6500CB4D35 /* DataStore.swift */; };
 		4C95D6722501856600CB4D35 /* SetColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D6712501856600CB4D35 /* SetColorView.swift */; };
@@ -117,6 +118,7 @@
 		4C88EC5C25F804330056E2F7 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		4C90122325A385D500B2E759 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4C90122B25A3890A00B2E759 /* OnboardingViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewProvider.swift; sourceTree = "<group>"; };
+		4C938E522702366F00190173 /* HourlyStepsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyStepsChart.swift; sourceTree = "<group>"; };
 		4C95D66C250178BE00CB4D35 /* NumberFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatting.swift; sourceTree = "<group>"; };
 		4C95D66E25017F6500CB4D35 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		4C95D6712501856600CB4D35 /* SetColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetColorView.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				4C7FA7D425F6A33A00ACECF7 /* InfoView.swift */,
 				4C9FE8A524FBE6E4008062AF /* DetailView.swift */,
 				4CE7055F261CE85600A8A642 /* BarChartView.swift */,
+				4C938E522702366F00190173 /* HourlyStepsChart.swift */,
 				4C88EC5C25F804330056E2F7 /* TextStyles.swift */,
 				4C9FE89D24FBC67C008062AF /* Color+Convenients.swift */,
 				4CC3713E250016F700509583 /* View+Convenients.swift */,
@@ -504,6 +507,7 @@
 				4C9FE88724FBC504008062AF /* WristStepsApp.swift in Sources */,
 				4C90122425A385D500B2E759 /* OnboardingView.swift in Sources */,
 				4C95D6772502804100CB4D35 /* SetColorViewProvider.swift in Sources */,
+				4C938E532702366F00190173 /* HourlyStepsChart.swift in Sources */,
 				4C05CDDE2503896E00C40885 /* ComplicationProvider.swift in Sources */,
 				4CA5D622260295FC00394872 /* ContentView.swift in Sources */,
 				4C95D66D250178BE00CB4D35 /* NumberFormatting.swift in Sources */,
@@ -668,7 +672,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_ASSET_PATHS = "\"WristSteps WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = GQQ4RZBUL3;
 				ENABLE_PREVIEWS = YES;
@@ -695,7 +699,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_ASSET_PATHS = "\"WristSteps WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = GQQ4RZBUL3;
 				ENABLE_PREVIEWS = YES;
@@ -724,7 +728,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_TEAM = GQQ4RZBUL3;
 				IBSC_MODULE = WristSteps_WatchKit_Extension;
 				INFOPLIST_FILE = "WristSteps WatchKit App/Info.plist";
@@ -746,7 +750,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_TEAM = GQQ4RZBUL3;
 				IBSC_MODULE = WristSteps_WatchKit_Extension;
 				INFOPLIST_FILE = "WristSteps WatchKit App/Info.plist";
@@ -765,7 +769,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_TEAM = GQQ4RZBUL3;
 				MARKETING_VERSION = 2.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = at.Schoder.WristSteps;
@@ -778,7 +782,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_TEAM = GQQ4RZBUL3;
 				MARKETING_VERSION = 2.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = at.Schoder.WristSteps;
