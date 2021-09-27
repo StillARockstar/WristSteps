@@ -23,6 +23,7 @@ private struct HourlyStepsClusterRenderingData {
 
 private struct HourlyStepsRenderingData: Identifiable {
     let id = UUID()
+    let color: Color
     let valuePercent: CGFloat
     let opacity: CGFloat
 }
@@ -30,7 +31,7 @@ private struct HourlyStepsRenderingData: Identifiable {
 struct HourlyStepsChartData {
     fileprivate let clusterData: [HourlyStepsClusterRenderingData]
 
-    init?(data: [HourlyStepsBarData]) {
+    init?(color: Color, data: [HourlyStepsBarData]) {
         guard data.count == 24 else {
             return nil
         }
@@ -39,6 +40,7 @@ struct HourlyStepsChartData {
         let renderingData = data.map({ dataEntry -> HourlyStepsRenderingData in
             let value = dataEntry.value ?? 0
             return HourlyStepsRenderingData(
+                color: color,
                 valuePercent: maxValue > 0 ? CGFloat(value / maxValue) : 0.0,
                 opacity: dataEntry.value != nil ? 1.0 : 0.3
             )
@@ -121,7 +123,7 @@ private struct HourlyStepsBar: View {
         GeometryReader { geometry in
             let height = max(geometry.size.height * renderingData.valuePercent, geometry.size.width)
             Rectangle()
-                .fill(.orange)
+                .fill(renderingData.color)
                 .opacity(renderingData.opacity)
                 .cornerRadius(geometry.size.width / 2)
                 .frame(width: geometry.size.width, height: height)
@@ -142,6 +144,7 @@ private struct HourlyStepsClusterSpacer: View {
 }
 
 struct HourlyStepsChart_Previews: PreviewProvider {
+    private static let previewPreferedColor: Color = AppColor.appOrange.color
     private static let previewData = [
         HourlyStepsBarData(value: nil),
         HourlyStepsBarData(value: nil),
@@ -172,13 +175,25 @@ struct HourlyStepsChart_Previews: PreviewProvider {
 
     static var previews: some View {
         Group {
-            HourlyStepsChart(chartData: HourlyStepsChartData(data: Self.previewData)!)
-            HourlyStepsChart(chartData: HourlyStepsChartData(data: Self.previewDataNil)!)
+            HourlyStepsChart(chartData: HourlyStepsChartData(
+                color: Self.previewPreferedColor,
+                data: Self.previewData
+            )!)
+            HourlyStepsChart(chartData: HourlyStepsChartData(
+                color: Self.previewPreferedColor,
+                data: Self.previewDataNil
+            )!)
             CLKComplicationTemplateGraphicRectangularFullView(
-                HourlyStepsChart(chartData: HourlyStepsChartData(data: Self.previewData)!)
+                HourlyStepsChart(chartData: HourlyStepsChartData(
+                    color: Self.previewPreferedColor,
+                    data: Self.previewData
+                )!)
             ).previewContext(faceColor: .multicolor)
             CLKComplicationTemplateGraphicRectangularFullView(
-                HourlyStepsChart(chartData: HourlyStepsChartData(data: Self.previewData)!)
+                HourlyStepsChart(chartData: HourlyStepsChartData(
+                    color: Self.previewPreferedColor,
+                    data: Self.previewData
+                )!)
             ).previewContext(faceColor: .green)
         }
     }
