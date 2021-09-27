@@ -8,24 +8,60 @@
 import SwiftUI
 import ClockKit
 
+struct HourlyStepsBarData {
+    let value: Float?
+}
+
+private struct HourlyStepsClusterRenderingData {
+    let title: String
+}
+
+private struct HourlyStepsRenderingData {
+    let color: Color
+    let transparent: Bool
+    let valuePercent: CGFloat
+}
+
+struct HourlyStepsChartData {
+    fileprivate let clusterData: [HourlyStepsClusterRenderingData]
+
+    init?(data: [HourlyStepsBarData]) {
+        guard data.count == 24 else {
+            return nil
+        }
+        var clusterData = [HourlyStepsClusterRenderingData]()
+        clusterData.append(HourlyStepsClusterRenderingData(title: "00"))
+        clusterData.append(HourlyStepsClusterRenderingData(title: "06"))
+        clusterData.append(HourlyStepsClusterRenderingData(title: "12"))
+        clusterData.append(HourlyStepsClusterRenderingData(title: "18"))
+        self.clusterData = clusterData
+    }
+}
+
 struct HourlyStepsChart: View {
+    let chartData: HourlyStepsChartData
+
+    init(chartData: HourlyStepsChartData) {
+        self.chartData = chartData
+    }
+
     var body: some View {
         HStack(spacing: 0) {
             HourlyStepsClusterSpacer()
-            HourlyStepsCluster(title: "00")
+            HourlyStepsCluster(renderingData: chartData.clusterData[0])
             HourlyStepsClusterSpacer()
-            HourlyStepsCluster(title: "06")
+            HourlyStepsCluster(renderingData: chartData.clusterData[1])
             HourlyStepsClusterSpacer()
-            HourlyStepsCluster(title: "12")
+            HourlyStepsCluster(renderingData: chartData.clusterData[2])
             HourlyStepsClusterSpacer()
-            HourlyStepsCluster(title: "18")
+            HourlyStepsCluster(renderingData: chartData.clusterData[3])
             HourlyStepsClusterSpacer()
         }
     }
 }
 
 private struct HourlyStepsCluster: View {
-    let title: String
+    let renderingData: HourlyStepsClusterRenderingData
 
     var body: some View {
         VStack(spacing: 0) {
@@ -46,7 +82,7 @@ private struct HourlyStepsCluster: View {
                 }
                 .padding([.leading, .trailing, .bottom], 2)
             }
-            Body1Text(title, alignment: .leading)
+            Body1Text(renderingData.title, alignment: .leading)
                 .padding(.leading, 2)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
@@ -81,9 +117,17 @@ private struct HourlyStepsClusterSpacer: View {
 struct HourlyStepsChart_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            HourlyStepsChart()
+            HourlyStepsChart(
+                chartData: HourlyStepsChartData(
+                    data: [HourlyStepsBarData].init(repeating: HourlyStepsBarData(value: 0.0), count: 24)
+                )!
+            )
             CLKComplicationTemplateGraphicRectangularFullView(
-                HourlyStepsChart()
+                HourlyStepsChart(
+                    chartData: HourlyStepsChartData(
+                        data: [HourlyStepsBarData].init(repeating: HourlyStepsBarData(value: 0.0), count: 24)
+                    )!
+                )
             ).previewContext(faceColor: .multicolor)
         }
     }
