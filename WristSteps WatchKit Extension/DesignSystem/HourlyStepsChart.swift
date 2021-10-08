@@ -31,10 +31,9 @@ private struct HourlyStepsRenderingData: Identifiable {
 struct HourlyStepsChartData {
     fileprivate let clusterData: [HourlyStepsClusterRenderingData]
 
-    init?(color: Color, data: [HourlyStepsBarData]) {
-        guard data.count == 24 else {
-            return nil
-        }
+    init(color: Color, data: [HourlyStepsBarData]) {
+        var data = data
+        data.sanitizeSize()
 
         let maxValue = data.map({ $0.value ?? 0 }).max() ?? .infinity
         let renderingData = data.map({ dataEntry -> HourlyStepsRenderingData in
@@ -143,6 +142,18 @@ private struct HourlyStepsClusterSpacer: View {
     }
 }
 
+private extension Array where Element == HourlyStepsBarData {
+    mutating func sanitizeSize() {
+        guard self.count < 24 else {
+            self = Array(self[0..<24])
+            return
+        }
+        let missingEntryCount = -(self.count - 24)
+        let missingEntries = [HourlyStepsBarData](repeating: HourlyStepsBarData(value: nil), count: missingEntryCount)
+        self.append(contentsOf: missingEntries)
+    }
+}
+
 struct HourlyStepsChart_Previews: PreviewProvider {
     private static let previewPreferedColor: Color = AppColor.appOrange.color
     private static let previewData = [
@@ -178,22 +189,22 @@ struct HourlyStepsChart_Previews: PreviewProvider {
             HourlyStepsChart(chartData: HourlyStepsChartData(
                 color: Self.previewPreferedColor,
                 data: Self.previewData
-            )!)
+            ))
             HourlyStepsChart(chartData: HourlyStepsChartData(
                 color: Self.previewPreferedColor,
                 data: Self.previewDataNil
-            )!)
+            ))
             CLKComplicationTemplateGraphicRectangularFullView(
                 HourlyStepsChart(chartData: HourlyStepsChartData(
                     color: Self.previewPreferedColor,
                     data: Self.previewData
-                )!)
+                ))
             ).previewContext(faceColor: .multicolor)
             CLKComplicationTemplateGraphicRectangularFullView(
                 HourlyStepsChart(chartData: HourlyStepsChartData(
                     color: Self.previewPreferedColor,
                     data: Self.previewData
-                )!)
+                ))
             ).previewContext(faceColor: .green)
         }
     }

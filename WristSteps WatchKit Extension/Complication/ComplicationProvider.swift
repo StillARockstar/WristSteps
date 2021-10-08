@@ -380,13 +380,11 @@ private extension ComplicationProvider {
     }
 
     var hourlyStepsView: some View {
-        guard let chartData = HourlyStepsChartData(
+        let chartData = HourlyStepsChartData(
             color: AppColor.color(forName: dataProvider.userData.colorName).color,
             data: dataProvider.healthData.hourlyStepCounts.map({ HourlyStepsBarData(value: Float($0)) })
-        ) else {
-            return Text("No Data available").asAnyView()
-        }
-        return HourlyStepsChart(chartData: chartData).asAnyView()
+        )
+        return HourlyStepsChart(chartData: chartData)
     }
 }
 

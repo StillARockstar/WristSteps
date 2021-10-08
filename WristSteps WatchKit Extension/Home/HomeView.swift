@@ -19,9 +19,9 @@ struct HomeView: View {
                 stepGoal: provider.stepGoal
             )
             .padding(.bottom, 6)
-            if let data = HourlyStepsChartData(color: appTintColor, data: provider.hourlySteps) {
-                HourlyStepsChart(chartData: data)
-            }
+            HourlyStepsChart(
+                chartData: HourlyStepsChartData(color: appTintColor, data: provider.hourlySteps)
+            )
         }
     }
 }
