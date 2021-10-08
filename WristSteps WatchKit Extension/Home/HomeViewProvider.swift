@@ -14,7 +14,7 @@ class HomeViewProvider: ObservableObject {
 
     @Published var stepCount: Int = 0
     @Published var stepGoal: Int = 0
-    @Published var hourlySteps: [BarChartBarData] = []
+    @Published var hourlySteps: [HourlyStepsBarData] = []
 
     init(dataProvider: DataProvider, iapManager: IAPManager) {
         self.dataProvider = dataProvider
@@ -25,12 +25,19 @@ class HomeViewProvider: ObservableObject {
         dataProvider.healthData.hourlyStepCountsPublisher
             .debounce(for: .milliseconds(50), scheduler: RunLoop.current)
             .receive(on: DispatchQueue.main)
-            .map({ $0.map({ BarChartBarData(value: Float($0)) }) })
+            .map({ $0.map({ HourlyStepsBarData(value: Float($0)) }) })
             .assign(to: \.hourlySteps, on: self)
             .store(in: &subscriptions)
         dataProvider.userData.stepGoalPublisher
             .receive(on: DispatchQueue.main)
             .assign(to: \.stepGoal, on: self)
             .store(in: &subscriptions)
+    }
+
+    init(dataProvider: DataProvider) {
+        self.dataProvider = dataProvider
+        self.stepCount = dataProvider.healthData.stepCount
+        self.stepGoal = dataProvider.userData.stepGoal
+        self.hourlySteps = dataProvider.healthData.hourlyStepCounts.map({ HourlyStepsBarData(value: Float($0)) })
     }
 }

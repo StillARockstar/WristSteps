@@ -19,9 +19,8 @@ struct HomeView: View {
                 stepGoal: provider.stepGoal
             )
             .padding(.bottom, 6)
-            BarChartView(
-                color: appTintColor,
-                data: provider.hourlySteps
+            HourlyStepsChart(
+                chartData: HourlyStepsChartData(color: appTintColor, data: provider.hourlySteps)
             )
         }
     }
@@ -30,10 +29,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(
-            provider: HomeViewProvider(
-                dataProvider: SimulatorDataProvider(),
-                iapManager: IAPManager()
-            )
+            provider: HomeViewProvider(dataProvider: SimulatorDataProvider())
         )
     }
 }
