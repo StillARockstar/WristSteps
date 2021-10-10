@@ -49,7 +49,7 @@ class AppAppData: AppData {
             if !debugConfiguration {
                 self.debuggingEnabled = persistedData.debuggingEnabled ?? false
             }
-            self.debugNotificationsEnabled = persistedData.debugNotificationsEnabled ?? false
+            self.debugNotificationsEnabled = (persistedData.debugNotificationsEnabled ?? false) && self.debuggingEnabled
             self.lastBackgroundUpdate = persistedData.lastBackgroundUpdate ?? ""
         }
     }
