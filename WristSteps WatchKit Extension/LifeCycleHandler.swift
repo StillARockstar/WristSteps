@@ -8,7 +8,7 @@
 import WatchKit
 import UserNotifications
 
-class LifeCycleHandler {
+class LifeCycleHandler: NSObject {
     private let dataProvider: DataProvider
 
     init(dataProvider: DataProvider) {
@@ -45,6 +45,7 @@ private extension LifeCycleHandler {
         guard self.dataProvider.appData.debugNotificationsEnabled else {
             return
         }
+        UNUserNotificationCenter.current().delegate = self
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound], completionHandler: { [weak self] granted, error in
             if granted == false || error != nil {
                 self?.dataProvider.appData.setDebugNotificationEnabled(false)
@@ -114,5 +115,11 @@ private extension LifeCycleHandler {
         self.dataProvider.appData.setLastBackgroundUpdate(Date().yyyymmddhhmmString)
 
         completion()
+    }
+}
+
+extension LifeCycleHandler: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.sound, .banner])
     }
 }
