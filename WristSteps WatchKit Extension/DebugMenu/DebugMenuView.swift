@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct DebugMenuView: View {
-    let provider: DebugMenuViewProvider
+    @ObservedObject var provider: DebugMenuViewProvider
     @State private var showingResetAlert = false
 
     var body: some View {
-        VStack {
+        List {
+            Toggle("Notifications", isOn: $provider.debugNotificationEnabled)
             NavigationLink(
                 "Files",
                 destination: DebugMenuFilesView(provider: provider)
@@ -34,7 +35,6 @@ struct DebugMenuView: View {
                 )
             }
             .foregroundColor(.red)
-            Spacer()
         }
         .embedInNavigation()
     }

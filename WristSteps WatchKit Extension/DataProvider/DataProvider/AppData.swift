@@ -16,6 +16,7 @@ protocol AppData {
 
     func setOnboardingDone(_ flag: Bool)
     func setDebuggingEnabled(_ flag: Bool)
+    func setDebugNotificationEnabled(_ flag: Bool)
     func setLastBackgroundUpdate(_ string: String)
 }
 
@@ -64,6 +65,11 @@ class AppAppData: AppData {
         }
 
         self.debuggingEnabled = flag
+        persist()
+    }
+
+    func setDebugNotificationEnabled(_ flag: Bool) {
+        self.debugNotificationsEnabled = flag
         persist()
     }
 
