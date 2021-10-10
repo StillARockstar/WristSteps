@@ -67,12 +67,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                     NSLog("New step count: \(newValue)")
                 }
                 if dataProvider.appData.debugNotificationsEnabled {
-                    let content = UNMutableNotificationContent()
-                    content.title = "New Step Count"
-                    content.categoryIdentifier = StepCountDebugNotificationController.category
-                    content.userInfo = ["newValue": newValue, "dateAndTime": Date().yyyymmddhhmmString]
-                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
-                    UNUserNotificationCenter.current().add(request)
+                    UNUserNotificationCenter.current().addStepCountDebugNotification(newValue: newValue, date: Date())
                 }
             }
         self.stepGoalPublisher = dataProvider.userData.stepGoalPublisher
