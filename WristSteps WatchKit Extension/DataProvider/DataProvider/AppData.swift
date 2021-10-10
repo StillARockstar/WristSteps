@@ -21,10 +21,10 @@ protocol AppData {
 
 private struct AppDataDataStoreEntity: DataStoreEntity {
     static let namespace = "app_data"
-    var onboardingDone: Bool
-    var debuggingEnabled: Bool
-    var debugNotificationsEnabled: Bool
-    var lastBackgroundUpdate: String
+    var onboardingDone: Bool?
+    var debuggingEnabled: Bool?
+    var debugNotificationsEnabled: Bool?
+    var lastBackgroundUpdate: String?
 }
 
 class AppAppData: AppData {
@@ -44,12 +44,12 @@ class AppAppData: AppData {
     init() {
         self.debuggingEnabled = debugConfiguration
         if let persistedData: AppDataDataStoreEntity = DataStore.load() {
-            self.onboardingDone = persistedData.onboardingDone
+            self.onboardingDone = persistedData.onboardingDone ?? false
             if !debugConfiguration {
-                self.debuggingEnabled = persistedData.debuggingEnabled
+                self.debuggingEnabled = persistedData.debuggingEnabled ?? false
             }
-            self.debugNotificationsEnabled = persistedData.debugNotificationsEnabled
-            self.lastBackgroundUpdate = persistedData.lastBackgroundUpdate
+            self.debugNotificationsEnabled = persistedData.debugNotificationsEnabled ?? false
+            self.lastBackgroundUpdate = persistedData.lastBackgroundUpdate ?? ""
         }
     }
 
