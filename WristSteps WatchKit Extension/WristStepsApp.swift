@@ -70,6 +70,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                     let content = UNMutableNotificationContent()
                     content.title = "New Step Count"
                     content.categoryIdentifier = StepCountDebugNotificationController.category
+                    content.userInfo = ["newValue": newValue, "dateAndTime": Date().yyyymmddhhmmString]
                     let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
                     UNUserNotificationCenter.current().add(request)
                 }
