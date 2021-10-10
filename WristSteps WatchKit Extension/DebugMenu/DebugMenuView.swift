@@ -8,33 +8,37 @@
 import SwiftUI
 
 struct DebugMenuView: View {
-    let provider: DebugMenuViewProvider
+    @ObservedObject var provider: DebugMenuViewProvider
     @State private var showingResetAlert = false
 
     var body: some View {
-        VStack {
-            NavigationLink(
-                "Files",
-                destination: DebugMenuFilesView(provider: provider)
-            )
-            Button("Reset App", action: {
-                showingResetAlert = true
+        List {
+            Section(content: {
+                Toggle("Notifications", isOn: $provider.debugNotificationEnabled)
             })
-            .alert(isPresented: $showingResetAlert) {
-                Alert(
-                    title: Text("Reset App"),
-                    message: Text("Delete all data and restart"),
-                    primaryButton: .destructive(
-                        Text("Reset"),
-                        action: {
-                            provider.resetApp()
-                        }),
-                    secondaryButton:
-                        .cancel()
+            Section(content: {
+                NavigationLink(
+                    "Files",
+                    destination: DebugMenuFilesView(provider: provider)
                 )
-            }
-            .foregroundColor(.red)
-            Spacer()
+                Button("Reset App", action: {
+                    showingResetAlert = true
+                })
+                .alert(isPresented: $showingResetAlert) {
+                    Alert(
+                        title: Text("Reset App"),
+                        message: Text("Delete all data and restart"),
+                        primaryButton: .destructive(
+                            Text("Reset"),
+                            action: {
+                                provider.resetApp()
+                            }),
+                        secondaryButton:
+                            .cancel()
+                    )
+                }
+                .foregroundColor(.red)
+            })
         }
         .embedInNavigation()
     }

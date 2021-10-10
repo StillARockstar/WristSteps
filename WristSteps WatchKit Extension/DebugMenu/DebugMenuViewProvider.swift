@@ -6,22 +6,32 @@
 //
 
 import Foundation
+import Combine
 
-class DebugMenuViewProvider {
+class DebugMenuViewProvider: ObservableObject {
     private let dataProvider: DataProvider
+    @Published var debugNotificationEnabled: Bool
 
     var files: [String]
+
+    private var subscriptions: Set<AnyCancellable> = Set()
 
     init(dataProvider: DataProvider) {
         self.dataProvider = dataProvider
         self.files = DataStore.allFileURLs?.map({ $0.lastPathComponent }) ?? []
+        self.debugNotificationEnabled = dataProvider.appData.debugNotificationsEnabled
+        self.$debugNotificationEnabled
+            .dropFirst()
+            .sink(receiveValue: { [weak self] newValue in
+                dataProvider.appData.setDebugNotificationEnabled(newValue)
+                self?.restartApp()
+            })
+            .store(in: &subscriptions)
     }
 
     func resetApp() {
         DataStore.dumpAllFiles()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
-            exit(0)
-        })
+        restartApp()
     }
 
     func lastChanged(of filename: String) -> String {
@@ -38,5 +48,11 @@ class DebugMenuViewProvider {
             return ""
         }
         return DataStore.contentOf(url: url) ?? ""
+    }
+
+    private func restartApp() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
+            exit(0)
+        })
     }
 }

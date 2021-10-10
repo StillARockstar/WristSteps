@@ -6,8 +6,9 @@
 //
 
 import WatchKit
+import UserNotifications
 
-class LifeCycleHandler {
+class LifeCycleHandler: NSObject {
     private let dataProvider: DataProvider
 
     init(dataProvider: DataProvider) {
@@ -20,6 +21,7 @@ class LifeCycleHandler {
 
     func appWillEnterForeground() {
         dataProvider.healthData.updateBulk(completion: { })
+        registerNotifications()
     }
 
     func appDidEnterBackground() {
@@ -39,6 +41,18 @@ class LifeCycleHandler {
 }
 
 private extension LifeCycleHandler {
+    func registerNotifications() {
+        guard self.dataProvider.appData.debugNotificationsEnabled else {
+            return
+        }
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound], completionHandler: { [weak self] granted, error in
+            if granted == false || error != nil {
+                self?.dataProvider.appData.setDebugNotificationEnabled(false)
+            }
+        })
+    }
+
     func scheduleNextUpdate(completion: @escaping ((Bool) -> Void)) {
         let minuteGranuity = 2
 
@@ -101,5 +115,11 @@ private extension LifeCycleHandler {
         self.dataProvider.appData.setLastBackgroundUpdate(Date().yyyymmddhhmmString)
 
         completion()
+    }
+}
+
+extension LifeCycleHandler: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.sound, .banner])
     }
 }

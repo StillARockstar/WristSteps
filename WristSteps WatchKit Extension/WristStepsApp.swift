@@ -8,6 +8,7 @@
 import ClockKit
 import SwiftUI
 import Combine
+import UserNotifications
 
 @main
 struct WristStepsApp: App {
@@ -22,6 +23,11 @@ struct WristStepsApp: App {
                 )
             )
         }
+
+        WKNotificationScene(
+            controller: StepCountDebugNotificationController.self,
+            category: StepCountDebugNotificationController.category
+        )
     }
 }
 
@@ -60,6 +66,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 if dataProvider.appData.debuggingEnabled {
                     NSLog("New step count: \(newValue)")
                 }
+                if dataProvider.appData.debugNotificationsEnabled {
+                    UNUserNotificationCenter.current().addStepCountDebugNotification(newValue: newValue, date: Date())
+                }
             }
         self.stepGoalPublisher = dataProvider.userData.stepGoalPublisher
             .removeDuplicates()
@@ -67,7 +76,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 CLKComplicationServer.sharedInstance().activeComplications?.forEach {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
-                if dataProvider.appData.debuggingEnabled == true {
+                if dataProvider.appData.debuggingEnabled {
                     NSLog("New step goal: \(newValue)")
                 }
             }
