@@ -51,10 +51,13 @@ class AppHealthData: HealthData {
 
     func updateBulk(completion: @escaping (() -> Void)) {
         var completedUpdates = 0
+        var hourlyStepCountsCache = [Int?]()
         for i in 0..<self.hourlyStepCounts.count {
-            updateHour(hour: i, completion: { [weak self] in
+            loadHour(hour: i, completion: { [weak self] hourlyStepCount in
                 completedUpdates += 1
+                hourlyStepCountsCache.append(hourlyStepCount)
                 if completedUpdates == self?.hourlyStepCounts.count ?? 0 - 1 {
+                    self?.hourlyStepCounts = hourlyStepCountsCache
                     self?.persist()
                     completion()
                 }
