@@ -155,13 +155,15 @@ class SimulatorHealthData: HealthData {
         DispatchQueue(label: "simulated_data").asyncAfter(
             deadline: .now() + 0.1,
             execute: { [weak self] in
+                var hourlyStepCountsCache = [Int?]()
                 for i in 0..<24 {
                     if i <= 12 {
-                        self?.hourlyStepCounts[i] = Int.random(in: 0...1000)
+                        hourlyStepCountsCache.append(Int.random(in: 0...1000))
                     } else {
-                        self?.hourlyStepCounts[i] = nil
+                        hourlyStepCountsCache.append(nil)
                     }
                 }
+                self?.hourlyStepCounts = hourlyStepCountsCache
                 self?.persist()
                 completion()
         })
