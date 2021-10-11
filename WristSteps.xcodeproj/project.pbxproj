@@ -22,6 +22,7 @@
 		4C84905D265EC4E30014C92A /* DebugMenuFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84905C265EC4E30014C92A /* DebugMenuFilesView.swift */; };
 		4C84905F265ED0E90014C92A /* DebugMenuFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84905E265ED0E90014C92A /* DebugMenuFileView.swift */; };
 		4C88EC5D25F804330056E2F7 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88EC5C25F804330056E2F7 /* TextStyles.swift */; };
+		4C8DAA082714A455007F78A9 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8DAA072714A455007F78A9 /* HealthKit.framework */; };
 		4C90122425A385D500B2E759 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122325A385D500B2E759 /* OnboardingView.swift */; };
 		4C90122C25A3890A00B2E759 /* OnboardingViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122B25A3890A00B2E759 /* OnboardingViewProvider.swift */; };
 		4C938E532702366F00190173 /* HourlyStepsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C938E522702366F00190173 /* HourlyStepsChart.swift */; };
@@ -116,6 +117,8 @@
 		4C84905C265EC4E30014C92A /* DebugMenuFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuFilesView.swift; sourceTree = "<group>"; };
 		4C84905E265ED0E90014C92A /* DebugMenuFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuFileView.swift; sourceTree = "<group>"; };
 		4C88EC5C25F804330056E2F7 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
+		4C8DAA052714A455007F78A9 /* WristSteps WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WristSteps WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		4C8DAA072714A455007F78A9 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.0.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		4C90122325A385D500B2E759 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4C90122B25A3890A00B2E759 /* OnboardingViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewProvider.swift; sourceTree = "<group>"; };
 		4C938E522702366F00190173 /* HourlyStepsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyStepsChart.swift; sourceTree = "<group>"; };
@@ -158,6 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C8DAA082714A455007F78A9 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +220,14 @@
 			path = Complication;
 			sourceTree = "<group>";
 		};
+		4C8DAA062714A455007F78A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C8DAA072714A455007F78A9 /* HealthKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4C90122225A3859900B2E759 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +261,7 @@
 				4C9FE87724FBC503008062AF /* WristSteps WatchKit App */,
 				4C9FE88324FBC504008062AF /* WristSteps WatchKit Extension */,
 				4C9FE87024FBC503008062AF /* Products */,
+				4C8DAA062714A455007F78A9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -274,6 +287,7 @@
 		4C9FE88324FBC504008062AF /* WristSteps WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4C8DAA052714A455007F78A9 /* WristSteps WatchKit Extension.entitlements */,
 				4C9FE88624FBC504008062AF /* WristStepsApp.swift */,
 				4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */,
 				4C9A3A5C27132C3F000A4F97 /* Notifications */,
@@ -679,6 +693,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "WristSteps WatchKit Extension/WristSteps WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_ASSET_PATHS = "\"WristSteps WatchKit Extension/Preview Content\"";
@@ -706,6 +721,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "WristSteps WatchKit Extension/WristSteps WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_ASSET_PATHS = "\"WristSteps WatchKit Extension/Preview Content\"";
