@@ -9,65 +9,74 @@ import Foundation
 import SwiftUI
 import UserNotifications
 
+struct DebugNotificationKeyValue: Hashable, Codable {
+    let key: String
+    let value: String
+}
+
 extension UNUserNotificationCenter {
-    func addStepCountDebugNotification(newValue: Int, date: Date) {
+    func addDebugNotification(title: String, keyValues: [DebugNotificationKeyValue]) {
         guard debugNotificationsEnabled else {
             return
         }
         let content = UNMutableNotificationContent()
-        content.title = "New Step Count"
-        content.categoryIdentifier = StepCountDebugNotificationController.category
-        content.userInfo = ["newValue": newValue, "dateAndTime": date.yyyymmddhhmmString]
+        content.title = title
+        content.categoryIdentifier = DebugNotificationController.category
+        guard let keyValuesData = try? JSONEncoder().encode(keyValues) else { return }
+        content.userInfo = ["title": title, "keyValues": keyValuesData]
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
         UNUserNotificationCenter.current().add(request)
     }
 }
 
-class StepCountDebugNotificationController: WKUserNotificationHostingController<StepCountDebugNotificationView> {
-    static let category = "wriststeps.debug.step_count"
-    static let newValueKey: String = "newValue"
-    static let dateAndTimeKey: String = "dateAndTime"
-    private var newValue: Int = 0
-    private var dateAndTime: String = ""
+class DebugNotificationController: WKUserNotificationHostingController<DebugNotificationView> {
+    static let category = "wriststeps.debug_notification"
+    private var title: String = ""
+    private var keyValues: [DebugNotificationKeyValue] = []
 
     override func didReceive(_ notification: UNNotification) {
         let userInfo = notification.request.content.userInfo
-        guard let newValue = userInfo["newValue"] as? Int else { return }
-        guard let dateAndTime = userInfo["dateAndTime"] as? String else { return }
-        self.newValue = newValue
-        self.dateAndTime = dateAndTime
+        guard let title = userInfo["title"] as? String else { return }
+        guard let keyValuesData = userInfo["keyValues"] as? Data else { return }
+        guard let keyValues = try? JSONDecoder().decode([DebugNotificationKeyValue].self, from: keyValuesData) else { return }
+        self.title = title
+        self.keyValues = keyValues
     }
 
-    override var body: StepCountDebugNotificationView {
-        StepCountDebugNotificationView(newValue: newValue, dateAndTime: dateAndTime)
+    override var body: DebugNotificationView {
+        DebugNotificationView(title: title, keyValues: keyValues)
     }
 }
 
-struct StepCountDebugNotificationView: View {
-    let newValue: Int
-    let dateAndTime: String
+struct DebugNotificationView: View {
+    let title: String
+    let keyValues: [DebugNotificationKeyValue]
 
     var body: some View {
         VStack(spacing: 8){
             VStack {
                 HeadingText("Debug Notification")
-                BodyText("New Step Count")
+                BodyText(title)
             }
             .padding(.bottom, 8)
-            VStack {
-                BodyText("Step Count", alignment: .leading)
-                Body1Text("\(newValue)", alignment: .leading)
-            }
-            VStack {
-                BodyText("Date and Time", alignment: .leading)
-                Body1Text(dateAndTime, alignment: .leading)
-            }
+            ForEach(keyValues, id: \.self, content: { entry in
+                VStack {
+                    BodyText(entry.key, alignment: .leading)
+                    Body1Text(entry.value, alignment: .leading)
+                }
+            })
         }
     }
 }
 
-struct StepCountDebugNotificationView_Previews: PreviewProvider {
+struct DebugNotificationView_Previews: PreviewProvider {
     static var previews: some View {
-        StepCountDebugNotificationView(newValue: 10000, dateAndTime: "2020-10-10 16:45")
+        DebugNotificationView(
+            title: "New Step Count",
+            keyValues: [
+                DebugNotificationKeyValue(key: "Step Count", value: "10000"),
+                DebugNotificationKeyValue(key: "Date and Time", value: "2021-10-15 20:25")
+            ]
+        )
     }
 }
