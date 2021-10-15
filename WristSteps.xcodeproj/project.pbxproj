@@ -22,6 +22,7 @@
 		4C84905D265EC4E30014C92A /* DebugMenuFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84905C265EC4E30014C92A /* DebugMenuFilesView.swift */; };
 		4C84905F265ED0E90014C92A /* DebugMenuFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84905E265ED0E90014C92A /* DebugMenuFileView.swift */; };
 		4C88EC5D25F804330056E2F7 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88EC5C25F804330056E2F7 /* TextStyles.swift */; };
+		4C8DAA0A2719FA3E007F78A9 /* DebuggingHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DAA092719FA3E007F78A9 /* DebuggingHelpers.swift */; };
 		4C90122425A385D500B2E759 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122325A385D500B2E759 /* OnboardingView.swift */; };
 		4C90122C25A3890A00B2E759 /* OnboardingViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122B25A3890A00B2E759 /* OnboardingViewProvider.swift */; };
 		4C938E532702366F00190173 /* HourlyStepsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C938E522702366F00190173 /* HourlyStepsChart.swift */; };
@@ -116,6 +117,7 @@
 		4C84905C265EC4E30014C92A /* DebugMenuFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuFilesView.swift; sourceTree = "<group>"; };
 		4C84905E265ED0E90014C92A /* DebugMenuFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuFileView.swift; sourceTree = "<group>"; };
 		4C88EC5C25F804330056E2F7 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
+		4C8DAA092719FA3E007F78A9 /* DebuggingHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingHelpers.swift; sourceTree = "<group>"; };
 		4C90122325A385D500B2E759 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4C90122B25A3890A00B2E759 /* OnboardingViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewProvider.swift; sourceTree = "<group>"; };
 		4C938E522702366F00190173 /* HourlyStepsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyStepsChart.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 			children = (
 				4C9FE88624FBC504008062AF /* WristStepsApp.swift */,
 				4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */,
+				4C8DAA092719FA3E007F78A9 /* DebuggingHelpers.swift */,
 				4C9A3A5C27132C3F000A4F97 /* Notifications */,
 				4C253A9524FBEF9B0083B66B /* DataProvider */,
 				4C7FA7D325F6A32B00ACECF7 /* DesignSystem */,
@@ -533,6 +536,7 @@
 				4C84905F265ED0E90014C92A /* DebugMenuFileView.swift in Sources */,
 				4CA5D633260298F600394872 /* SettingsView.swift in Sources */,
 				4C6638D4258023B50028B398 /* Bundle+Convenients.swift in Sources */,
+				4C8DAA0A2719FA3E007F78A9 /* DebuggingHelpers.swift in Sources */,
 				4C2E960425017144004A1FB0 /* SetGoalViewProvider.swift in Sources */,
 				4C88EC5D25F804330056E2F7 /* TextStyles.swift in Sources */,
 				4C6638C1258017720028B398 /* AboutAppView.swift in Sources */,
