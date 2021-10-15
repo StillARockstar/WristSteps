@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import CoreMotion
+import HealthKit
 
 protocol HealthData {
     var stepCount: Int { get }
@@ -17,6 +18,8 @@ protocol HealthData {
     var hourlyStepCounts: [Int?] { get }
     var hourlyStepCountsPublished: Published<[Int?]> { get }
     var hourlyStepCountsPublisher: Published<[Int?]>.Publisher { get }
+
+    func registerHealthKitUpdates()
 
     func updateBulk(completion: @escaping (() -> Void))
     func updateHour(hour: Int, completion: @escaping (() -> Void))
@@ -40,6 +43,7 @@ class AppHealthData: HealthData {
 
     private var subscriptions: Set<AnyCancellable> = Set()
     private let pedometer = CMPedometer()
+    private let healthStore = HKHealthStore()
 
     init() {
         clearHourlyStepCounts()
@@ -47,6 +51,15 @@ class AppHealthData: HealthData {
             self.stepCount = hourlyStepCounts.compactMap({$0}).reduce(0, +)
         })
         .store(in: &subscriptions)
+    }
+
+    func registerHealthKitUpdates() {
+        let allTypes = Set([HKObjectType.workoutType()])
+        healthStore.requestAuthorization(toShare: allTypes, read: nil, completion: { success, _ in
+            if success {
+
+            }
+        })
     }
 
     func updateBulk(completion: @escaping (() -> Void)) {
@@ -154,6 +167,9 @@ class SimulatorHealthData: HealthData {
         .store(in: &subscriptions)
     }
 
+    func registerHealthKitUpdates() {
+    }
+
     func updateBulk(completion: @escaping (() -> Void)) {
         DispatchQueue(label: "simulated_data").asyncAfter(
             deadline: .now() + 0.1,
@@ -212,6 +228,9 @@ class SampleHealthData: HealthData {
     @Published var hourlyStepCounts: [Int?] = [75, 0, 0, 0, 0, 0, 100, 500, 1100, 700, 400, 350, 600, 650, 470, 400, 600, 900, 930, 700, 600, 400, 300, 200]
     var hourlyStepCountsPublished: Published<[Int?]> { _hourlyStepCounts }
     var hourlyStepCountsPublisher: Published<[Int?]>.Publisher { $hourlyStepCounts }
+
+    func registerHealthKitUpdates() {
+    }
 
     func updateBulk(completion: @escaping (() -> Void)) {
         completion()

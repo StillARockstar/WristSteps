@@ -44,13 +44,14 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         #if TARGET_WATCH
         let dataProvider = AppDataProvider()
         #else
-        let dataProvider = SimulatorDataProvider()
+        let dataProvider = AppDataProvider()
         #endif
         self.dataProvider = dataProvider
 
         if dataProvider.appData.debuggingEnabled {
             NSLog("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
         }
+        self.dataProvider.healthData.registerHealthKitUpdates()
 
         self.iapManager = IAPManager()
         self.iapManager.generateProducts(with: ProductIds.allCases.map({ $0.rawValue }))
