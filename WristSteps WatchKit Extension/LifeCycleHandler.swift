@@ -43,6 +43,7 @@ class LifeCycleHandler: NSObject {
                     )
                     return
                 }
+
                 self?.healthStore.enableBackgroundDelivery(for: .workoutType(), frequency: .immediate, withCompletion: { updateSuccess, _ in
                     XLog("Workout Background delivery setup successful: \(updateSuccess)")
                     UNUserNotificationCenter.current().addDebugNotification(
@@ -53,6 +54,23 @@ class LifeCycleHandler: NSObject {
                         ]
                     )
                 })
+
+                let query = HKObserverQuery(sampleType: .workoutType(), predicate: nil, updateHandler: { [weak self] _, completionHandler, error in
+                    guard error != nil else {
+                        return
+                    }
+                    UNUserNotificationCenter.current().addDebugNotification(
+                        title: "HealthKit",
+                        keyValues: [
+                            DebugNotificationKeyValue(key: "HK Type", value: "Workout"),
+                            DebugNotificationKeyValue(key: "Date and Time", value: Date().yyyymmddhhmmString)
+                        ]
+                    )
+                    self?.performBackgroundTasks(completion: {
+                        completionHandler()
+                    })
+                })
+                self?.healthStore.execute(query)
             })
         }
     }
