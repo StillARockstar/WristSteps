@@ -54,12 +54,18 @@ class AppHealthData: HealthData {
     }
 
     func registerHealthKitUpdates() {
-        let allTypes = Set([HKObjectType.workoutType()])
-        healthStore.requestAuthorization(toShare: allTypes, read: nil, completion: { success, _ in
-            if success {
-
-            }
-        })
+        if #available(watchOSApplicationExtension 8.0, *) {
+            let allTypes = Set([HKObjectType.workoutType()])
+            healthStore.requestAuthorization(toShare: allTypes, read: nil, completion: { [weak self] success, _ in
+                XLog("HealthKit Authorization successful: \(success)")
+                guard success else {
+                    return
+                }
+                self?.healthStore.enableBackgroundDelivery(for: .workoutType(), frequency: .immediate, withCompletion: { success, _ in
+                    XLog("Workout Background delivery setup successful: \(success)")
+                })
+            })
+        }
     }
 
     func updateBulk(completion: @escaping (() -> Void)) {
