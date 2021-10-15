@@ -54,8 +54,10 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/WristSteps">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4C9FE87224FBC503008062AF"
@@ -63,7 +65,7 @@
             BlueprintName = "WristSteps WatchKit App"
             ReferencedContainer = "container:WristSteps.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
       <StoreKitConfigurationFileReference
          identifier = "../../Configuration.storekit">
       </StoreKitConfigurationFileReference>
@@ -74,8 +76,10 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/WristSteps">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4C9FE87224FBC503008062AF"
@@ -83,7 +87,16 @@
             BlueprintName = "WristSteps WatchKit App"
             ReferencedContainer = "container:WristSteps.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4C9FE87224FBC503008062AF"
+            BuildableName = "WristSteps WatchKit App.app"
+            BlueprintName = "WristSteps WatchKit App"
+            ReferencedContainer = "container:WristSteps.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
