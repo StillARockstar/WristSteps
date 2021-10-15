@@ -9,7 +9,7 @@ import Foundation
 
 // Logging
 
-fileprivate var loggingEnabled: Bool = false
+fileprivate var loggingEnabled = false
 
 func setupLogging(dataProvider: DataProvider) {
     loggingEnabled = dataProvider.appData.debuggingEnabled
@@ -17,4 +17,12 @@ func setupLogging(dataProvider: DataProvider) {
 
 func XLog(_ format: String, _ args: CVarArg...) {
     NSLog(format, args)
+}
+
+// Notifications
+
+fileprivate(set) var debugNotificationsEnabled = false
+
+func setupNotifications(dataProvider: DataProvider) {
+    debugNotificationsEnabled = dataProvider.appData.debugNotificationsEnabled
 }

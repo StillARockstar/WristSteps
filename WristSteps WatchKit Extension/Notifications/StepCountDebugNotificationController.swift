@@ -11,6 +11,9 @@ import UserNotifications
 
 extension UNUserNotificationCenter {
     func addStepCountDebugNotification(newValue: Int, date: Date) {
+        guard debugNotificationsEnabled else {
+            return
+        }
         let content = UNMutableNotificationContent()
         content.title = "New Step Count"
         content.categoryIdentifier = StepCountDebugNotificationController.category

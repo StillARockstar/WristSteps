@@ -47,6 +47,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         let dataProvider = SimulatorDataProvider()
         #endif
         self.dataProvider = dataProvider
+        setupLogging(dataProvider: dataProvider)
+        setupNotifications(dataProvider: dataProvider)
 
         XLog("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
 
@@ -62,9 +64,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
                 XLog("New step count: \(newValue)")
-                if dataProvider.appData.debugNotificationsEnabled {
-                    UNUserNotificationCenter.current().addStepCountDebugNotification(newValue: newValue, date: Date())
-                }
+                UNUserNotificationCenter.current().addStepCountDebugNotification(newValue: newValue, date: Date())
             }
         self.stepGoalPublisher = dataProvider.userData.stepGoalPublisher
             .removeDuplicates()
