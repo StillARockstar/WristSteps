@@ -35,7 +35,7 @@
 	<key>NSHealthShareUsageDescription</key>
 	<string>-</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>WristSteps requires HealthKit access to update the step count after a workout</string>
+	<string>WristSteps requires HealthKit access to read the step count after a workout</string>
 	<key>NSMotionUsageDescription</key>
 	<string>WristSteps requires access to show you the most up-to-date step count</string>
 	<key>WKWatchOnly</key>
