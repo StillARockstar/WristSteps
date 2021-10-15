@@ -24,6 +24,9 @@
 		4C88EC5D25F804330056E2F7 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88EC5C25F804330056E2F7 /* TextStyles.swift */; };
 		4C8DAA082714A455007F78A9 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8DAA072714A455007F78A9 /* HealthKit.framework */; };
 		4C8DAA0A2719FA3E007F78A9 /* DebuggingHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DAA092719FA3E007F78A9 /* DebuggingHelpers.swift */; };
+		4C8DAA0C271A2529007F78A9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DAA0B271A2529007F78A9 /* Info.plist */; };
+		4C8DAA0D271A2529007F78A9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DAA0B271A2529007F78A9 /* Info.plist */; };
+		4C8DAA0E271A2529007F78A9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DAA0B271A2529007F78A9 /* Info.plist */; };
 		4C90122425A385D500B2E759 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122325A385D500B2E759 /* OnboardingView.swift */; };
 		4C90122C25A3890A00B2E759 /* OnboardingViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122B25A3890A00B2E759 /* OnboardingViewProvider.swift */; };
 		4C938E532702366F00190173 /* HourlyStepsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C938E522702366F00190173 /* HourlyStepsChart.swift */; };
@@ -121,6 +124,7 @@
 		4C8DAA052714A455007F78A9 /* WristSteps WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WristSteps WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		4C8DAA072714A455007F78A9 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.0.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		4C8DAA092719FA3E007F78A9 /* DebuggingHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingHelpers.swift; sourceTree = "<group>"; };
+		4C8DAA0B271A2529007F78A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C90122325A385D500B2E759 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4C90122B25A3890A00B2E759 /* OnboardingViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewProvider.swift; sourceTree = "<group>"; };
 		4C938E522702366F00190173 /* HourlyStepsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyStepsChart.swift; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 		4C9FE86824FBC503008062AF = {
 			isa = PBXGroup;
 			children = (
+				4C8DAA0B271A2529007F78A9 /* Info.plist */,
 				4CDFAD5425CC7829003EA090 /* Configuration.storekit */,
 				4C9FE87724FBC503008062AF /* WristSteps WatchKit App */,
 				4C9FE88324FBC504008062AF /* WristSteps WatchKit Extension */,
@@ -488,6 +493,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C8DAA0C271A2529007F78A9 /* Info.plist in Resources */,
 				4CDFAD5525CC782F003EA090 /* Configuration.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +504,7 @@
 			files = (
 				4C9FE87924FBC503008062AF /* Assets.xcassets in Resources */,
 				4CDFAD5925CC782F003EA090 /* Configuration.storekit in Resources */,
+				4C8DAA0D271A2529007F78A9 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +515,7 @@
 				4C9FE8A024FBC6C8008062AF /* Colors.xcassets in Resources */,
 				4CDFAD5A25CC7830003EA090 /* Configuration.storekit in Resources */,
 				4C9FE88E24FBC504008062AF /* Preview Assets.xcassets in Resources */,
+				4C8DAA0E271A2529007F78A9 /* Info.plist in Resources */,
 				4C9FE88B24FBC504008062AF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -799,6 +807,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = GQQ4RZBUL3;
+				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = 2.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = at.Schoder.WristSteps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -812,6 +821,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = GQQ4RZBUL3;
+				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = 2.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = at.Schoder.WristSteps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
