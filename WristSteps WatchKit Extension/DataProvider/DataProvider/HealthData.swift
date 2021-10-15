@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import CoreMotion
 import HealthKit
+import UserNotifications
 
 protocol HealthData {
     var stepCount: Int { get }
@@ -56,13 +57,26 @@ class AppHealthData: HealthData {
     func registerHealthKitUpdates() {
         if #available(watchOSApplicationExtension 8.0, *) {
             let allTypes = Set([HKObjectType.workoutType()])
-            healthStore.requestAuthorization(toShare: allTypes, read: nil, completion: { [weak self] success, _ in
-                XLog("HealthKit Authorization successful: \(success)")
-                guard success else {
+            healthStore.requestAuthorization(toShare: allTypes, read: nil, completion: { [weak self] authSuccess, _ in
+                XLog("HealthKit Authorization successful: \(authSuccess)")
+                guard authSuccess else {
+                    UNUserNotificationCenter.current().addDebugNotification(
+                        title: "HealthKit",
+                        keyValues: [
+                            DebugNotificationKeyValue(key: "HK Auth Success", value: "\(authSuccess)")
+                        ]
+                    )
                     return
                 }
-                self?.healthStore.enableBackgroundDelivery(for: .workoutType(), frequency: .immediate, withCompletion: { success, _ in
-                    XLog("Workout Background delivery setup successful: \(success)")
+                self?.healthStore.enableBackgroundDelivery(for: .workoutType(), frequency: .immediate, withCompletion: { updateSuccess, _ in
+                    XLog("Workout Background delivery setup successful: \(updateSuccess)")
+                    UNUserNotificationCenter.current().addDebugNotification(
+                        title: "HealthKit",
+                        keyValues: [
+                            DebugNotificationKeyValue(key: "HK Auth Success", value: "\(authSuccess)"),
+                            DebugNotificationKeyValue(key: "HK BG Update", value: "\(updateSuccess)")
+                        ]
+                    )
                 })
             })
         }
