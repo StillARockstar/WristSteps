@@ -25,8 +25,8 @@ struct WristStepsApp: App {
         }
 
         WKNotificationScene(
-            controller: StepCountDebugNotificationController.self,
-            category: StepCountDebugNotificationController.category
+            controller: DebugNotificationController.self,
+            category: DebugNotificationController.category
         )
     }
 }
@@ -66,7 +66,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
                 XLog("New step count: \(newValue)")
-                UNUserNotificationCenter.current().addStepCountDebugNotification(newValue: newValue, date: Date())
+                UNUserNotificationCenter.current().addDebugNotification(
+                    title: "New Step Count",
+                    keyValues: [
+                        DebugNotificationKeyValue(key: "Step Count", value: "\(newValue)"),
+                        DebugNotificationKeyValue(key: "Date and Time", value: Date().yyyymmddhhmmString)
+                    ]
+                )
             }
         self.stepGoalPublisher = dataProvider.userData.stepGoalPublisher
             .removeDuplicates()
