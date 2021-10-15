@@ -44,13 +44,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         #if TARGET_WATCH
         let dataProvider = AppDataProvider()
         #else
-        let dataProvider = AppDataProvider()
+        let dataProvider = SimulatorDataProvider()
         #endif
         self.dataProvider = dataProvider
         setupLogging(dataProvider: dataProvider)
         setupNotifications(dataProvider: dataProvider)
-
-        self.dataProvider.healthData.registerHealthKitUpdates()
 
         XLog("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
 

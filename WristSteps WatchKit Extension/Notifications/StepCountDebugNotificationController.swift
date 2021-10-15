@@ -26,7 +26,6 @@ extension UNUserNotificationCenter {
         content.userInfo = ["title": title, "keyValues": keyValuesData]
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
         UNUserNotificationCenter.current().add(request)
-        print("Huhu")
     }
 }
 

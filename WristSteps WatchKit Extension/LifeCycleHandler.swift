@@ -7,9 +7,11 @@
 
 import WatchKit
 import UserNotifications
+import HealthKit
 
 class LifeCycleHandler: NSObject {
     private let dataProvider: DataProvider
+    private let healthStore = HKHealthStore()
 
     init(dataProvider: DataProvider) {
         self.dataProvider = dataProvider
@@ -22,10 +24,37 @@ class LifeCycleHandler: NSObject {
     func appWillEnterForeground() {
         dataProvider.healthData.updateBulk(completion: { })
         registerNotifications()
+        registerHealthKitUpdates()
     }
 
     func appDidEnterBackground() {
         scheduleNextUpdate(completion: { _ in })
+    }
+
+    func registerHealthKitUpdates() {
+        if #available(watchOSApplicationExtension 8.0, *) {
+            let allTypes = Set([HKObjectType.workoutType()])
+            healthStore.requestAuthorization(toShare: allTypes, read: nil, completion: { [weak self] authSuccess, _ in
+                XLog("HealthKit Authorization successful: \(authSuccess)")
+                guard authSuccess else {
+                    UNUserNotificationCenter.current().addDebugNotification(
+                        title: "HealthKit",
+                        keyValues: [DebugNotificationKeyValue(key: "HK Auth Success", value: "\(authSuccess)")]
+                    )
+                    return
+                }
+                self?.healthStore.enableBackgroundDelivery(for: .workoutType(), frequency: .immediate, withCompletion: { updateSuccess, _ in
+                    XLog("Workout Background delivery setup successful: \(updateSuccess)")
+                    UNUserNotificationCenter.current().addDebugNotification(
+                        title: "HealthKit",
+                        keyValues: [
+                            DebugNotificationKeyValue(key: "HK Auth Success", value: "\(authSuccess)"),
+                            DebugNotificationKeyValue(key: "HK BG Update", value: "\(updateSuccess)")
+                        ]
+                    )
+                })
+            })
+        }
     }
 
     func handle(_ task: WKRefreshBackgroundTask) {
