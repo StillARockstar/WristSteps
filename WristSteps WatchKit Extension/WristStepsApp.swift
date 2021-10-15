@@ -47,11 +47,12 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         let dataProvider = AppDataProvider()
         #endif
         self.dataProvider = dataProvider
+        setupLogging(dataProvider: dataProvider)
+        setupNotifications(dataProvider: dataProvider)
 
-        if dataProvider.appData.debuggingEnabled {
-            NSLog("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
-        }
         self.dataProvider.healthData.registerHealthKitUpdates()
+
+        XLog("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
 
         self.iapManager = IAPManager()
         self.iapManager.generateProducts(with: ProductIds.allCases.map({ $0.rawValue }))
@@ -64,12 +65,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 CLKComplicationServer.sharedInstance().activeComplications?.forEach {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
-                if dataProvider.appData.debuggingEnabled {
-                    NSLog("New step count: \(newValue)")
-                }
-                if dataProvider.appData.debugNotificationsEnabled {
-                    UNUserNotificationCenter.current().addStepCountDebugNotification(newValue: newValue, date: Date())
-                }
+                XLog("New step count: \(newValue)")
+                UNUserNotificationCenter.current().addStepCountDebugNotification(newValue: newValue, date: Date())
             }
         self.stepGoalPublisher = dataProvider.userData.stepGoalPublisher
             .removeDuplicates()
@@ -77,9 +74,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 CLKComplicationServer.sharedInstance().activeComplications?.forEach {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
-                if dataProvider.appData.debuggingEnabled {
-                    NSLog("New step goal: \(newValue)")
-                }
+                XLog("New step goal: \(newValue)")
             }
         self.colorNamePublisher = dataProvider.userData.colorNamePublisher
             .removeDuplicates()
@@ -89,9 +84,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 }
                 CLKComplicationServer.sharedInstance().reloadComplicationDescriptors()
                 Color.update(appTint: AppColor.color(forName: newValue).color)
-                if dataProvider.appData.debuggingEnabled == true {
-                    NSLog("New color name: \(newValue)")
-                }
+                XLog("New color name: \(newValue)")
             }
 
         super.init()
