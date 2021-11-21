@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -47,6 +47,7 @@
 		4CA5D62A2602965700394872 /* ContentViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5D6292602965700394872 /* ContentViewProvider.swift */; };
 		4CA5D633260298F600394872 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5D632260298F600394872 /* SettingsView.swift */; };
 		4CA5D63E260299D700394872 /* SettingsViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5D63D260299D700394872 /* SettingsViewProvider.swift */; };
+		4CB7BFCC274AC19F00889370 /* CoreInsights in Frameworks */ = {isa = PBXBuildFile; productRef = 4CB7BFCB274AC19F00889370 /* CoreInsights */; };
 		4CBA8F55265A7FF500CC6049 /* DebugMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA8F54265A7FF500CC6049 /* DebugMenuView.swift */; };
 		4CBA8F57265A819200CC6049 /* EnableDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA8F56265A819200CC6049 /* EnableDebugView.swift */; };
 		4CBA8F5B265A978E00CC6049 /* DebugMenuViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA8F5A265A978E00CC6049 /* DebugMenuViewProvider.swift */; };
@@ -164,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CB7BFCC274AC19F00889370 /* CoreInsights in Frameworks */,
 				4C8DAA082714A455007F78A9 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +409,9 @@
 				4C9FE87624FBC503008062AF /* PBXTargetDependency */,
 			);
 			name = WristSteps;
+			packageProductDependencies = (
+				4CB7BFCA274AC0B900889370 /* CoreInsights */,
+			);
 			productName = WristSteps;
 			productReference = 4C9FE86F24FBC503008062AF /* WristSteps.app */;
 			productType = "com.apple.product-type.application.watchapp2-container";
@@ -441,6 +446,9 @@
 			dependencies = (
 			);
 			name = "WristSteps WatchKit Extension";
+			packageProductDependencies = (
+				4CB7BFCB274AC19F00889370 /* CoreInsights */,
+			);
 			productName = "WristSteps WatchKit Extension";
 			productReference = 4C9FE87F24FBC504008062AF /* WristSteps WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
@@ -474,6 +482,9 @@
 				Base,
 			);
 			mainGroup = 4C9FE86824FBC503008062AF;
+			packageReferences = (
+				4CB7BFC9274AC0B900889370 /* XCRemoteSwiftPackageReference "CoreInsights" */,
+			);
 			productRefGroup = 4C9FE87024FBC503008062AF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -867,6 +878,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4CB7BFC9274AC0B900889370 /* XCRemoteSwiftPackageReference "CoreInsights" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StillARockstar/CoreInsights";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4CB7BFCA274AC0B900889370 /* CoreInsights */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CB7BFC9274AC0B900889370 /* XCRemoteSwiftPackageReference "CoreInsights" */;
+			productName = CoreInsights;
+		};
+		4CB7BFCB274AC19F00889370 /* CoreInsights */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CB7BFC9274AC0B900889370 /* XCRemoteSwiftPackageReference "CoreInsights" */;
+			productName = CoreInsights;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4C9FE86924FBC503008062AF /* Project object */;
 }
