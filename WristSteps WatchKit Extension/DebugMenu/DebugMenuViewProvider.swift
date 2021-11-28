@@ -53,6 +53,7 @@ class DebugMenuViewProvider: ObservableObject {
     private var currentLoadedFiles = 0
     private var loadedLogs: [InsightLogs.InsightMessage] = []
     private(set) var shownLevels: [InsightLevel] = [.default, .error, .warning, .info, .debug]
+    private(set) var shownTags: [String]? = nil
     @Published var filteredLogs: [InsightLogs.InsightMessage] = []
     @Published var moreLogsAvailabe: Bool = false
 
@@ -65,7 +66,9 @@ class DebugMenuViewProvider: ObservableObject {
             return
         }
         loadedLogs = CoreAnalytics.logs.loadLog(at: 0)
-        filteredLogs = loadedLogs.filterBy(levels: shownLevels)
+        filteredLogs = loadedLogs
+            .filterBy(levels: shownLevels)
+            .filterBy(tags: shownTags)
         currentLoadedFiles = 1
         moreLogsAvailabe = currentLoadedFiles < numberOfFiles
     }
@@ -75,7 +78,9 @@ class DebugMenuViewProvider: ObservableObject {
             return
         }
         loadedLogs.append(contentsOf: CoreAnalytics.logs.loadLog(at: currentLoadedFiles))
-        filteredLogs = loadedLogs.filterBy(levels: shownLevels)
+        filteredLogs = loadedLogs
+            .filterBy(levels: shownLevels)
+            .filterBy(tags: shownTags)
         currentLoadedFiles += 1
         moreLogsAvailabe = currentLoadedFiles < numberOfFiles
     }
@@ -90,7 +95,31 @@ class DebugMenuViewProvider: ObservableObject {
         } else {
             shownLevels.removeAll(where: { $0 == level })
         }
-        filteredLogs = loadedLogs.filterBy(levels: shownLevels)
+        filteredLogs = loadedLogs
+            .filterBy(levels: shownLevels)
+            .filterBy(tags: shownTags)
+    }
+
+    func availableTags() -> [String] {
+        let allTags = loadedLogs.map({ $0.tags }).flatMap({ $0 })
+        return allTags.removeDuplicates()
+    }
+
+    func toggleTagFilter(_ tag: String) {
+        var shownTags = shownTags ?? []
+        if !shownTags.contains(tag) {
+            shownTags.append(tag)
+        } else {
+            shownTags.removeAll(where: { $0 == tag })
+        }
+        if shownTags.count == 0 {
+            self.shownTags = nil
+        } else {
+            self.shownTags = shownTags
+        }
+        filteredLogs = loadedLogs
+            .filterBy(levels: shownLevels)
+            .filterBy(tags: self.shownTags)
     }
 
     func resetApp() {
@@ -115,5 +144,32 @@ class DebugMenuViewProvider: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
             exit(0)
         })
+    }
+}
+
+extension Array where Element: Equatable {
+    func removeDuplicates() -> [Element] {
+        var result = [Element]()
+
+        for value in self {
+            if result.contains(value) == false {
+                result.append(value)
+            }
+        }
+
+        return result
+    }
+}
+
+public extension Array where Element == InsightLogs.InsightMessage {
+    func filterBy(tags tagStrings: [String]?) -> [Element] {
+        guard let tagStrings = tagStrings else {
+            return self
+        }
+        var results = self
+        for tagString in tagStrings {
+            results = results.filterBy(tag: tagString)
+        }
+        return results
     }
 }

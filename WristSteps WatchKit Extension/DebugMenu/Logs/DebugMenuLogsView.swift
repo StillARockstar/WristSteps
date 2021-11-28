@@ -22,7 +22,14 @@ struct DebugMenuLogsView: View {
                         Text("Levels")
                     }
                 )
-                Button("Tags", action: {})
+                NavigationLink(
+                    destination: {
+                        DebugMenuLogsTagsView(provider: provider)
+                    },
+                    label: {
+                        Text("Tags")
+                    }
+                )
             }
             VStack {
                 ForEach(provider.filteredLogs, id: \.id, content: { logMessage in
