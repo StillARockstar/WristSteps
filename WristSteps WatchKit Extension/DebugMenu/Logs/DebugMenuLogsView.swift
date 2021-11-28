@@ -34,8 +34,10 @@ struct DebugMenuMessageView: View {
     let message: InsightLogs.InsightMessage
 
     var body: some View {
-        Button(
-            action: {},
+        NavigationLink(
+            destination: {
+                DebugMenuLogView(message: message)
+            },
             label: {
                 VStack(alignment: .leading) {
                     Text(message.formattedDate)

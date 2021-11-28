@@ -21,6 +21,25 @@ extension InsightLogs.InsightMessage {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return dateFormatter.string(from: date)
     }
+
+    var formattedLevel: String {
+        switch level {
+        case .`default`:
+            return "default"
+        case .error:
+            return "error"
+        case .warning:
+            return "warning"
+        case .info:
+            return "info"
+        case .debug:
+            return "debug"
+        }
+    }
+
+    var formattedTags: String {
+        return tags.joined(separator: ", ")
+    }
 }
 
 class DebugMenuViewProvider: ObservableObject {
