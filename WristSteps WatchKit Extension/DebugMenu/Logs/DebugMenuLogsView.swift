@@ -13,8 +13,19 @@ struct DebugMenuLogsView: View {
 
     var body: some View {
         ScrollView {
+            HStack {
+                NavigationLink(
+                    destination: {
+                        DebugMenuLogsLevelsView(provider: provider)
+                    },
+                    label: {
+                        Text("Levels")
+                    }
+                )
+                Button("Tags", action: {})
+            }
             VStack {
-                ForEach(provider.loadedLogs, id: \.id, content: { logMessage in
+                ForEach(provider.filteredLogs, id: \.id, content: { logMessage in
                     DebugMenuMessageView(message: logMessage)
                 })
                 if provider.moreLogsAvailabe {

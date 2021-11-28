@@ -17,6 +17,7 @@
 		4C391FCA2750228200672CAE /* CoreInsights in Frameworks */ = {isa = PBXBuildFile; productRef = 4C391FC92750228200672CAE /* CoreInsights */; };
 		4C391FCE27540F5400672CAE /* DebugMenuLogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C391FCD27540F5400672CAE /* DebugMenuLogsView.swift */; };
 		4C391FD0275417C000672CAE /* DebugMenuLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C391FCF275417C000672CAE /* DebugMenuLogView.swift */; };
+		4C391FD227541D7A00672CAE /* DebugMenuLogsLevelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C391FD127541D7A00672CAE /* DebugMenuLogsLevelsView.swift */; };
 		4C439FA825CC731100B47C18 /* InAppPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C439FA725CC731100B47C18 /* InAppPurchase.swift */; };
 		4C6638C1258017720028B398 /* AboutAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638C0258017720028B398 /* AboutAppView.swift */; };
 		4C6638C925801DF80028B398 /* AboutAppViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638C825801DF80028B398 /* AboutAppViewProvider.swift */; };
@@ -114,6 +115,7 @@
 		4C2E960325017144004A1FB0 /* SetGoalViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalViewProvider.swift; sourceTree = "<group>"; };
 		4C391FCD27540F5400672CAE /* DebugMenuLogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuLogsView.swift; sourceTree = "<group>"; };
 		4C391FCF275417C000672CAE /* DebugMenuLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuLogView.swift; sourceTree = "<group>"; };
+		4C391FD127541D7A00672CAE /* DebugMenuLogsLevelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuLogsLevelsView.swift; sourceTree = "<group>"; };
 		4C439FA725CC731100B47C18 /* InAppPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchase.swift; sourceTree = "<group>"; };
 		4C6638C0258017720028B398 /* AboutAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppView.swift; sourceTree = "<group>"; };
 		4C6638C825801DF80028B398 /* AboutAppViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewProvider.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			children = (
 				4C391FCD27540F5400672CAE /* DebugMenuLogsView.swift */,
 				4C391FCF275417C000672CAE /* DebugMenuLogView.swift */,
+				4C391FD127541D7A00672CAE /* DebugMenuLogsLevelsView.swift */,
 			);
 			path = Logs;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				4C2E960025016F21004A1FB0 /* SetGoalView.swift in Sources */,
 				4C391FCE27540F5400672CAE /* DebugMenuLogsView.swift in Sources */,
 				4CBA8F57265A819200CC6049 /* EnableDebugView.swift in Sources */,
+				4C391FD227541D7A00672CAE /* DebugMenuLogsLevelsView.swift in Sources */,
 				4C439FA825CC731100B47C18 /* InAppPurchase.swift in Sources */,
 				4CDBF15F26591A0400F6A0B9 /* UserData.swift in Sources */,
 				4C9FE89E24FBC67C008062AF /* Color+Convenients.swift in Sources */,

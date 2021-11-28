@@ -9,6 +9,23 @@ import Foundation
 import Combine
 import CoreAnalytics
 
+extension InsightLevel {
+    var formatted: String {
+        switch self {
+        case .`default`:
+            return "default"
+        case .error:
+            return "error"
+        case .warning:
+            return "warning"
+        case .info:
+            return "info"
+        case .debug:
+            return "debug"
+        }
+    }
+}
+
 extension InsightLogs.InsightMessage {
     var id: String {
         let dateFormatter = DateFormatter()
@@ -23,18 +40,7 @@ extension InsightLogs.InsightMessage {
     }
 
     var formattedLevel: String {
-        switch level {
-        case .`default`:
-            return "default"
-        case .error:
-            return "error"
-        case .warning:
-            return "warning"
-        case .info:
-            return "info"
-        case .debug:
-            return "debug"
-        }
+        return level.formatted
     }
 
     var formattedTags: String {
@@ -45,7 +51,9 @@ extension InsightLogs.InsightMessage {
 class DebugMenuViewProvider: ObservableObject {
     private var numberOfFiles = 0
     private var currentLoadedFiles = 0
-    @Published var loadedLogs: [InsightLogs.InsightMessage] = []
+    private var loadedLogs: [InsightLogs.InsightMessage] = []
+    private(set) var shownLevels: [InsightLevel] = [.default, .error, .warning, .info, .debug]
+    @Published var filteredLogs: [InsightLogs.InsightMessage] = []
     @Published var moreLogsAvailabe: Bool = false
 
     init() {
@@ -57,6 +65,7 @@ class DebugMenuViewProvider: ObservableObject {
             return
         }
         loadedLogs = CoreAnalytics.logs.loadLog(at: 0)
+        filteredLogs = loadedLogs.filterBy(levels: shownLevels)
         currentLoadedFiles = 1
         moreLogsAvailabe = currentLoadedFiles < numberOfFiles
     }
@@ -66,8 +75,22 @@ class DebugMenuViewProvider: ObservableObject {
             return
         }
         loadedLogs.append(contentsOf: CoreAnalytics.logs.loadLog(at: currentLoadedFiles))
+        filteredLogs = loadedLogs.filterBy(levels: shownLevels)
         currentLoadedFiles += 1
         moreLogsAvailabe = currentLoadedFiles < numberOfFiles
+    }
+
+    func availableLogLevels() -> [InsightLevel] {
+        return [.default, .error, .warning, .info, .debug]
+    }
+
+    func toggleLogFilter(_ level: InsightLevel) {
+        if !shownLevels.contains(level) {
+            shownLevels.append(level)
+        } else {
+            shownLevels.removeAll(where: { $0 == level })
+        }
+        filteredLogs = loadedLogs.filterBy(levels: shownLevels)
     }
 
     func resetApp() {
