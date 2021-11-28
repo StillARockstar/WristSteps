@@ -10,7 +10,6 @@ import Combine
 
 class DebugMenuViewProvider: ObservableObject {
     private let dataProvider: DataProvider
-    @Published var debugNotificationEnabled: Bool
 
     var files: [String]
 
@@ -19,14 +18,6 @@ class DebugMenuViewProvider: ObservableObject {
     init(dataProvider: DataProvider) {
         self.dataProvider = dataProvider
         self.files = DataStore.allFileURLs?.map({ $0.lastPathComponent }) ?? []
-        self.debugNotificationEnabled = dataProvider.appData.debugNotificationsEnabled
-        self.$debugNotificationEnabled
-            .dropFirst()
-            .sink(receiveValue: { [weak self] newValue in
-                dataProvider.appData.setDebugNotificationEnabled(newValue)
-                self?.restartApp()
-            })
-            .store(in: &subscriptions)
     }
 
     func resetApp() {

@@ -25,11 +25,6 @@ struct WristStepsApp: App {
                 )
             )
         }
-
-        WKNotificationScene(
-            controller: DebugNotificationController.self,
-            category: DebugNotificationController.category
-        )
     }
 }
 
@@ -50,7 +45,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         #endif
         self.dataProvider = dataProvider
         setupLogging(dataProvider: dataProvider)
-        setupNotifications(dataProvider: dataProvider)
 
         XLog("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
         CoreInsights.configureInsights([.console, .logFiles])
@@ -68,13 +62,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
                 XLog("New step count: \(newValue)")
-                UNUserNotificationCenter.current().addDebugNotification(
-                    title: "New Step Count",
-                    keyValues: [
-                        DebugNotificationKeyValue(key: "Step Count", value: "\(newValue)"),
-                        DebugNotificationKeyValue(key: "Date and Time", value: Date().yyyymmddhhmmString)
-                    ]
-                )
             }
         self.stepGoalPublisher = dataProvider.userData.stepGoalPublisher
             .removeDuplicates()

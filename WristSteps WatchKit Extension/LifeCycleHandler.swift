@@ -23,7 +23,6 @@ class LifeCycleHandler: NSObject {
 
     func appWillEnterForeground() {
         dataProvider.healthData.updateBulk(completion: { })
-        registerNotifications()
         registerHealthKitUpdates()
     }
 
@@ -37,35 +36,17 @@ class LifeCycleHandler: NSObject {
             healthStore.requestAuthorization(toShare: allTypes, read: nil, completion: { [weak self] authSuccess, _ in
                 XLog("HealthKit Authorization successful: \(authSuccess)")
                 guard authSuccess else {
-                    UNUserNotificationCenter.current().addDebugNotification(
-                        title: "HealthKit",
-                        keyValues: [DebugNotificationKeyValue(key: "HK Auth Success", value: "\(authSuccess)")]
-                    )
                     return
                 }
 
                 self?.healthStore.enableBackgroundDelivery(for: .workoutType(), frequency: .immediate, withCompletion: { updateSuccess, _ in
                     XLog("Workout Background delivery setup successful: \(updateSuccess)")
-                    UNUserNotificationCenter.current().addDebugNotification(
-                        title: "HealthKit",
-                        keyValues: [
-                            DebugNotificationKeyValue(key: "HK Auth Success", value: "\(authSuccess)"),
-                            DebugNotificationKeyValue(key: "HK BG Update", value: "\(updateSuccess)")
-                        ]
-                    )
                 })
 
                 let query = HKObserverQuery(sampleType: .workoutType(), predicate: nil, updateHandler: { [weak self] _, completionHandler, error in
                     guard error != nil else {
                         return
                     }
-                    UNUserNotificationCenter.current().addDebugNotification(
-                        title: "HealthKit",
-                        keyValues: [
-                            DebugNotificationKeyValue(key: "HK Type", value: "Workout"),
-                            DebugNotificationKeyValue(key: "Date and Time", value: Date().yyyymmddhhmmString)
-                        ]
-                    )
                     self?.performBackgroundTasks(completion: {
                         completionHandler()
                     })
@@ -88,18 +69,6 @@ class LifeCycleHandler: NSObject {
 }
 
 private extension LifeCycleHandler {
-    func registerNotifications() {
-        guard self.dataProvider.appData.debugNotificationsEnabled else {
-            return
-        }
-        UNUserNotificationCenter.current().delegate = self
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound], completionHandler: { [weak self] granted, error in
-            if granted == false || error != nil {
-                self?.dataProvider.appData.setDebugNotificationEnabled(false)
-            }
-        })
-    }
-
     func scheduleNextUpdate(completion: @escaping ((Bool) -> Void)) {
         let minuteGranuity = 2
 

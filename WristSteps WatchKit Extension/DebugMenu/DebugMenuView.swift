@@ -14,9 +14,6 @@ struct DebugMenuView: View {
     var body: some View {
         List {
             Section(content: {
-                Toggle("Notifications", isOn: $provider.debugNotificationEnabled)
-            })
-            Section(content: {
                 NavigationLink(
                     "Files",
                     destination: DebugMenuFilesView(provider: provider)

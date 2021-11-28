@@ -18,11 +18,3 @@ func setupLogging(dataProvider: DataProvider) {
 func XLog(_ format: String, _ args: CVarArg...) {
     NSLog(format, args)
 }
-
-// Notifications
-
-fileprivate(set) var debugNotificationsEnabled = false
-
-func setupNotifications(dataProvider: DataProvider) {
-    debugNotificationsEnabled = dataProvider.appData.debugNotificationsEnabled
-}
