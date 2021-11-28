@@ -9,20 +9,27 @@ import Foundation
 import Combine
 
 class DebugMenuViewProvider: ObservableObject {
-    private let dataProvider: DataProvider
-
-    var files: [String]
-
     private var subscriptions: Set<AnyCancellable> = Set()
 
-    init(dataProvider: DataProvider) {
-        self.dataProvider = dataProvider
-        self.files = DataStore.allFileURLs?.map({ $0.lastPathComponent }) ?? []
+    init() {
     }
 
     func resetApp() {
-        DataStore.dumpAllFiles()
-        restartApp()
+        let fileManager = FileManager.default
+        guard let documentDirectory = fileManager.urls(
+            for: .documentDirectory, in: .userDomainMask
+        ).first else { return }
+        do {
+            let filePaths = try fileManager.contentsOfDirectory(atPath: documentDirectory.path)
+            for filePath in filePaths {
+                try fileManager.removeItem(
+                    atPath: documentDirectory.appendingPathComponent(filePath).path
+                )
+            }
+            restartApp()
+        } catch {
+            XLog("Failed clearing App")
+        }
     }
 
     func lastChanged(of filename: String) -> String {

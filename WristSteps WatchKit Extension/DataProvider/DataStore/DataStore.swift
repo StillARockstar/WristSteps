@@ -51,21 +51,6 @@ final class DataStore {
     }
 }
 extension DataStore {
-    static var allFileURLs: [URL]? {
-        guard let rootDirectory = Self.rootDirectory else {
-            return nil
-        }
-        return try? FileManager.default.contentsOfDirectory(
-            at: rootDirectory,
-            includingPropertiesForKeys: nil,
-            options: [.skipsHiddenFiles]
-        )
-    }
-
-    static func dumpAllFiles() {
-        allFileURLs?.forEach({ try? FileManager.default.removeItem(at: $0) })
-    }
-
     static func lastChanged(of url: URL) -> Date? {
         let attr = try? FileManager.default.attributesOfItem(atPath: url.path)
         return attr?[FileAttributeKey.modificationDate] as? Date

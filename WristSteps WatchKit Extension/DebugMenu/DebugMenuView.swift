@@ -44,9 +44,7 @@ struct DebugMenuView: View {
 struct DebugMenuView_Previews: PreviewProvider {
     static var previews: some View {
         DebugMenuView(
-            provider: DebugMenuViewProvider(
-                dataProvider: SimulatorDataProvider()
-            )
+            provider: DebugMenuViewProvider()
         )
     }
 }
