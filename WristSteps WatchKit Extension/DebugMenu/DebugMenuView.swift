@@ -13,29 +13,31 @@ struct DebugMenuView: View {
 
     var body: some View {
         List {
-            Section(content: {
-                NavigationLink(
-                    "Files",
-                    destination: DebugMenuFilesView(provider: provider)
-                )
-                Button("Reset App", action: {
-                    showingResetAlert = true
-                })
-                .alert(isPresented: $showingResetAlert) {
-                    Alert(
-                        title: Text("Reset App"),
-                        message: Text("Delete all data and restart"),
-                        primaryButton: .destructive(
-                            Text("Reset"),
-                            action: {
-                                provider.resetApp()
-                            }),
-                        secondaryButton:
-                            .cancel()
-                    )
-                }
-                .foregroundColor(.red)
+            NavigationLink(
+                "Logs",
+                destination: DebugMenuLogsView(provider: provider)
+            )
+            NavigationLink(
+                "Files",
+                destination: Text("Files")
+            )
+            Button("Reset App", action: {
+                showingResetAlert = true
             })
+            .alert(isPresented: $showingResetAlert) {
+                Alert(
+                    title: Text("Reset App"),
+                    message: Text("Delete all data and restart"),
+                    primaryButton: .destructive(
+                        Text("Reset"),
+                        action: {
+                            provider.resetApp()
+                        }),
+                    secondaryButton:
+                        .cancel()
+                )
+            }
+            .foregroundColor(.red)
         }
         .embedInNavigation()
     }

@@ -7,11 +7,34 @@
 
 import Foundation
 import Combine
+import CoreAnalytics
 
 class DebugMenuViewProvider: ObservableObject {
-    private var subscriptions: Set<AnyCancellable> = Set()
+    private var numberOfFiles = 0
+    private var currentLoadedFiles = 0
+    @Published var loadedLogs: [InsightLogs.InsightMessage] = []
+    @Published var moreLogsAvailabe: Bool = false
 
     init() {
+    }
+
+    func loadLogs() {
+        numberOfFiles = CoreAnalytics.logs.numberOfFiles()
+        guard numberOfFiles > 0 else {
+            return
+        }
+        loadedLogs = CoreAnalytics.logs.loadLog(at: 0)
+        currentLoadedFiles = 1
+        moreLogsAvailabe = currentLoadedFiles < numberOfFiles
+    }
+
+    func loadMoreLogs() {
+        guard currentLoadedFiles < numberOfFiles else {
+            return
+        }
+        loadedLogs.append(contentsOf: CoreAnalytics.logs.loadLog(at: currentLoadedFiles))
+        currentLoadedFiles += 1
+        moreLogsAvailabe = currentLoadedFiles < numberOfFiles
     }
 
     func resetApp() {
@@ -30,22 +53,6 @@ class DebugMenuViewProvider: ObservableObject {
         } catch {
             XLog("Failed clearing App")
         }
-    }
-
-    func lastChanged(of filename: String) -> String {
-        guard let url = DataStore.rootDirectory?.appendingPathComponent(filename),
-              let date = DataStore.lastChanged(of: url)
-        else {
-            return ""
-        }
-        return date.yyyymmddhhmmString
-    }
-
-    func content(of filename: String) -> String {
-        guard let url = DataStore.rootDirectory?.appendingPathComponent(filename) else {
-            return ""
-        }
-        return DataStore.contentOf(url: url) ?? ""
     }
 
     private func restartApp() {
