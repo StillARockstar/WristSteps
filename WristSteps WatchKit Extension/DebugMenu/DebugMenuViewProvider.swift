@@ -9,6 +9,20 @@ import Foundation
 import Combine
 import CoreAnalytics
 
+extension InsightLogs.InsightMessage {
+    var id: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return dateFormatter.string(from: date) + msg
+    }
+
+    var formattedDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.string(from: date)
+    }
+}
+
 class DebugMenuViewProvider: ObservableObject {
     private var numberOfFiles = 0
     private var currentLoadedFiles = 0
