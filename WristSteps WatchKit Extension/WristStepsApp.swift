@@ -9,6 +9,8 @@ import ClockKit
 import SwiftUI
 import Combine
 import UserNotifications
+import CoreAnalytics
+import CoreInsights
 
 @main
 struct WristStepsApp: App {
@@ -51,6 +53,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         setupNotifications(dataProvider: dataProvider)
 
         XLog("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
+        CoreInsights.configureInsights([.console, .logFiles])
+        CoreAnalytics.configureInsights()
 
         self.iapManager = IAPManager()
         self.iapManager.generateProducts(with: ProductIds.allCases.map({ $0.rawValue }))

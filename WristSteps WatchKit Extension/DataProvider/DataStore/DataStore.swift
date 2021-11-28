@@ -38,7 +38,7 @@ final class DataStore {
         var fileURL = rootDirectory.appendingPathComponent(filename)
         fileURL = fileURL.appendingPathExtension("json")
         try? data.write(to: fileURL, options: [.atomicWrite])
-        trackInsightFile(fileURL)
+        CoreInsights.files.track(fileURL)
     }
 
     private static func loadJSON(withFilename filename: String) -> Data? {
