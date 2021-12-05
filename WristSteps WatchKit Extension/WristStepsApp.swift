@@ -52,6 +52,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         } else {
             CoreInsights.configureInsights([])
         }
+        CoreAnalytics.configureInsights()
         setupLogging(dataProvider: dataProvider)
 
         XLog("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
