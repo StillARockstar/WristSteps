@@ -49,14 +49,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             CoreInsights.configureInsights([.logFiles])
         } else if dataProvider.appData.debuggingEnabled && !dataProvider.appData.isPhysicalWatch {
             CoreInsights.configureInsights([.logFiles, .console])
+            print("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
         } else {
             CoreInsights.configureInsights([])
         }
-        CoreAnalytics.configureInsights()
-        setupLogging(dataProvider: dataProvider)
-
-        XLog("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
-        CoreInsights.configureInsights([.console, .logFiles])
         CoreAnalytics.configureInsights()
 
         self.iapManager = IAPManager()
@@ -70,7 +66,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 CLKComplicationServer.sharedInstance().activeComplications?.forEach {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
-                XLog("New step count: \(newValue)")
+                CoreInsights.logs.track("New Steps \(newValue)", level: .info, tags: ["DATA"])
             }
         self.stepGoalPublisher = dataProvider.userData.stepGoalPublisher
             .removeDuplicates()
@@ -78,7 +74,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 CLKComplicationServer.sharedInstance().activeComplications?.forEach {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
-                XLog("New step goal: \(newValue)")
+                CoreInsights.logs.track("New Goal \(newValue)", level: .info, tags: ["DATA"])
             }
         self.colorNamePublisher = dataProvider.userData.colorNamePublisher
             .removeDuplicates()
@@ -88,7 +84,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 }
                 CLKComplicationServer.sharedInstance().reloadComplicationDescriptors()
                 Color.update(appTint: AppColor.color(forName: newValue).color)
-                XLog("New color name: \(newValue)")
+                CoreInsights.logs.track("New Color \(newValue)", level: .info, tags: ["DATA"])
             }
 
         super.init()

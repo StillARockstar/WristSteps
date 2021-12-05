@@ -19,12 +19,14 @@ class LifeCycleHandler: NSObject {
     }
 
     func applicationDidFinishLaunching() {
-        CoreInsights.logs.track("App launched", level: .info, tags: ["APP"])
+        CoreInsights.logs.track("App Launched", level: .info, tags: ["APP"])
+        CoreInsights.logs.track("Update Trigger Launch", level: .info, tags: ["APP", "UPDATE"])
         dataProvider.healthData.updateBulk(completion: { })
     }
 
     func appWillEnterForeground() {
         CoreInsights.logs.track("App Foreground", level: .info, tags: ["APP"])
+        CoreInsights.logs.track("Update Trigger Foreground", level: .info, tags: ["APP", "UPDATE"])
         dataProvider.healthData.updateBulk(completion: { })
         registerHealthKitUpdates()
     }
@@ -51,11 +53,11 @@ class LifeCycleHandler: NSObject {
                     })
 
                     let query = HKObserverQuery(sampleType: .workoutType(), predicate: nil, updateHandler: { [weak self] _, completionHandler, error in
-                        guard error != nil else {
+                        guard error == nil else {
                             CoreInsights.logs.track("HK Query Error", level: .error, tags: ["BG"])
                             return
                         }
-                        CoreInsights.logs.track("Update Trigger: HK", level: .info, tags: ["BG"])
+                        CoreInsights.logs.track("Update Trigger HK", level: .info, tags: ["BG", "UPDATE"])
                         self?.performBackgroundTasks(completion: {
                             completionHandler()
                         })
@@ -68,7 +70,7 @@ class LifeCycleHandler: NSObject {
     func handle(_ task: WKRefreshBackgroundTask) {
         switch task {
         case let backgroundTask as WKApplicationRefreshBackgroundTask:
-            CoreInsights.logs.track("Update Trigger: Schedule", level: .info, tags: ["BG"])
+            CoreInsights.logs.track("Update Trigger Schedule", level: .info, tags: ["BG", "UPDATE"])
             performBackgroundTasks(completion: {
                 backgroundTask.setTaskCompletedWithSnapshot(false)
             })
@@ -104,7 +106,7 @@ private extension LifeCycleHandler {
     }
 
     func performBackgroundTasks(completion: (() -> Void)) {
-        CoreInsights.logs.track("BG Update Start", level: .debug, tags: ["BG", "DATA"])
+        CoreInsights.logs.track("BG Update Start", level: .info, tags: ["BG", "DATA"])
 
         let operation1 = BlockOperation { [weak self] in
             let sema = DispatchSemaphore(value: 0)
@@ -144,7 +146,7 @@ private extension LifeCycleHandler {
         loadingQueue.addOperation(operation2)
         loadingQueue.waitUntilAllOperationsAreFinished()
 
-        CoreInsights.logs.track("BG Update Done", level: .debug, tags: ["BG", "DATA"])
+        CoreInsights.logs.track("BG Update Done", level: .info, tags: ["BG", "DATA"])
 
         completion()
     }
