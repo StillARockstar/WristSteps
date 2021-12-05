@@ -136,7 +136,7 @@ class DebugMenuViewProvider: ObservableObject {
             }
             restartApp()
         } catch {
-            XLog("Failed clearing App")
+            print("Failed Resetting App")
         }
     }
 
