@@ -13,32 +13,31 @@ struct DebugMenuView: View {
 
     var body: some View {
         List {
-            Section(content: {
-                Toggle("Notifications", isOn: $provider.debugNotificationEnabled)
+            NavigationLink(
+                "Logs",
+                destination: DebugMenuLogsView(provider: provider)
+            )
+            NavigationLink(
+                "Files",
+                destination: Text("Files")
+            )
+            Button("Reset App", action: {
+                showingResetAlert = true
             })
-            Section(content: {
-                NavigationLink(
-                    "Files",
-                    destination: DebugMenuFilesView(provider: provider)
+            .alert(isPresented: $showingResetAlert) {
+                Alert(
+                    title: Text("Reset App"),
+                    message: Text("Delete all data and restart"),
+                    primaryButton: .destructive(
+                        Text("Reset"),
+                        action: {
+                            provider.resetApp()
+                        }),
+                    secondaryButton:
+                        .cancel()
                 )
-                Button("Reset App", action: {
-                    showingResetAlert = true
-                })
-                .alert(isPresented: $showingResetAlert) {
-                    Alert(
-                        title: Text("Reset App"),
-                        message: Text("Delete all data and restart"),
-                        primaryButton: .destructive(
-                            Text("Reset"),
-                            action: {
-                                provider.resetApp()
-                            }),
-                        secondaryButton:
-                            .cancel()
-                    )
-                }
-                .foregroundColor(.red)
-            })
+            }
+            .foregroundColor(.red)
         }
         .embedInNavigation()
     }
@@ -47,9 +46,7 @@ struct DebugMenuView: View {
 struct DebugMenuView_Previews: PreviewProvider {
     static var previews: some View {
         DebugMenuView(
-            provider: DebugMenuViewProvider(
-                dataProvider: SimulatorDataProvider()
-            )
+            provider: DebugMenuViewProvider()
         )
     }
 }

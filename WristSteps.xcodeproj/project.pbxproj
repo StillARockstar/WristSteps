@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,12 @@
 		4C2E95FD250030B1004A1FB0 /* LifeCycleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */; };
 		4C2E960025016F21004A1FB0 /* SetGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E95FF25016F21004A1FB0 /* SetGoalView.swift */; };
 		4C2E960425017144004A1FB0 /* SetGoalViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E960325017144004A1FB0 /* SetGoalViewProvider.swift */; };
+		4C391FC82750228200672CAE /* CoreAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4C391FC72750228200672CAE /* CoreAnalytics */; };
+		4C391FCA2750228200672CAE /* CoreInsights in Frameworks */ = {isa = PBXBuildFile; productRef = 4C391FC92750228200672CAE /* CoreInsights */; };
+		4C391FCE27540F5400672CAE /* DebugMenuLogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C391FCD27540F5400672CAE /* DebugMenuLogsView.swift */; };
+		4C391FD0275417C000672CAE /* DebugMenuLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C391FCF275417C000672CAE /* DebugMenuLogView.swift */; };
+		4C391FD227541D7A00672CAE /* DebugMenuLogsLevelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C391FD127541D7A00672CAE /* DebugMenuLogsLevelsView.swift */; };
+		4C391FD42754230C00672CAE /* DebugMenuLogsTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C391FD32754230C00672CAE /* DebugMenuLogsTagsView.swift */; };
 		4C439FA825CC731100B47C18 /* InAppPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C439FA725CC731100B47C18 /* InAppPurchase.swift */; };
 		4C6638C1258017720028B398 /* AboutAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638C0258017720028B398 /* AboutAppView.swift */; };
 		4C6638C925801DF80028B398 /* AboutAppViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638C825801DF80028B398 /* AboutAppViewProvider.swift */; };
@@ -23,7 +29,6 @@
 		4C84905F265ED0E90014C92A /* DebugMenuFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84905E265ED0E90014C92A /* DebugMenuFileView.swift */; };
 		4C88EC5D25F804330056E2F7 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88EC5C25F804330056E2F7 /* TextStyles.swift */; };
 		4C8DAA082714A455007F78A9 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8DAA072714A455007F78A9 /* HealthKit.framework */; };
-		4C8DAA0A2719FA3E007F78A9 /* DebuggingHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DAA092719FA3E007F78A9 /* DebuggingHelpers.swift */; };
 		4C90122425A385D500B2E759 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122325A385D500B2E759 /* OnboardingView.swift */; };
 		4C90122C25A3890A00B2E759 /* OnboardingViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122B25A3890A00B2E759 /* OnboardingViewProvider.swift */; };
 		4C938E532702366F00190173 /* HourlyStepsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C938E522702366F00190173 /* HourlyStepsChart.swift */; };
@@ -31,7 +36,6 @@
 		4C95D66F25017F6500CB4D35 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D66E25017F6500CB4D35 /* DataStore.swift */; };
 		4C95D6722501856600CB4D35 /* SetColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D6712501856600CB4D35 /* SetColorView.swift */; };
 		4C95D6772502804100CB4D35 /* SetColorViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D6762502804100CB4D35 /* SetColorViewProvider.swift */; };
-		4C9A3A5B27132959000A4F97 /* StepCountDebugNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9A3A5A27132959000A4F97 /* StepCountDebugNotificationController.swift */; };
 		4C9FE87424FBC503008062AF /* WristSteps WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4C9FE87324FBC503008062AF /* WristSteps WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C9FE87924FBC503008062AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9FE87824FBC503008062AF /* Assets.xcassets */; };
 		4C9FE88024FBC504008062AF /* WristSteps WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4C9FE87F24FBC504008062AF /* WristSteps WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -109,6 +113,10 @@
 		4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleHandler.swift; sourceTree = "<group>"; };
 		4C2E95FF25016F21004A1FB0 /* SetGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalView.swift; sourceTree = "<group>"; };
 		4C2E960325017144004A1FB0 /* SetGoalViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalViewProvider.swift; sourceTree = "<group>"; };
+		4C391FCD27540F5400672CAE /* DebugMenuLogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuLogsView.swift; sourceTree = "<group>"; };
+		4C391FCF275417C000672CAE /* DebugMenuLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuLogView.swift; sourceTree = "<group>"; };
+		4C391FD127541D7A00672CAE /* DebugMenuLogsLevelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuLogsLevelsView.swift; sourceTree = "<group>"; };
+		4C391FD32754230C00672CAE /* DebugMenuLogsTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuLogsTagsView.swift; sourceTree = "<group>"; };
 		4C439FA725CC731100B47C18 /* InAppPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchase.swift; sourceTree = "<group>"; };
 		4C6638C0258017720028B398 /* AboutAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppView.swift; sourceTree = "<group>"; };
 		4C6638C825801DF80028B398 /* AboutAppViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewProvider.swift; sourceTree = "<group>"; };
@@ -120,7 +128,6 @@
 		4C88EC5C25F804330056E2F7 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		4C8DAA052714A455007F78A9 /* WristSteps WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WristSteps WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		4C8DAA072714A455007F78A9 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.0.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
-		4C8DAA092719FA3E007F78A9 /* DebuggingHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingHelpers.swift; sourceTree = "<group>"; };
 		4C8DAA0B271A2529007F78A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C90122325A385D500B2E759 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4C90122B25A3890A00B2E759 /* OnboardingViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewProvider.swift; sourceTree = "<group>"; };
@@ -129,7 +136,6 @@
 		4C95D66E25017F6500CB4D35 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		4C95D6712501856600CB4D35 /* SetColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetColorView.swift; sourceTree = "<group>"; };
 		4C95D6762502804100CB4D35 /* SetColorViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetColorViewProvider.swift; sourceTree = "<group>"; };
-		4C9A3A5A27132959000A4F97 /* StepCountDebugNotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountDebugNotificationController.swift; sourceTree = "<group>"; };
 		4C9FE86F24FBC503008062AF /* WristSteps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WristSteps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9FE87324FBC503008062AF /* WristSteps WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WristSteps WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9FE87824FBC503008062AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -164,6 +170,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C391FCA2750228200672CAE /* CoreInsights in Frameworks */,
+				4C391FC82750228200672CAE /* CoreAnalytics in Frameworks */,
 				4C8DAA082714A455007F78A9 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,6 +196,26 @@
 				4C2E95FF25016F21004A1FB0 /* SetGoalView.swift */,
 			);
 			path = SetGoal;
+			sourceTree = "<group>";
+		};
+		4C391FCB27540F2B00672CAE /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				4C84905C265EC4E30014C92A /* DebugMenuFilesView.swift */,
+				4C84905E265ED0E90014C92A /* DebugMenuFileView.swift */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		4C391FCC27540F3500672CAE /* Logs */ = {
+			isa = PBXGroup;
+			children = (
+				4C391FCD27540F5400672CAE /* DebugMenuLogsView.swift */,
+				4C391FCF275417C000672CAE /* DebugMenuLogView.swift */,
+				4C391FD127541D7A00672CAE /* DebugMenuLogsLevelsView.swift */,
+				4C391FD32754230C00672CAE /* DebugMenuLogsTagsView.swift */,
+			);
+			path = Logs;
 			sourceTree = "<group>";
 		};
 		4C6638BF2580170C0028B398 /* AboutApp */ = {
@@ -249,14 +277,6 @@
 			path = SetColor;
 			sourceTree = "<group>";
 		};
-		4C9A3A5C27132C3F000A4F97 /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				4C9A3A5A27132959000A4F97 /* StepCountDebugNotificationController.swift */,
-			);
-			path = Notifications;
-			sourceTree = "<group>";
-		};
 		4C9FE86824FBC503008062AF = {
 			isa = PBXGroup;
 			children = (
@@ -294,8 +314,6 @@
 				4C8DAA052714A455007F78A9 /* WristSteps WatchKit Extension.entitlements */,
 				4C9FE88624FBC504008062AF /* WristStepsApp.swift */,
 				4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */,
-				4C8DAA092719FA3E007F78A9 /* DebuggingHelpers.swift */,
-				4C9A3A5C27132C3F000A4F97 /* Notifications */,
 				4C253A9524FBEF9B0083B66B /* DataProvider */,
 				4C7FA7D325F6A32B00ACECF7 /* DesignSystem */,
 				4CA5D620260295E200394872 /* Content */,
@@ -355,8 +373,8 @@
 			children = (
 				4CBA8F5A265A978E00CC6049 /* DebugMenuViewProvider.swift */,
 				4CBA8F54265A7FF500CC6049 /* DebugMenuView.swift */,
-				4C84905C265EC4E30014C92A /* DebugMenuFilesView.swift */,
-				4C84905E265ED0E90014C92A /* DebugMenuFileView.swift */,
+				4C391FCC27540F3500672CAE /* Logs */,
+				4C391FCB27540F2B00672CAE /* Files */,
 			);
 			path = DebugMenu;
 			sourceTree = "<group>";
@@ -407,6 +425,10 @@
 				4C9FE87624FBC503008062AF /* PBXTargetDependency */,
 			);
 			name = WristSteps;
+			packageProductDependencies = (
+				4C391FC52750210500672CAE /* CoreAnalytics */,
+				4C391FC62750210500672CAE /* CoreInsights */,
+			);
 			productName = WristSteps;
 			productReference = 4C9FE86F24FBC503008062AF /* WristSteps.app */;
 			productType = "com.apple.product-type.application.watchapp2-container";
@@ -441,6 +463,10 @@
 			dependencies = (
 			);
 			name = "WristSteps WatchKit Extension";
+			packageProductDependencies = (
+				4C391FC72750228200672CAE /* CoreAnalytics */,
+				4C391FC92750228200672CAE /* CoreInsights */,
+			);
 			productName = "WristSteps WatchKit Extension";
 			productReference = 4C9FE87F24FBC504008062AF /* WristSteps WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
@@ -474,6 +500,9 @@
 				Base,
 			);
 			mainGroup = 4C9FE86824FBC503008062AF;
+			packageReferences = (
+				4C391FC42750210500672CAE /* XCRemoteSwiftPackageReference "CoreInsights" */,
+			);
 			productRefGroup = 4C9FE87024FBC503008062AF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -522,7 +551,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C2E960025016F21004A1FB0 /* SetGoalView.swift in Sources */,
+				4C391FD42754230C00672CAE /* DebugMenuLogsTagsView.swift in Sources */,
+				4C391FCE27540F5400672CAE /* DebugMenuLogsView.swift in Sources */,
 				4CBA8F57265A819200CC6049 /* EnableDebugView.swift in Sources */,
+				4C391FD227541D7A00672CAE /* DebugMenuLogsLevelsView.swift in Sources */,
 				4C439FA825CC731100B47C18 /* InAppPurchase.swift in Sources */,
 				4CDBF15F26591A0400F6A0B9 /* UserData.swift in Sources */,
 				4C9FE89E24FBC67C008062AF /* Color+Convenients.swift in Sources */,
@@ -531,7 +563,6 @@
 				4C253A9424FBEDF80083B66B /* HomeViewProvider.swift in Sources */,
 				4CA5D62A2602965700394872 /* ContentViewProvider.swift in Sources */,
 				4C253A9724FBEFAE0083B66B /* DataProvider.swift in Sources */,
-				4C9A3A5B27132959000A4F97 /* StepCountDebugNotificationController.swift in Sources */,
 				4C9FE88724FBC504008062AF /* WristStepsApp.swift in Sources */,
 				4C90122425A385D500B2E759 /* OnboardingView.swift in Sources */,
 				4C95D6772502804100CB4D35 /* SetColorViewProvider.swift in Sources */,
@@ -552,7 +583,6 @@
 				4C84905F265ED0E90014C92A /* DebugMenuFileView.swift in Sources */,
 				4CA5D633260298F600394872 /* SettingsView.swift in Sources */,
 				4C6638D4258023B50028B398 /* Bundle+Convenients.swift in Sources */,
-				4C8DAA0A2719FA3E007F78A9 /* DebuggingHelpers.swift in Sources */,
 				4C2E960425017144004A1FB0 /* SetGoalViewProvider.swift in Sources */,
 				4C88EC5D25F804330056E2F7 /* TextStyles.swift in Sources */,
 				4C6638C1258017720028B398 /* AboutAppView.swift in Sources */,
@@ -561,6 +591,7 @@
 				4CDBF15A2659199400F6A0B9 /* HealthData.swift in Sources */,
 				4C9FE88924FBC504008062AF /* ComplicationController.swift in Sources */,
 				4CDBF1552659195C00F6A0B9 /* AppData.swift in Sources */,
+				4C391FD0275417C000672CAE /* DebugMenuLogView.swift in Sources */,
 				4CBA8F55265A7FF500CC6049 /* DebugMenuView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -867,6 +898,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4C391FC42750210500672CAE /* XCRemoteSwiftPackageReference "CoreInsights" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StillARockstar/CoreInsights";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4C391FC52750210500672CAE /* CoreAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C391FC42750210500672CAE /* XCRemoteSwiftPackageReference "CoreInsights" */;
+			productName = CoreAnalytics;
+		};
+		4C391FC62750210500672CAE /* CoreInsights */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C391FC42750210500672CAE /* XCRemoteSwiftPackageReference "CoreInsights" */;
+			productName = CoreInsights;
+		};
+		4C391FC72750228200672CAE /* CoreAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C391FC42750210500672CAE /* XCRemoteSwiftPackageReference "CoreInsights" */;
+			productName = CoreAnalytics;
+		};
+		4C391FC92750228200672CAE /* CoreInsights */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C391FC42750210500672CAE /* XCRemoteSwiftPackageReference "CoreInsights" */;
+			productName = CoreInsights;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4C9FE86924FBC503008062AF /* Project object */;
 }

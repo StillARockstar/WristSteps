@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CoreInsights",
+        "repositoryURL": "https://github.com/StillARockstar/CoreInsights",
+        "state": {
+          "branch": "main",
+          "revision": "27fb97fc064f9f1423435a750ae6f09a6741d2b8",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

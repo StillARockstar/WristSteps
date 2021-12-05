@@ -9,6 +9,8 @@ import ClockKit
 import SwiftUI
 import Combine
 import UserNotifications
+import CoreAnalytics
+import CoreInsights
 
 @main
 struct WristStepsApp: App {
@@ -23,11 +25,6 @@ struct WristStepsApp: App {
                 )
             )
         }
-
-        WKNotificationScene(
-            controller: DebugNotificationController.self,
-            category: DebugNotificationController.category
-        )
     }
 }
 
@@ -47,10 +44,16 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         let dataProvider = SimulatorDataProvider()
         #endif
         self.dataProvider = dataProvider
-        setupLogging(dataProvider: dataProvider)
-        setupNotifications(dataProvider: dataProvider)
 
-        XLog("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
+        if dataProvider.appData.debuggingEnabled && dataProvider.appData.isPhysicalWatch {
+            CoreInsights.configureInsights([.logFiles])
+        } else if dataProvider.appData.debuggingEnabled && !dataProvider.appData.isPhysicalWatch {
+            CoreInsights.configureInsights([.logFiles, .console])
+            print("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
+        } else {
+            CoreInsights.configureInsights([])
+        }
+        CoreAnalytics.configureInsights()
 
         self.iapManager = IAPManager()
         self.iapManager.generateProducts(with: ProductIds.allCases.map({ $0.rawValue }))
@@ -63,14 +66,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 CLKComplicationServer.sharedInstance().activeComplications?.forEach {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
-                XLog("New step count: \(newValue)")
-                UNUserNotificationCenter.current().addDebugNotification(
-                    title: "New Step Count",
-                    keyValues: [
-                        DebugNotificationKeyValue(key: "Step Count", value: "\(newValue)"),
-                        DebugNotificationKeyValue(key: "Date and Time", value: Date().yyyymmddhhmmString)
-                    ]
-                )
+                CoreInsights.logs.track("New Steps \(newValue)", level: .info, tags: ["DATA"])
             }
         self.stepGoalPublisher = dataProvider.userData.stepGoalPublisher
             .removeDuplicates()
@@ -78,7 +74,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 CLKComplicationServer.sharedInstance().activeComplications?.forEach {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
-                XLog("New step goal: \(newValue)")
+                CoreInsights.logs.track("New Goal \(newValue)", level: .info, tags: ["DATA"])
             }
         self.colorNamePublisher = dataProvider.userData.colorNamePublisher
             .removeDuplicates()
@@ -88,7 +84,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 }
                 CLKComplicationServer.sharedInstance().reloadComplicationDescriptors()
                 Color.update(appTint: AppColor.color(forName: newValue).color)
-                XLog("New color name: \(newValue)")
+                CoreInsights.logs.track("New Color \(newValue)", level: .info, tags: ["DATA"])
             }
 
         super.init()

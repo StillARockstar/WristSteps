@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreInsights
 
 protocol DataStoreEntity: Codable {
     static var namespace: String { get }
@@ -37,6 +38,7 @@ final class DataStore {
         var fileURL = rootDirectory.appendingPathComponent(filename)
         fileURL = fileURL.appendingPathExtension("json")
         try? data.write(to: fileURL, options: [.atomicWrite])
+        CoreInsights.files.track(fileURL)
     }
 
     private static func loadJSON(withFilename filename: String) -> Data? {
@@ -49,21 +51,6 @@ final class DataStore {
     }
 }
 extension DataStore {
-    static var allFileURLs: [URL]? {
-        guard let rootDirectory = Self.rootDirectory else {
-            return nil
-        }
-        return try? FileManager.default.contentsOfDirectory(
-            at: rootDirectory,
-            includingPropertiesForKeys: nil,
-            options: [.skipsHiddenFiles]
-        )
-    }
-
-    static func dumpAllFiles() {
-        allFileURLs?.forEach({ try? FileManager.default.removeItem(at: $0) })
-    }
-
     static func lastChanged(of url: URL) -> Date? {
         let attr = try? FileManager.default.attributesOfItem(atPath: url.path)
         return attr?[FileAttributeKey.modificationDate] as? Date

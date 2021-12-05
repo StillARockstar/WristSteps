@@ -33,9 +33,7 @@ class SettingsViewProvider {
         )
     }
     var debugMenuProvider: DebugMenuViewProvider {
-        DebugMenuViewProvider(
-            dataProvider: dataProvider
-        )
+        DebugMenuViewProvider()
     }
     var debugMenuAvailable: Bool {
         return dataProvider.appData.debuggingEnabled

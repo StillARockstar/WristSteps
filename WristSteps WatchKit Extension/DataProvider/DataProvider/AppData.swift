@@ -9,23 +9,18 @@ import Foundation
 
 protocol AppData {
     var debugConfiguration: Bool { get }
+    var isPhysicalWatch: Bool { get }
     var onboardingDone: Bool { get }
     var debuggingEnabled: Bool { get }
-    var debugNotificationsEnabled: Bool { get }
-    var lastBackgroundUpdate: String { get }
 
     func setOnboardingDone(_ flag: Bool)
     func setDebuggingEnabled(_ flag: Bool)
-    func setDebugNotificationEnabled(_ flag: Bool)
-    func setLastBackgroundUpdate(_ string: String)
 }
 
 private struct AppDataDataStoreEntity: DataStoreEntity {
     static let namespace = "app_data"
     var onboardingDone: Bool?
     var debuggingEnabled: Bool?
-    var debugNotificationsEnabled: Bool?
-    var lastBackgroundUpdate: String?
 }
 
 class AppAppData: AppData {
@@ -36,10 +31,16 @@ class AppAppData: AppData {
         return false
         #endif
     }
+    var isPhysicalWatch: Bool {
+        #if TARGET_WATCH
+        return true
+        #else
+        return false
+        #endif
+    }
 
     private(set) var onboardingDone: Bool = false
     private(set) var debuggingEnabled: Bool = false
-    private(set) var debugNotificationsEnabled: Bool = false
     private(set) var lastBackgroundUpdate: String = ""
 
     init() {
@@ -49,8 +50,6 @@ class AppAppData: AppData {
             if !debugConfiguration {
                 self.debuggingEnabled = persistedData.debuggingEnabled ?? false
             }
-            self.debugNotificationsEnabled = (persistedData.debugNotificationsEnabled ?? false) && self.debuggingEnabled
-            self.lastBackgroundUpdate = persistedData.lastBackgroundUpdate ?? ""
         }
     }
 
@@ -68,22 +67,10 @@ class AppAppData: AppData {
         persist()
     }
 
-    func setDebugNotificationEnabled(_ flag: Bool) {
-        self.debugNotificationsEnabled = flag
-        persist()
-    }
-
-    func setLastBackgroundUpdate(_ string: String) {
-        self.lastBackgroundUpdate = string
-        persist()
-    }
-
     private func persist() {
         let entity = AppDataDataStoreEntity(
             onboardingDone: self.onboardingDone,
-            debuggingEnabled: self.debuggingEnabled,
-            debugNotificationsEnabled: self.debugNotificationsEnabled,
-            lastBackgroundUpdate: self.lastBackgroundUpdate
+            debuggingEnabled: self.debuggingEnabled
         )
         DataStore.persist(entity)
     }
