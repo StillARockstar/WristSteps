@@ -9,6 +9,7 @@ import Foundation
 
 protocol AppData {
     var debugConfiguration: Bool { get }
+    var isPhysicalWatch: Bool { get }
     var onboardingDone: Bool { get }
     var debuggingEnabled: Bool { get }
     var lastBackgroundUpdate: String { get }
@@ -28,6 +29,13 @@ private struct AppDataDataStoreEntity: DataStoreEntity {
 class AppAppData: AppData {
     var debugConfiguration: Bool {
         #if DEBUG
+        return true
+        #else
+        return false
+        #endif
+    }
+    var isPhysicalWatch: Bool {
+        #if TARGET_WATCH
         return true
         #else
         return false

@@ -44,6 +44,14 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         let dataProvider = SimulatorDataProvider()
         #endif
         self.dataProvider = dataProvider
+
+        if dataProvider.appData.debuggingEnabled && dataProvider.appData.isPhysicalWatch {
+            CoreInsights.configureInsights([.logFiles])
+        } else if dataProvider.appData.debuggingEnabled && !dataProvider.appData.isPhysicalWatch {
+            CoreInsights.configureInsights([.logFiles, .console])
+        } else {
+            CoreInsights.configureInsights([])
+        }
         setupLogging(dataProvider: dataProvider)
 
         XLog("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
