@@ -33,3 +33,6 @@
 "onboarding.done.button" = "Done";
 "onboarding.welcome.title" = "Welcome to Wriststeps";
 "onboarding.welcome.text" = "Wriststeps is the app to show steps in your prefered style.";
+"aboutApp.title" = "About WristSteps";
+"aboutApp.version.title" = "App Version";
+"aboutApp.copyright.title" = "Copyright";
