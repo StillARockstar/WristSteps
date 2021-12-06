@@ -22,3 +22,14 @@
 "setColor.iap.price %@" = "um %@";
 "setColor.iap.info" = "Einmaliger Kauf";
 "setColor.iap.restore" = "Wiederherstellen";
+"onboarding.setGoal.title" = "Ziele setzen";
+"onboarding.setGoal.text" = "Gehen zu den Einstellungen und setze ein Schrittziel.";
+"onboarding.setColor.title" = "Farbe setzen";
+"onboarding.setColor.text" = "Gehen zu den Einstellungen und setze eine Farbe für Wriststeps und das Ziffernblatt.";
+"onboarding.complication.title" = "Ziffernblatt";
+"onboarding.complication.text" = "Gehe zurück zum Ziffernblatt, tappe lang auf den Bildschirm und wähle Wriststeps als Complication.";
+"onboarding.done.title" = "Frohes Gehen!";
+"onboarding.done.text" = "Das is alles was du wissen musst!";
+"onboarding.done.button" = "Fertig";
+"onboarding.welcome.title" = "Willkommen bei Wriststeps";
+"onboarding.welcome.text" = "Wriststeps ist deine App um deine Schritte in deinem Stil zu sehen.";

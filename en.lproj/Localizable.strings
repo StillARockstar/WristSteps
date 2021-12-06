@@ -22,3 +22,14 @@
 "setColor.iap.price %@" = "for %@";
 "setColor.iap.info" = "One time purchase";
 "setColor.iap.restore" = "Restore Purchase";
+"onboarding.setGoal.title" = "Set a Goal";
+"onboarding.setGoal.text" = "Go to the Settings to set your daily Step Goal.";
+"onboarding.setColor.title" = "Set a Color";
+"onboarding.setColor.text" = "Go to the Settings and pick a color for the app and complication.";
+"onboarding.complication.title" = "Set the Complication";
+"onboarding.complication.text" = "Go back to the watch face and long press to edit. From there you can select WristSteps as a Complication.";
+"onboarding.done.title" = "Happy walking!";
+"onboarding.done.text" = "And that is all you to know!";
+"onboarding.done.button" = "Done";
+"onboarding.welcome.title" = "Welcome to Wriststeps";
+"onboarding.welcome.text" = "Wriststeps is the app to show steps in your prefered style.";
