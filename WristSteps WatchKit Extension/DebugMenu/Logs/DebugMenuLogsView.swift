@@ -61,8 +61,10 @@ struct DebugMenuMessageView: View {
                     Text(message.formattedDate)
                         .font(Font.system(.footnote, design: .monospaced))
                         .foregroundColor(.gray)
+                        .multilineTextAlignment(.leading)
                     Text(message.msg)
                         .font(Font.system(.caption2, design: .monospaced))
+                        .multilineTextAlignment(.leading)
                 }
             }
         )
