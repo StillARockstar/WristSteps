@@ -14,3 +14,6 @@
 "settings.help" = "Help";
 "settings.aboutApp" = "About App";
 "settings.debugMenu" = "Debug Menu";
+"setGoal.title" = "Step Goal";
+"setGoal.text %lld" = "The recommended amount of steps is %lld per day";
+"setGoal.update" = "Save";

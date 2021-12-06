@@ -13,8 +13,16 @@ struct SetGoalView: View {
 
     var body: some View {
         VStack {
-            HeadingText("Stepgoal")
-            Body1Text("The recommended amount of steps is \(provider.recommendedStepGoal) per day")
+            Text("setGoal.title")
+                .font(.headline)
+                .foregroundColor(.appTint)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
+            Text("setGoal.text \(provider.recommendedStepGoal)")
+                .font(.footnote)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
             Spacer()
 
             HStack {
@@ -47,7 +55,7 @@ struct SetGoalView: View {
             )
 
             Spacer()
-            Button("Update Goal", action: {
+            Button("setGoal.update", action: {
                 provider.commitStepGoalUpdate()
                 presentationMode.wrappedValue.dismiss()
             })
