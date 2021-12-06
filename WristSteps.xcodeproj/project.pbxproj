@@ -24,7 +24,6 @@
 		4C6638D4258023B50028B398 /* Bundle+Convenients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638D3258023B50028B398 /* Bundle+Convenients.swift */; };
 		4C6DA385265EDA9000520C7D /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6DA384265EDA9000520C7D /* DateFormatting.swift */; };
 		4C7FA7D525F6A33A00ACECF7 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7FA7D425F6A33A00ACECF7 /* InfoView.swift */; };
-		4C88EC5D25F804330056E2F7 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88EC5C25F804330056E2F7 /* TextStyles.swift */; };
 		4C8DAA082714A455007F78A9 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8DAA072714A455007F78A9 /* HealthKit.framework */; };
 		4C90122425A385D500B2E759 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122325A385D500B2E759 /* OnboardingView.swift */; };
 		4C90122C25A3890A00B2E759 /* OnboardingViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122B25A3890A00B2E759 /* OnboardingViewProvider.swift */; };
@@ -116,7 +115,6 @@
 		4C6638D3258023B50028B398 /* Bundle+Convenients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Convenients.swift"; sourceTree = "<group>"; };
 		4C6DA384265EDA9000520C7D /* DateFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
 		4C7FA7D425F6A33A00ACECF7 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
-		4C88EC5C25F804330056E2F7 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		4C8DAA052714A455007F78A9 /* WristSteps WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WristSteps WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		4C8DAA072714A455007F78A9 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.0.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		4C8DAA0B271A2529007F78A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 				4C7FA7D425F6A33A00ACECF7 /* InfoView.swift */,
 				4C9FE8A524FBE6E4008062AF /* DetailView.swift */,
 				4C938E522702366F00190173 /* HourlyStepsChart.swift */,
-				4C88EC5C25F804330056E2F7 /* TextStyles.swift */,
 				4C9FE89D24FBC67C008062AF /* Color+Convenients.swift */,
 				4CC3713E250016F700509583 /* View+Convenients.swift */,
 			);
@@ -539,7 +536,6 @@
 				4CA5D633260298F600394872 /* SettingsView.swift in Sources */,
 				4C6638D4258023B50028B398 /* Bundle+Convenients.swift in Sources */,
 				4C2E960425017144004A1FB0 /* SetGoalViewProvider.swift in Sources */,
-				4C88EC5D25F804330056E2F7 /* TextStyles.swift in Sources */,
 				4C6638C1258017720028B398 /* AboutAppView.swift in Sources */,
 				4C7FA7D525F6A33A00ACECF7 /* InfoView.swift in Sources */,
 				4C6DA385265EDA9000520C7D /* DateFormatting.swift in Sources */,

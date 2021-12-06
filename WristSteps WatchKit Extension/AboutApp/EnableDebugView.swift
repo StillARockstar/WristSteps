@@ -12,13 +12,23 @@ struct EnableDebugView: View {
 
     var body: some View {
         VStack {
-            HeadingText("Enable Debugging")
-            BodyText("For Developer only!")
+            Text("Enable Debugging")
+                .font(.headline)
+                .foregroundColor(.appTint)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
+            Text("For Developer only!")
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
             Toggle("Enabled", isOn: $provider.debuggingEnabled)
                 .padding(.all, 10)
                 .disabled(provider.debugConfiguration)
             if provider.debugConfiguration {
-                Body1Text("Debugging in DEBUG configuration always enabled")
+                Text("Debugging in DEBUG configuration always enabled")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, alignment: .center)
             }
             Spacer()
         }

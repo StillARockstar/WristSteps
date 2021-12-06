@@ -103,8 +103,14 @@ struct SetColorView: View {
             provider.purchasePremiumColors()
         }, label: {
             VStack(spacing: 5) {
-                HeadingText(provider.premiumColorsInfo?.productTitle ?? "")
-                BodyText(provider.premiumColorsInfo?.productDescription ?? "")
+                Text(provider.premiumColorsInfo?.productTitle ?? "")
+                    .font(.headline)
+                    .foregroundColor(.appTint)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                Text(provider.premiumColorsInfo?.productDescription ?? "")
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, alignment: .center)
                 Text("setColor.iap.price \(provider.premiumColorsInfo?.productPrice ?? "")" )
                     .font(.headline)
                     .foregroundColor(.appTint)
