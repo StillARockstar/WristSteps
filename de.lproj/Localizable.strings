@@ -9,3 +9,8 @@
 "home.detail.steps" = "Schritte";
 "home.detail.goalTitle" = "Ziel";
 "home.detail.goalValue %lld" = "%lld Schritte";
+"settings.goal" = "Schritt Ziel";
+"settings.color" = "App Farbe";
+"settings.help" = "Hilfe";
+"settings.aboutApp" = "Über die App";
+"settings.debugMenu" = "Debug Menu";
