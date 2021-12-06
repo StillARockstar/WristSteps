@@ -8,7 +8,7 @@
 import WatchKit
 import UserNotifications
 import HealthKit
-import CoreInsights
+import CoreTracking
 
 class LifeCycleHandler: NSObject {
     private let dataProvider: DataProvider
@@ -19,20 +19,20 @@ class LifeCycleHandler: NSObject {
     }
 
     func applicationDidFinishLaunching() {
-        CoreInsights.logs.track("App Launched", level: .info, tags: ["APP"])
-        CoreInsights.logs.track("Update Trigger Launch", level: .info, tags: ["APP", "UPDATE"])
+        CoreTracking.logs.track("App Launched", level: .info, tags: ["APP"])
+        CoreTracking.logs.track("Update Trigger Launch", level: .info, tags: ["APP", "UPDATE"])
         dataProvider.healthData.updateBulk(completion: { })
     }
 
     func appWillEnterForeground() {
-        CoreInsights.logs.track("App Foreground", level: .info, tags: ["APP"])
-        CoreInsights.logs.track("Update Trigger Foreground", level: .info, tags: ["APP", "UPDATE"])
+        CoreTracking.logs.track("App Foreground", level: .info, tags: ["APP"])
+        CoreTracking.logs.track("Update Trigger Foreground", level: .info, tags: ["APP", "UPDATE"])
         dataProvider.healthData.updateBulk(completion: { })
         registerHealthKitUpdates()
     }
 
     func appDidEnterBackground() {
-        CoreInsights.logs.track("App Background", level: .info, tags: ["APP"])
+        CoreTracking.logs.track("App Background", level: .info, tags: ["APP"])
         scheduleNextUpdate(completion: { _ in })
     }
 
@@ -44,20 +44,20 @@ class LifeCycleHandler: NSObject {
                 read: nil,
                 completion: { [weak self] authSuccess, _ in
                     guard authSuccess else {
-                        CoreInsights.logs.track("No HK Access", level: .warning, tags: ["APP", "DATA"])
+                        CoreTracking.logs.track("No HK Access", level: .warning, tags: ["APP", "DATA"])
                         return
                     }
 
                     self?.healthStore.enableBackgroundDelivery(for: .workoutType(), frequency: .immediate, withCompletion: { updateSuccess, _ in
-                        CoreInsights.logs.track("HK Background \(updateSuccess)", level: .info, tags: ["APP", "DATA"])
+                        CoreTracking.logs.track("HK Background \(updateSuccess)", level: .info, tags: ["APP", "DATA"])
                     })
 
                     let query = HKObserverQuery(sampleType: .workoutType(), predicate: nil, updateHandler: { [weak self] _, completionHandler, error in
                         guard error == nil else {
-                            CoreInsights.logs.track("HK Query Error", level: .error, tags: ["BG"])
+                            CoreTracking.logs.track("HK Query Error", level: .error, tags: ["BG"])
                             return
                         }
-                        CoreInsights.logs.track("Update Trigger HK", level: .info, tags: ["BG", "UPDATE"])
+                        CoreTracking.logs.track("Update Trigger HK", level: .info, tags: ["BG", "UPDATE"])
                         self?.performBackgroundTasks(completion: {
                             completionHandler()
                         })
@@ -70,7 +70,7 @@ class LifeCycleHandler: NSObject {
     func handle(_ task: WKRefreshBackgroundTask) {
         switch task {
         case let backgroundTask as WKApplicationRefreshBackgroundTask:
-            CoreInsights.logs.track("Update Trigger Schedule", level: .info, tags: ["BG", "UPDATE"])
+            CoreTracking.logs.track("Update Trigger Schedule", level: .info, tags: ["BG", "UPDATE"])
             performBackgroundTasks(completion: {
                 backgroundTask.setTaskCompletedWithSnapshot(false)
             })
@@ -106,12 +106,12 @@ private extension LifeCycleHandler {
     }
 
     func performBackgroundTasks(completion: (() -> Void)) {
-        CoreInsights.logs.track("BG Update Start", level: .info, tags: ["BG", "DATA"])
+        CoreTracking.logs.track("BG Update Start", level: .info, tags: ["BG", "DATA"])
 
         let operation1 = BlockOperation { [weak self] in
             let sema = DispatchSemaphore(value: 0)
             self?.scheduleNextUpdate(completion: { _ in
-                CoreInsights.logs.track("BG Update Scheduled", level: .debug, tags: ["BG", "DATA"])
+                CoreTracking.logs.track("BG Update Scheduled", level: .debug, tags: ["BG", "DATA"])
                 sema.signal()
             })
             sema.wait()
@@ -121,7 +121,7 @@ private extension LifeCycleHandler {
             if hour == 0 {
                 let sema = DispatchSemaphore(value: 0)
                 self?.dataProvider.healthData.updateBulk(completion: {
-                    CoreInsights.logs.track("BG Update 1/1", level: .debug, tags: ["BG", "DATA"])
+                    CoreTracking.logs.track("BG Update 1/1", level: .debug, tags: ["BG", "DATA"])
                     sema.signal()
                 })
                 sema.wait()
@@ -129,11 +129,11 @@ private extension LifeCycleHandler {
                 let sema0 = DispatchSemaphore(value: 0)
                 let sema1 = DispatchSemaphore(value: 0)
                 self?.dataProvider.healthData.updateHour(hour: hour - 1, completion: {
-                    CoreInsights.logs.track("BG Update 1/2", level: .debug, tags: ["BG", "DATA"])
+                    CoreTracking.logs.track("BG Update 1/2", level: .debug, tags: ["BG", "DATA"])
                     sema0.signal()
                 })
                 self?.dataProvider.healthData.updateHour(hour: hour, completion: {
-                    CoreInsights.logs.track("BG Update 2/2", level: .debug, tags: ["BG", "DATA"])
+                    CoreTracking.logs.track("BG Update 2/2", level: .debug, tags: ["BG", "DATA"])
                     sema1.signal()
                 })
                 sema0.wait()
@@ -146,7 +146,7 @@ private extension LifeCycleHandler {
         loadingQueue.addOperation(operation2)
         loadingQueue.waitUntilAllOperationsAreFinished()
 
-        CoreInsights.logs.track("BG Update Done", level: .info, tags: ["BG", "DATA"])
+        CoreTracking.logs.track("BG Update Done", level: .info, tags: ["BG", "DATA"])
 
         completion()
     }

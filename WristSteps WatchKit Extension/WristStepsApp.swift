@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 import UserNotifications
 import CoreAnalytics
-import CoreInsights
+import CoreTracking
 
 @main
 struct WristStepsApp: App {
@@ -46,12 +46,12 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         self.dataProvider = dataProvider
 
         if dataProvider.appData.debuggingEnabled && dataProvider.appData.isPhysicalWatch {
-            CoreInsights.configureInsights([.logFiles])
+            CoreTracking.configureInsights([.logFiles])
         } else if dataProvider.appData.debuggingEnabled && !dataProvider.appData.isPhysicalWatch {
-            CoreInsights.configureInsights([.logFiles, .console])
+            CoreTracking.configureInsights([.logFiles, .console])
             print("Root URL: \(DataStore.rootDirectory?.absoluteString ?? "")")
         } else {
-            CoreInsights.configureInsights([])
+            CoreTracking.configureInsights([])
         }
         CoreAnalytics.configureInsights()
 
@@ -66,7 +66,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 CLKComplicationServer.sharedInstance().activeComplications?.forEach {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
-                CoreInsights.logs.track("New Steps \(newValue)", level: .info, tags: ["DATA"])
+                CoreTracking.logs.track("New Steps \(newValue)", level: .info, tags: ["DATA"])
             }
         self.stepGoalPublisher = dataProvider.userData.stepGoalPublisher
             .removeDuplicates()
@@ -74,7 +74,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 CLKComplicationServer.sharedInstance().activeComplications?.forEach {
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: $0)
                 }
-                CoreInsights.logs.track("New Goal \(newValue)", level: .info, tags: ["DATA"])
+                CoreTracking.logs.track("New Goal \(newValue)", level: .info, tags: ["DATA"])
             }
         self.colorNamePublisher = dataProvider.userData.colorNamePublisher
             .removeDuplicates()
@@ -84,7 +84,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 }
                 CLKComplicationServer.sharedInstance().reloadComplicationDescriptors()
                 Color.update(appTint: AppColor.color(forName: newValue).color)
-                CoreInsights.logs.track("New Color \(newValue)", level: .info, tags: ["DATA"])
+                CoreTracking.logs.track("New Color \(newValue)", level: .info, tags: ["DATA"])
             }
 
         super.init()

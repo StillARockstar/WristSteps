@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreAnalytics
 
 class SettingsViewProvider {
     private let dataProvider: DataProvider
