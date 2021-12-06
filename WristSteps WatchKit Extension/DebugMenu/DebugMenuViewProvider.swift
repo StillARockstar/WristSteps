@@ -102,8 +102,7 @@ class DebugMenuViewProvider: ObservableObject {
     }
 
     func availableTags() -> [String] {
-        let allTags = loadedLogs.map({ $0.tags }).flatMap({ $0 })
-        return allTags.removeDuplicates()
+        loadedLogs.allTags
     }
 
     func toggleTagFilter(_ tag: String) {
@@ -153,32 +152,5 @@ class DebugMenuViewProvider: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
             exit(0)
         })
-    }
-}
-
-extension Array where Element: Equatable {
-    func removeDuplicates() -> [Element] {
-        var result = [Element]()
-
-        for value in self {
-            if result.contains(value) == false {
-                result.append(value)
-            }
-        }
-
-        return result
-    }
-}
-
-public extension Array where Element == InsightLogs.InsightMessage {
-    func filterBy(tags tagStrings: [String]?) -> [Element] {
-        guard let tagStrings = tagStrings else {
-            return self
-        }
-        var results = self
-        for tagString in tagStrings {
-            results = results.filterBy(tag: tagString)
-        }
-        return results
     }
 }
