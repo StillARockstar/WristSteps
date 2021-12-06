@@ -17,3 +17,8 @@
 "setGoal.title" = "Schritt Ziel";
 "setGoal.text %lld" = "Es wird empfohlen jeden Tag %lld zu gehen";
 "setGoal.update" = "Speichern";
+"setColor.title" = "App Farbe";
+"setColor.text" = "App & Ziffernblatt Farbe";
+"setColor.iap.price %@" = "um %@";
+"setColor.iap.info" = "Einmaliger Kauf";
+"setColor.iap.restore" = "Wiederherstellen";

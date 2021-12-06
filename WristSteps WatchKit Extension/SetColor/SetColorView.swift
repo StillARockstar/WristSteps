@@ -42,8 +42,16 @@ struct SetColorView: View {
 
     private var headerView: some View {
         VStack {
-            HeadingText("App Color")
-            Body1Text("App & Watchface color")
+            Text("setColor.title")
+                .font(.headline)
+                .foregroundColor(.appTint)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
+            Text("setColor.text")
+                .font(.footnote)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
         }
         .frame(maxWidth: .infinity, alignment: .center)
     }
@@ -62,7 +70,7 @@ struct SetColorView: View {
                         )
                     }
                 )
-                    .padding()
+                    .padding(4)
                     .font(.title)
                     .foregroundColor(item.color)
                     .buttonStyle(PlainButtonStyle())
@@ -97,8 +105,16 @@ struct SetColorView: View {
             VStack(spacing: 5) {
                 HeadingText(provider.premiumColorsInfo?.productTitle ?? "")
                 BodyText(provider.premiumColorsInfo?.productDescription ?? "")
-                HeadingText("for \(provider.premiumColorsInfo?.productPrice ?? "")" )
-                Body1Text("One time purchase")
+                Text("setColor.iap.price \(provider.premiumColorsInfo?.productPrice ?? "")" )
+                    .font(.headline)
+                    .foregroundColor(.appTint)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                Text("setColor.iap.info")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, alignment: .center)
             }
             .padding([.top, .bottom], 5)
             .frame(maxWidth: .infinity)
@@ -107,7 +123,7 @@ struct SetColorView: View {
 
     private var premiumRestoreView: some View {
         Button(
-            "Restore Purchase",
+            "setColor.iap.restore",
             action: {
                 provider.restorePremiumColors()
             }

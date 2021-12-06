@@ -13,6 +13,11 @@
           "description" : "Unlock unique 81 colors to match your style",
           "displayName" : "Premium Colors",
           "locale" : "en_US"
+        },
+        {
+          "description" : "Schalte 81 einzigartige Farben frei",
+          "displayName" : "Premium Farben",
+          "locale" : "de"
         }
       ],
       "productID" : "at.Schoder.WristSteps.iap.PremiumColors",

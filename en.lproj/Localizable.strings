@@ -17,3 +17,8 @@
 "setGoal.title" = "Step Goal";
 "setGoal.text %lld" = "The recommended amount of steps is %lld per day";
 "setGoal.update" = "Save";
+"setColor.title" = "App Color";
+"setColor.text" = "App & Watchface color";
+"setColor.iap.price %@" = "for %@";
+"setColor.iap.info" = "One time purchase";
+"setColor.iap.restore" = "Restore Purchase";
