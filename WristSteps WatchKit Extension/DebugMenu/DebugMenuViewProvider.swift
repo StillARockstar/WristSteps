@@ -8,8 +8,9 @@
 import Foundation
 import Combine
 import CoreAnalytics
+import CoreInsightsShared
 
-extension InsightLevel {
+extension MessageLevel {
     var formatted: String {
         switch self {
         case .`default`:
@@ -26,11 +27,11 @@ extension InsightLevel {
     }
 }
 
-extension InsightLogs.InsightMessage {
+extension LogMessage {
     var id: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        return dateFormatter.string(from: date) + msg
+        return dateFormatter.string(from: date) + text
     }
 
     var formattedDate: String {
@@ -51,10 +52,10 @@ extension InsightLogs.InsightMessage {
 class DebugMenuViewProvider: ObservableObject {
     private var numberOfFiles = 0
     private var currentLoadedFiles = 0
-    private var loadedLogs: [InsightLogs.InsightMessage] = []
-    private(set) var shownLevels: [InsightLevel] = [.default, .error, .warning, .info, .debug]
+    private var loadedLogs: [LogMessage] = []
+    private(set) var shownLevels: [MessageLevel] = [.default, .error, .warning, .info, .debug]
     private(set) var shownTags: [String]? = nil
-    @Published var filteredLogs: [InsightLogs.InsightMessage] = []
+    @Published var filteredLogs: [LogMessage] = []
     @Published var moreLogsAvailabe: Bool = false
     @Published var loadedFileNames: [String] = []
 
@@ -62,11 +63,11 @@ class DebugMenuViewProvider: ObservableObject {
     }
 
     func loadLogs() {
-        numberOfFiles = CoreAnalytics.logs.numberOfFiles()
+        numberOfFiles = CoreAnalytics.logs.numberOfLogBatches()
         guard numberOfFiles > 0 else {
             return
         }
-        loadedLogs = CoreAnalytics.logs.loadLog(at: 0)
+        loadedLogs = CoreAnalytics.logs.loadLogBatch(at: 0)
         filteredLogs = loadedLogs
             .filterBy(levels: shownLevels)
             .filterBy(tags: shownTags)
@@ -78,7 +79,7 @@ class DebugMenuViewProvider: ObservableObject {
         guard currentLoadedFiles < numberOfFiles else {
             return
         }
-        loadedLogs.append(contentsOf: CoreAnalytics.logs.loadLog(at: currentLoadedFiles))
+        loadedLogs.append(contentsOf: CoreAnalytics.logs.loadLogBatch(at: currentLoadedFiles))
         filteredLogs = loadedLogs
             .filterBy(levels: shownLevels)
             .filterBy(tags: shownTags)
@@ -86,11 +87,11 @@ class DebugMenuViewProvider: ObservableObject {
         moreLogsAvailabe = currentLoadedFiles < numberOfFiles
     }
 
-    func availableLogLevels() -> [InsightLevel] {
+    func availableLogLevels() -> [MessageLevel] {
         return [.default, .error, .warning, .info, .debug]
     }
 
-    func toggleLogFilter(_ level: InsightLevel) {
+    func toggleLogFilter(_ level: MessageLevel) {
         if !shownLevels.contains(level) {
             shownLevels.append(level)
         } else {
@@ -127,7 +128,7 @@ class DebugMenuViewProvider: ObservableObject {
     }
 
     func content(of filename: String) -> String {
-        return CoreAnalytics.files.loadFile(name: filename)
+        return CoreAnalytics.files.loadFileContent(name: filename)
     }
 
     func resetApp() {

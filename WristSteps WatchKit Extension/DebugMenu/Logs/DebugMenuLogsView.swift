@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreAnalytics
+import CoreInsightsShared
 
 struct DebugMenuLogsView: View {
     @ObservedObject var provider: DebugMenuViewProvider
@@ -49,7 +50,7 @@ struct DebugMenuLogsView: View {
 }
 
 struct DebugMenuMessageView: View {
-    let message: InsightLogs.InsightMessage
+    let message: LogMessage
 
     var body: some View {
         NavigationLink(
@@ -62,7 +63,7 @@ struct DebugMenuMessageView: View {
                         .font(Font.system(.footnote, design: .monospaced))
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.leading)
-                    Text(message.msg)
+                    Text(message.text)
                         .font(Font.system(.caption2, design: .monospaced))
                         .multilineTextAlignment(.leading)
                 }

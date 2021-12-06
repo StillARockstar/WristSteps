@@ -7,9 +7,10 @@
 
 import SwiftUI
 import CoreAnalytics
+import CoreInsightsShared
 
 struct DebugMenuLogView: View {
-    let message: InsightLogs.InsightMessage
+    let message: LogMessage
 
     var body: some View {
         ScrollView {
@@ -26,7 +27,7 @@ struct DebugMenuLogView: View {
                     Text("Message")
                         .font(Font.system(.footnote, design: .monospaced))
                         .foregroundColor(.gray)
-                    Text(message.msg)
+                    Text(message.text)
                         .font(Font.system(.body, design: .monospaced))
                 }
                 Divider()

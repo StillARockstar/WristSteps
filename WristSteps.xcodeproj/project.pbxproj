@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4C05CDDE2503896E00C40885 /* ComplicationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05CDDD2503896E00C40885 /* ComplicationProvider.swift */; };
+		4C14AB49275E34AC00D0342A /* CoreAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4C14AB48275E34AC00D0342A /* CoreAnalytics */; };
+		4C14AB4B275E34B000D0342A /* CoreTracking in Frameworks */ = {isa = PBXBuildFile; productRef = 4C14AB4A275E34B000D0342A /* CoreTracking */; };
 		4C253A9424FBEDF80083B66B /* HomeViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C253A9324FBEDF80083B66B /* HomeViewProvider.swift */; };
 		4C253A9724FBEFAE0083B66B /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C253A9624FBEFAE0083B66B /* DataProvider.swift */; };
 		4C2E95FD250030B1004A1FB0 /* LifeCycleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */; };
 		4C2E960025016F21004A1FB0 /* SetGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E95FF25016F21004A1FB0 /* SetGoalView.swift */; };
 		4C2E960425017144004A1FB0 /* SetGoalViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E960325017144004A1FB0 /* SetGoalViewProvider.swift */; };
-		4C391FC82750228200672CAE /* CoreAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4C391FC72750228200672CAE /* CoreAnalytics */; };
-		4C391FCA2750228200672CAE /* CoreInsights in Frameworks */ = {isa = PBXBuildFile; productRef = 4C391FC92750228200672CAE /* CoreInsights */; };
 		4C391FCE27540F5400672CAE /* DebugMenuLogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C391FCD27540F5400672CAE /* DebugMenuLogsView.swift */; };
 		4C391FD0275417C000672CAE /* DebugMenuLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C391FCF275417C000672CAE /* DebugMenuLogView.swift */; };
 		4C391FD227541D7A00672CAE /* DebugMenuLogsLevelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C391FD127541D7A00672CAE /* DebugMenuLogsLevelsView.swift */; };
@@ -170,8 +170,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C391FCA2750228200672CAE /* CoreInsights in Frameworks */,
-				4C391FC82750228200672CAE /* CoreAnalytics in Frameworks */,
+				4C14AB4B275E34B000D0342A /* CoreTracking in Frameworks */,
+				4C14AB49275E34AC00D0342A /* CoreAnalytics in Frameworks */,
 				4C8DAA082714A455007F78A9 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,8 +426,7 @@
 			);
 			name = WristSteps;
 			packageProductDependencies = (
-				4C391FC52750210500672CAE /* CoreAnalytics */,
-				4C391FC62750210500672CAE /* CoreInsights */,
+				4C14AB47275E325D00D0342A /* CoreInsights */,
 			);
 			productName = WristSteps;
 			productReference = 4C9FE86F24FBC503008062AF /* WristSteps.app */;
@@ -464,8 +463,8 @@
 			);
 			name = "WristSteps WatchKit Extension";
 			packageProductDependencies = (
-				4C391FC72750228200672CAE /* CoreAnalytics */,
-				4C391FC92750228200672CAE /* CoreInsights */,
+				4C14AB48275E34AC00D0342A /* CoreAnalytics */,
+				4C14AB4A275E34B000D0342A /* CoreTracking */,
 			);
 			productName = "WristSteps WatchKit Extension";
 			productReference = 4C9FE87F24FBC504008062AF /* WristSteps WatchKit Extension.appex */;
@@ -501,7 +500,7 @@
 			);
 			mainGroup = 4C9FE86824FBC503008062AF;
 			packageReferences = (
-				4C391FC42750210500672CAE /* XCRemoteSwiftPackageReference "CoreInsights" */,
+				4C14AB46275E325D00D0342A /* XCRemoteSwiftPackageReference "CoreInsights" */,
 			);
 			productRefGroup = 4C9FE87024FBC503008062AF /* Products */;
 			projectDirPath = "";
@@ -900,7 +899,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4C391FC42750210500672CAE /* XCRemoteSwiftPackageReference "CoreInsights" */ = {
+		4C14AB46275E325D00D0342A /* XCRemoteSwiftPackageReference "CoreInsights" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StillARockstar/CoreInsights";
 			requirement = {
@@ -911,25 +910,20 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4C391FC52750210500672CAE /* CoreAnalytics */ = {
+		4C14AB47275E325D00D0342A /* CoreInsights */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4C391FC42750210500672CAE /* XCRemoteSwiftPackageReference "CoreInsights" */;
-			productName = CoreAnalytics;
-		};
-		4C391FC62750210500672CAE /* CoreInsights */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4C391FC42750210500672CAE /* XCRemoteSwiftPackageReference "CoreInsights" */;
+			package = 4C14AB46275E325D00D0342A /* XCRemoteSwiftPackageReference "CoreInsights" */;
 			productName = CoreInsights;
 		};
-		4C391FC72750228200672CAE /* CoreAnalytics */ = {
+		4C14AB48275E34AC00D0342A /* CoreAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4C391FC42750210500672CAE /* XCRemoteSwiftPackageReference "CoreInsights" */;
+			package = 4C14AB46275E325D00D0342A /* XCRemoteSwiftPackageReference "CoreInsights" */;
 			productName = CoreAnalytics;
 		};
-		4C391FC92750228200672CAE /* CoreInsights */ = {
+		4C14AB4A275E34B000D0342A /* CoreTracking */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4C391FC42750210500672CAE /* XCRemoteSwiftPackageReference "CoreInsights" */;
-			productName = CoreInsights;
+			package = 4C14AB46275E325D00D0342A /* XCRemoteSwiftPackageReference "CoreInsights" */;
+			productName = CoreTracking;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

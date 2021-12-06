@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CoreInsights
+import CoreTracking
 
 protocol DataStoreEntity: Codable {
     static var namespace: String { get }
@@ -38,7 +38,7 @@ final class DataStore {
         var fileURL = rootDirectory.appendingPathComponent(filename)
         fileURL = fileURL.appendingPathExtension("json")
         try? data.write(to: fileURL, options: [.atomicWrite])
-        CoreInsights.files.track(fileURL)
+        CoreTracking.files.track(fileURL)
     }
 
     private static func loadJSON(withFilename filename: String) -> Data? {
