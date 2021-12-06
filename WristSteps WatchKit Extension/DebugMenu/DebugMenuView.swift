@@ -19,7 +19,7 @@ struct DebugMenuView: View {
             )
             NavigationLink(
                 "Files",
-                destination: Text("Files")
+                destination: DebugMenuFilesView(provider: DebugMenuViewProvider())
             )
             Button("Reset App", action: {
                 showingResetAlert = true

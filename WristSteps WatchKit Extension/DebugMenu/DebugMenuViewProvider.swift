@@ -56,6 +56,7 @@ class DebugMenuViewProvider: ObservableObject {
     private(set) var shownTags: [String]? = nil
     @Published var filteredLogs: [InsightLogs.InsightMessage] = []
     @Published var moreLogsAvailabe: Bool = false
+    @Published var loadedFileNames: [String] = []
 
     init() {
     }
@@ -120,6 +121,14 @@ class DebugMenuViewProvider: ObservableObject {
         filteredLogs = loadedLogs
             .filterBy(levels: shownLevels)
             .filterBy(tags: self.shownTags)
+    }
+
+    func listFiles() {
+        self.loadedFileNames = CoreAnalytics.files.availableFiles()
+    }
+
+    func content(of filename: String) -> String {
+        return CoreAnalytics.files.loadFile(name: filename)
     }
 
     func resetApp() {

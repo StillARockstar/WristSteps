@@ -11,20 +11,19 @@ struct DebugMenuFilesView: View {
     let provider: DebugMenuViewProvider
 
     var body: some View {
-        ScrollView {
-//            ForEach(provider.files, id: \.self, content: { filename in
-//                NavigationLink(
-//                    destination: DebugMenuFileView(content: provider.content(of: filename)),
-//                    label: {
-//                        VStack {
-//                            BodyText(filename, alignment: .leading)
-//                            Body1Text(provider.lastChanged(of: filename), alignment: .leading)
-//                        }
-//                    })
-//            })
-//            Spacer()
-            Text("No Content")
-        }
+        List(provider.loadedFileNames, id: \.self, rowContent: { filename in
+            NavigationLink(
+                destination: DebugMenuFileView(content: provider.content(of: filename)),
+                label: {
+                    VStack {
+                        BodyText(filename, alignment: .leading)
+//                        Body1Text(provider.lastChanged(of: filename), alignment: .leading)
+                    }
+                })
+        })
+        .onAppear(perform: {
+            provider.listFiles()
+        })
     }
 }
 
