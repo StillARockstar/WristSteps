@@ -52,9 +52,14 @@ class LifeCycleHandler: NSObject {
                         CoreTracking.logs.track("HK Background \(updateSuccess)", level: .info, tags: ["APP", "DATA"])
                     })
 
+                    var skippedFirst = false
                     let query = HKObserverQuery(sampleType: .workoutType(), predicate: nil, updateHandler: { [weak self] _, completionHandler, error in
                         guard error == nil else {
                             CoreTracking.logs.track("HK Query Error", level: .error, tags: ["BG"])
+                            return
+                        }
+                        if !skippedFirst {
+                            skippedFirst = true
                             return
                         }
                         CoreTracking.logs.track("Update Trigger HK", level: .info, tags: ["BG", "UPDATE"])
