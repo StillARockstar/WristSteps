@@ -10,6 +10,9 @@
 		4C05CDDE2503896E00C40885 /* ComplicationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05CDDD2503896E00C40885 /* ComplicationProvider.swift */; };
 		4C14AB49275E34AC00D0342A /* CoreAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4C14AB48275E34AC00D0342A /* CoreAnalytics */; };
 		4C14AB4B275E34B000D0342A /* CoreTracking in Frameworks */ = {isa = PBXBuildFile; productRef = 4C14AB4A275E34B000D0342A /* CoreTracking */; };
+		4C14AB50275E7EE900D0342A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C14AB54275E7EE900D0342A /* Localizable.strings */; };
+		4C14AB51275E7EE900D0342A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C14AB54275E7EE900D0342A /* Localizable.strings */; };
+		4C14AB52275E7EE900D0342A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C14AB54275E7EE900D0342A /* Localizable.strings */; };
 		4C253A9424FBEDF80083B66B /* HomeViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C253A9324FBEDF80083B66B /* HomeViewProvider.swift */; };
 		4C253A9724FBEFAE0083B66B /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C253A9624FBEFAE0083B66B /* DataProvider.swift */; };
 		4C2E95FD250030B1004A1FB0 /* LifeCycleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */; };
@@ -100,6 +103,8 @@
 
 /* Begin PBXFileReference section */
 		4C05CDDD2503896E00C40885 /* ComplicationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationProvider.swift; sourceTree = "<group>"; };
+		4C14AB53275E7EE900D0342A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4C14AB55275E7F4100D0342A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C253A9324FBEDF80083B66B /* HomeViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewProvider.swift; sourceTree = "<group>"; };
 		4C253A9624FBEFAE0083B66B /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleHandler.swift; sourceTree = "<group>"; };
@@ -244,6 +249,7 @@
 		4C9FE86824FBC503008062AF = {
 			isa = PBXGroup;
 			children = (
+				4C14AB54275E7EE900D0342A /* Localizable.strings */,
 				4C8DAA0B271A2529007F78A9 /* Info.plist */,
 				4CDFAD5425CC7829003EA090 /* Configuration.storekit */,
 				4C9FE87724FBC503008062AF /* WristSteps WatchKit App */,
@@ -449,6 +455,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 4C9FE86824FBC503008062AF;
 			packageReferences = (
@@ -471,6 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CDFAD5525CC782F003EA090 /* Configuration.storekit in Resources */,
+				4C14AB50275E7EE900D0342A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +487,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C9FE87924FBC503008062AF /* Assets.xcassets in Resources */,
+				4C14AB51275E7EE900D0342A /* Localizable.strings in Resources */,
 				4CDFAD5925CC782F003EA090 /* Configuration.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,6 +496,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C14AB52275E7EE900D0342A /* Localizable.strings in Resources */,
 				4C9FE8A024FBC6C8008062AF /* Colors.xcassets in Resources */,
 				4CDFAD5A25CC7830003EA090 /* Configuration.storekit in Resources */,
 				4C9FE88E24FBC504008062AF /* Preview Assets.xcassets in Resources */,
@@ -554,11 +564,24 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		4C14AB54275E7EE900D0342A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C14AB53275E7EE900D0342A /* en */,
+				4C14AB55275E7F4100D0342A /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		4C9FE89024FBC504008062AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -619,6 +642,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  WristSteps
+
+  Created by Michael Schoder on 06.12.21.
+  
+*/
+"home.detail.today" = "Heute";
+"home.detail.steps" = "Schritte";
+"home.detail.goalTitle" = "Ziel";
+"home.detail.goalValue %lld" = "%lld Schritte";
