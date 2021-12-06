@@ -15,18 +15,12 @@
 		4C2E95FD250030B1004A1FB0 /* LifeCycleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */; };
 		4C2E960025016F21004A1FB0 /* SetGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E95FF25016F21004A1FB0 /* SetGoalView.swift */; };
 		4C2E960425017144004A1FB0 /* SetGoalViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E960325017144004A1FB0 /* SetGoalViewProvider.swift */; };
-		4C391FCE27540F5400672CAE /* DebugMenuLogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C391FCD27540F5400672CAE /* DebugMenuLogsView.swift */; };
-		4C391FD0275417C000672CAE /* DebugMenuLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C391FCF275417C000672CAE /* DebugMenuLogView.swift */; };
-		4C391FD227541D7A00672CAE /* DebugMenuLogsLevelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C391FD127541D7A00672CAE /* DebugMenuLogsLevelsView.swift */; };
-		4C391FD42754230C00672CAE /* DebugMenuLogsTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C391FD32754230C00672CAE /* DebugMenuLogsTagsView.swift */; };
 		4C439FA825CC731100B47C18 /* InAppPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C439FA725CC731100B47C18 /* InAppPurchase.swift */; };
 		4C6638C1258017720028B398 /* AboutAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638C0258017720028B398 /* AboutAppView.swift */; };
 		4C6638C925801DF80028B398 /* AboutAppViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638C825801DF80028B398 /* AboutAppViewProvider.swift */; };
 		4C6638D4258023B50028B398 /* Bundle+Convenients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6638D3258023B50028B398 /* Bundle+Convenients.swift */; };
 		4C6DA385265EDA9000520C7D /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6DA384265EDA9000520C7D /* DateFormatting.swift */; };
 		4C7FA7D525F6A33A00ACECF7 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7FA7D425F6A33A00ACECF7 /* InfoView.swift */; };
-		4C84905D265EC4E30014C92A /* DebugMenuFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84905C265EC4E30014C92A /* DebugMenuFilesView.swift */; };
-		4C84905F265ED0E90014C92A /* DebugMenuFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84905E265ED0E90014C92A /* DebugMenuFileView.swift */; };
 		4C88EC5D25F804330056E2F7 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88EC5C25F804330056E2F7 /* TextStyles.swift */; };
 		4C8DAA082714A455007F78A9 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8DAA072714A455007F78A9 /* HealthKit.framework */; };
 		4C90122425A385D500B2E759 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90122325A385D500B2E759 /* OnboardingView.swift */; };
@@ -51,9 +45,7 @@
 		4CA5D62A2602965700394872 /* ContentViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5D6292602965700394872 /* ContentViewProvider.swift */; };
 		4CA5D633260298F600394872 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5D632260298F600394872 /* SettingsView.swift */; };
 		4CA5D63E260299D700394872 /* SettingsViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5D63D260299D700394872 /* SettingsViewProvider.swift */; };
-		4CBA8F55265A7FF500CC6049 /* DebugMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA8F54265A7FF500CC6049 /* DebugMenuView.swift */; };
 		4CBA8F57265A819200CC6049 /* EnableDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA8F56265A819200CC6049 /* EnableDebugView.swift */; };
-		4CBA8F5B265A978E00CC6049 /* DebugMenuViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA8F5A265A978E00CC6049 /* DebugMenuViewProvider.swift */; };
 		4CC3713F250016F700509583 /* View+Convenients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3713E250016F700509583 /* View+Convenients.swift */; };
 		4CDBF1552659195C00F6A0B9 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBF1542659195C00F6A0B9 /* AppData.swift */; };
 		4CDBF15A2659199400F6A0B9 /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBF1592659199400F6A0B9 /* HealthData.swift */; };
@@ -113,18 +105,12 @@
 		4C2E95FC250030B1004A1FB0 /* LifeCycleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleHandler.swift; sourceTree = "<group>"; };
 		4C2E95FF25016F21004A1FB0 /* SetGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalView.swift; sourceTree = "<group>"; };
 		4C2E960325017144004A1FB0 /* SetGoalViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalViewProvider.swift; sourceTree = "<group>"; };
-		4C391FCD27540F5400672CAE /* DebugMenuLogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuLogsView.swift; sourceTree = "<group>"; };
-		4C391FCF275417C000672CAE /* DebugMenuLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuLogView.swift; sourceTree = "<group>"; };
-		4C391FD127541D7A00672CAE /* DebugMenuLogsLevelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuLogsLevelsView.swift; sourceTree = "<group>"; };
-		4C391FD32754230C00672CAE /* DebugMenuLogsTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuLogsTagsView.swift; sourceTree = "<group>"; };
 		4C439FA725CC731100B47C18 /* InAppPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchase.swift; sourceTree = "<group>"; };
 		4C6638C0258017720028B398 /* AboutAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppView.swift; sourceTree = "<group>"; };
 		4C6638C825801DF80028B398 /* AboutAppViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewProvider.swift; sourceTree = "<group>"; };
 		4C6638D3258023B50028B398 /* Bundle+Convenients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Convenients.swift"; sourceTree = "<group>"; };
 		4C6DA384265EDA9000520C7D /* DateFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
 		4C7FA7D425F6A33A00ACECF7 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
-		4C84905C265EC4E30014C92A /* DebugMenuFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuFilesView.swift; sourceTree = "<group>"; };
-		4C84905E265ED0E90014C92A /* DebugMenuFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuFileView.swift; sourceTree = "<group>"; };
 		4C88EC5C25F804330056E2F7 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		4C8DAA052714A455007F78A9 /* WristSteps WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WristSteps WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		4C8DAA072714A455007F78A9 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.0.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -154,9 +140,7 @@
 		4CA5D6292602965700394872 /* ContentViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewProvider.swift; sourceTree = "<group>"; };
 		4CA5D632260298F600394872 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4CA5D63D260299D700394872 /* SettingsViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewProvider.swift; sourceTree = "<group>"; };
-		4CBA8F54265A7FF500CC6049 /* DebugMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuView.swift; sourceTree = "<group>"; };
 		4CBA8F56265A819200CC6049 /* EnableDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableDebugView.swift; sourceTree = "<group>"; };
-		4CBA8F5A265A978E00CC6049 /* DebugMenuViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuViewProvider.swift; sourceTree = "<group>"; };
 		4CC3713E250016F700509583 /* View+Convenients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Convenients.swift"; sourceTree = "<group>"; };
 		4CDBF1542659195C00F6A0B9 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		4CDBF1592659199400F6A0B9 /* HealthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
@@ -196,26 +180,6 @@
 				4C2E95FF25016F21004A1FB0 /* SetGoalView.swift */,
 			);
 			path = SetGoal;
-			sourceTree = "<group>";
-		};
-		4C391FCB27540F2B00672CAE /* Files */ = {
-			isa = PBXGroup;
-			children = (
-				4C84905C265EC4E30014C92A /* DebugMenuFilesView.swift */,
-				4C84905E265ED0E90014C92A /* DebugMenuFileView.swift */,
-			);
-			path = Files;
-			sourceTree = "<group>";
-		};
-		4C391FCC27540F3500672CAE /* Logs */ = {
-			isa = PBXGroup;
-			children = (
-				4C391FCD27540F5400672CAE /* DebugMenuLogsView.swift */,
-				4C391FCF275417C000672CAE /* DebugMenuLogView.swift */,
-				4C391FD127541D7A00672CAE /* DebugMenuLogsLevelsView.swift */,
-				4C391FD32754230C00672CAE /* DebugMenuLogsTagsView.swift */,
-			);
-			path = Logs;
 			sourceTree = "<group>";
 		};
 		4C6638BF2580170C0028B398 /* AboutApp */ = {
@@ -323,7 +287,6 @@
 				4C95D6702501853F00CB4D35 /* SetColor */,
 				4C90122225A3859900B2E759 /* Onboarding */,
 				4C6638BF2580170C0028B398 /* AboutApp */,
-				4CBA8F53265A7FB000CC6049 /* DebugMenu */,
 				4C8CE64C26014DF300CF0452 /* Complication */,
 				4C9FE88A24FBC504008062AF /* Assets.xcassets */,
 				4C9FE89F24FBC6C8008062AF /* Colors.xcassets */,
@@ -366,17 +329,6 @@
 				4CA5D632260298F600394872 /* SettingsView.swift */,
 			);
 			path = Settings;
-			sourceTree = "<group>";
-		};
-		4CBA8F53265A7FB000CC6049 /* DebugMenu */ = {
-			isa = PBXGroup;
-			children = (
-				4CBA8F5A265A978E00CC6049 /* DebugMenuViewProvider.swift */,
-				4CBA8F54265A7FF500CC6049 /* DebugMenuView.swift */,
-				4C391FCC27540F3500672CAE /* Logs */,
-				4C391FCB27540F2B00672CAE /* Files */,
-			);
-			path = DebugMenu;
 			sourceTree = "<group>";
 		};
 		4CDBF16326591AA100F6A0B9 /* Helpers */ = {
@@ -550,14 +502,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C2E960025016F21004A1FB0 /* SetGoalView.swift in Sources */,
-				4C391FD42754230C00672CAE /* DebugMenuLogsTagsView.swift in Sources */,
-				4C391FCE27540F5400672CAE /* DebugMenuLogsView.swift in Sources */,
 				4CBA8F57265A819200CC6049 /* EnableDebugView.swift in Sources */,
-				4C391FD227541D7A00672CAE /* DebugMenuLogsLevelsView.swift in Sources */,
 				4C439FA825CC731100B47C18 /* InAppPurchase.swift in Sources */,
 				4CDBF15F26591A0400F6A0B9 /* UserData.swift in Sources */,
 				4C9FE89E24FBC67C008062AF /* Color+Convenients.swift in Sources */,
-				4C84905D265EC4E30014C92A /* DebugMenuFilesView.swift in Sources */,
 				4C9FE8A624FBE6E4008062AF /* DetailView.swift in Sources */,
 				4C253A9424FBEDF80083B66B /* HomeViewProvider.swift in Sources */,
 				4CA5D62A2602965700394872 /* ContentViewProvider.swift in Sources */,
@@ -570,7 +518,6 @@
 				4CA5D622260295FC00394872 /* ContentView.swift in Sources */,
 				4C95D66D250178BE00CB4D35 /* NumberFormatting.swift in Sources */,
 				4C95D66F25017F6500CB4D35 /* DataStore.swift in Sources */,
-				4CBA8F5B265A978E00CC6049 /* DebugMenuViewProvider.swift in Sources */,
 				4CDFAD5F25CC9D09003EA090 /* ColorDefinitions.swift in Sources */,
 				4C95D6722501856600CB4D35 /* SetColorView.swift in Sources */,
 				4C2E95FD250030B1004A1FB0 /* LifeCycleHandler.swift in Sources */,
@@ -579,7 +526,6 @@
 				4C90122C25A3890A00B2E759 /* OnboardingViewProvider.swift in Sources */,
 				4CC3713F250016F700509583 /* View+Convenients.swift in Sources */,
 				4CA5D63E260299D700394872 /* SettingsViewProvider.swift in Sources */,
-				4C84905F265ED0E90014C92A /* DebugMenuFileView.swift in Sources */,
 				4CA5D633260298F600394872 /* SettingsView.swift in Sources */,
 				4C6638D4258023B50028B398 /* Bundle+Convenients.swift in Sources */,
 				4C2E960425017144004A1FB0 /* SetGoalViewProvider.swift in Sources */,
@@ -590,8 +536,6 @@
 				4CDBF15A2659199400F6A0B9 /* HealthData.swift in Sources */,
 				4C9FE88924FBC504008062AF /* ComplicationController.swift in Sources */,
 				4CDBF1552659195C00F6A0B9 /* AppData.swift in Sources */,
-				4C391FD0275417C000672CAE /* DebugMenuLogView.swift in Sources */,
-				4CBA8F55265A7FF500CC6049 /* DebugMenuView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
