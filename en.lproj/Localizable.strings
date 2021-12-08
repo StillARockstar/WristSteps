@@ -1,10 +1,3 @@
-/* 
-  Localizable.strings
-  WristSteps
-
-  Created by Michael Schoder on 06.12.21.
-  
-*/
 "home.detail.today" = "Today";
 "home.detail.steps" = "steps";
 "home.detail.goalTitle" = "Goal";
@@ -36,3 +29,91 @@
 "aboutApp.title" = "About WristSteps";
 "aboutApp.version.title" = "App Version";
 "aboutApp.copyright.title" = "Copyright";
+
+"color.appBlue" = "App Blue";
+"color.appCyan" = "App Cyan";
+"color.appGreen" = "App Green";
+"color.appOrange" = "App Orange";
+"color.appPurple" = "App Purple";
+"color.appRed" = "App Red";
+"color.prem1" = "Volt";
+"color.prem2" = "White";
+"color.prem3" = "Red";
+"color.prem4" = "Orange";
+"color.prem5" = "Clementine";
+"color.prem6" = "Apricot";
+"color.prem7" = "Peach";
+"color.prem8" = "Papaya";
+"color.prem9" = "Kumquat";
+"color.prem10" = "Light Orange";
+"color.prem11" = "Mellow Yellow";
+"color.prem12" = "Lemon Cream";
+"color.prem13" = "Yellow";
+"color.prem14" = "Pollen";
+"color.prem15" = "Canary Yellow";
+"color.prem16" = "Flash Light";
+"color.prem17" = "Flash";
+"color.prem18" = "Green";
+"color.prem19" = "Spearmint";
+"color.prem20" = "Mint";
+"color.prem21" = "Beryl";
+"color.prem22" = "Sea Foam";
+"color.prem23" = "Turquoise";
+"color.prem24" = "Light Blue";
+"color.prem25" = "Surf Blue";
+"color.prem26" = "Blue";
+"color.prem27" = "Royal Blue";
+"color.prem28" = "Cerulean";
+"color.prem29" = "Lilac";
+"color.prem30" = "Mist Blue";
+"color.prem31" = "Azure";
+"color.prem32" = "Nothern Blue";
+"color.prem33" = "Storm Grey";
+"color.prem34" = "Cactus";
+"color.prem35" = "Pacific Green";
+"color.prem36" = "Blue Cobalt";
+"color.prem37" = "Alaskan Blue";
+"color.prem38" = "Dark Teal";
+"color.prem39" = "Blue Horizon";
+"color.prem40" = "Deep Navy";
+"color.prem41" = "Linen Blue";
+"color.prem42" = "Denim Blue";
+"color.prem43" = "Midnight Blue";
+"color.prem44" = "Ocean Blue";
+"color.prem45" = "Delft Blue";
+"color.prem46" = "Indigo";
+"color.prem47" = "Purple";
+"color.prem48" = "Ultra Violet";
+"color.prem49" = "Lavender Grey";
+"color.prem50" = "Lavender";
+"color.prem51" = "Pink Sand";
+"color.prem52" = "Light Pink";
+"color.prem53" = "Vintage Rose";
+"color.prem54" = "Grapefruit";
+"color.prem55" = "Pink";
+"color.prem56" = "Electric Pink";
+"color.prem57" = "Pink Citrus";
+"color.prem58" = "Neon Pink";
+"color.prem59" = "Dragon Fruit";
+"color.prem60" = "Hibiscus";
+"color.prem61" = "Pomegranate";
+"color.prem62" = "Plum";
+"color.prem63" = "Rose Red";
+"color.prem64" = "Camellia";
+"color.prem65" = "Flamingo";
+"color.prem66" = "Camel";
+"color.prem67" = "Walnut";
+"color.prem68" = "Stone";
+"color.prem69" = "Antique White";
+"color.prem70" = "Cream";
+"color.prem71" = "Soft White";
+"color.prem72" = "Pebble";
+"color.prem73" = "Cocoa";
+"color.prem74" = "Coastal Grey";
+"color.prem75" = "Dark Olive";
+"color.prem76" = "Khaki";
+"color.prem77" = "Pine Green";
+"color.prem78" = "Cyprus Green";
+"color.prem79" = "Gold";
+"color.prem80" = "Rose Gold";
+"color.prem81" = "Yellow Gold";
