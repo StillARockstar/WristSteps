@@ -5,9 +5,9 @@
         "package": "CoreInsights",
         "repositoryURL": "https://github.com/StillARockstar/CoreInsights",
         "state": {
-          "branch": "main",
-          "revision": "8215fc3787e6a4d99ea3a2d1f8bebe2ce2e7b1a2",
-          "version": null
+          "branch": null,
+          "revision": "dac36ecd7ff5ab26e5df43736d2f5dbe54c609c2",
+          "version": "1.1.0"
         }
       }
     ]
