@@ -15,6 +15,12 @@
 "setColor.iap.price %@" = "for %@";
 "setColor.iap.info" = "One time purchase";
 "setColor.iap.restore" = "Restore Purchase";
+"setColor.restore.restoredTitle" = "Restored";
+"setColor.restore.restoredText" = "All Purchases restored!";
+"setColor.restore.noPurchaseTitle" = "No Purchases";
+"setColor.restore.noPurchaseText" = "There are no purchases to restore.";
+"setColor.restore.errorTitle" = "Ooops";
+"setColor.restore.errorText" = "There way an error restoring your purchases. Try again later.";
 "onboarding.setGoal.title" = "Set a Goal";
 "onboarding.setGoal.text" = "Go to the Settings to set your daily Step Goal.";
 "onboarding.setColor.title" = "Set a Color";

@@ -15,6 +15,12 @@
 "setColor.iap.price %@" = "um %@";
 "setColor.iap.info" = "Einmaliger Kauf";
 "setColor.iap.restore" = "Wiederherstellen";
+"setColor.restore.restoredTitle" = "Wiederhergestellt";
+"setColor.restore.restoredText" = "Deine Käufe wurden wiederhergestellt!";
+"setColor.restore.noPurchaseTitle" = "Keine Käufe";
+"setColor.restore.noPurchaseText" = "Du hast bist jetzt keine Käufe getätigt.";
+"setColor.restore.errorTitle" = "Hoppla";
+"setColor.restore.errorText" = "Etwas ist schief gelaufen. Versuche es später nochmal";
 "onboarding.setGoal.title" = "Ziele setzen";
 "onboarding.setGoal.text" = "Gehen zu den Einstellungen und setze ein Schrittziel.";
 "onboarding.setColor.title" = "Farbe setzen";
