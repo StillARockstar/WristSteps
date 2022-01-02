@@ -92,7 +92,7 @@ struct SetColorView: View {
                     .foregroundColor(item.color)
                     .font(Font.system(size: 25))
 
-                    Text(item.displayName)
+                    Text(LocalizedStringKey(item.localizationKey))
                 }
             })
         })
