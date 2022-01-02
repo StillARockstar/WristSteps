@@ -19,7 +19,7 @@ class AboutAppViewProvider: ObservableObject {
 
     init(dataProvider: DataProvider) {
         self.versionNumber = "\(Bundle.main.releaseVersionNumber) (\(Bundle.main.buildVersionNumber))"
-        self.copyrightText = "© 2021 Michael Schoder"
+        self.copyrightText = "© 2022 Michael Schoder"
         self.debugConfiguration = dataProvider.appData.debugConfiguration
         self.debuggingEnabled = dataProvider.appData.debuggingEnabled
 
