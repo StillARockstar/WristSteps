@@ -108,7 +108,11 @@ private struct HourlyStepsCluster: View {
                 }
                 .padding([.leading, .trailing, .bottom], 2)
             }
-            Body1Text(renderingData.title, alignment: .leading)
+            Text(renderingData.title)
+                .font(.footnote)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 2)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)

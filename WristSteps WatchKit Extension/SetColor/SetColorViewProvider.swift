@@ -53,20 +53,20 @@ class SetColorViewProvider: ObservableObject {
                     case .success:
                         self?.restorePurchaseResult = InfoViewProvider(
                             emoji: "👍",
-                            title: "Restored",
-                            body: "All Purchases restored!"
+                            title: "setColor.restore.restoredTitle",
+                            body: "setColor.restore.restoredText"
                         )
                     case .noPurchases:
                         self?.restorePurchaseResult = InfoViewProvider(
                             emoji: "🤷‍♂️",
-                            title: "No Purchases",
-                            body: "There are no purchases to restore."
+                            title: "setColor.restore.noPurchaseTitle",
+                            body: "setColor.restore.noPurchaseText"
                         )
                     case .failed:
                         self?.restorePurchaseResult = InfoViewProvider(
                             emoji: "😬",
-                            title: "Ooops",
-                            body: "There way an error restoring your purchases. Try again later."
+                            title: "setColor.restore.errorTitle",
+                            body: "setColor.restore.errorText"
                         )
                     }
                 }

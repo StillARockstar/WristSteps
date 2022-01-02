@@ -21,21 +21,21 @@ class OnboardingViewProvider: ObservableObject {
     init(showIntroPage: Bool = true) {
         pages = [
             InfoViewProvider(
-                title: "Set a goal",
-                body: "Tap the 🏁 icon to set your daily stepgoal."
+                title: "onboarding.setGoal.title",
+                body: "onboarding.setGoal.text"
             ),
             InfoViewProvider(
-                title: "Set a color",
-                body: "Tap the 🎨 icon and pick a color for the app and complication."
+                title: "onboarding.setColor.title",
+                body: "onboarding.setColor.text"
             ),
             InfoViewProvider(
-                title: "Set the complication",
-                body: "Go back to your watch face and long press to edit. From there you can select WristSteps as a complication."
+                title: "onboarding.complication.title",
+                body: "onboarding.complication.text"
             ),
             InfoViewProvider(
-                title: "Happy walking!",
-                body: "And that is all you to know!",
-                action: InfoViewAction(label: "Done", actionBlock: { self.doneAction?() })
+                title: "onboarding.done.title",
+                body: "onboarding.done.text",
+                action: InfoViewAction(label: "onboarding.done.button", actionBlock: { self.doneAction?() })
             )
         ]
 
@@ -43,8 +43,8 @@ class OnboardingViewProvider: ObservableObject {
             pages.insert(
                 InfoViewProvider(
                     emoji: "👋",
-                    title: "Welcome to Wriststeps",
-                    body: "Wriststeps is the app to show steps in your prefered style."
+                    title: "onboarding.welcome.title",
+                    body: "onboarding.welcome.text"
                 ),
                 at: 0
             )

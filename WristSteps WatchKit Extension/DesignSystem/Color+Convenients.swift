@@ -17,16 +17,16 @@ extension Color {
 
 struct AppColor: Hashable {
     let name: String
-    let displayName: String
+    let localizationKey: String
     let color: Color    
 
     static func color(forName name: String) -> AppColor {
         return all.first(where: { $0.name == name }) ?? .appBlue
     }
 
-    init(name: String, displayName: String, color: Color) {
+    init(name: String, localizationKey: String, color: Color) {
         self.name = name
-        self.displayName = displayName
+        self.localizationKey = localizationKey
         self.color = color
     }
 }

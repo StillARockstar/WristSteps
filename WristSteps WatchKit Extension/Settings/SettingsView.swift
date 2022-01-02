@@ -18,7 +18,7 @@ struct SettingsView: View {
 
     var body: some View {
         ScrollView {
-            SettingsButton(emoji: "🏁", label: "Goal", action: {
+            SettingsButton(emoji: "🏁", label: "settings.goal", action: {
                 showingSetGoal = true
             })
             .sheet(isPresented: $showingSetGoal) {
@@ -26,7 +26,7 @@ struct SettingsView: View {
                     provider: provider.setGoalViewProvider
                 )
             }
-            SettingsButton(emoji: "🎨", label: "Color", action: {
+            SettingsButton(emoji: "🎨", label: "settings.color", action: {
                 showingSetColor = true
             })
             .sheet(isPresented: $showingSetColor) {
@@ -34,7 +34,7 @@ struct SettingsView: View {
                     provider: provider.setColorViewProvider
                 )
             }
-            SettingsButton(emoji: "👋", label: "Help", action: {
+            SettingsButton(emoji: "👋", label: "settings.help", action: {
                 showingHelp = true
             })
             .sheet(isPresented: $showingHelp) {
@@ -42,7 +42,7 @@ struct SettingsView: View {
                     provider: provider.onboardingProvider
                 )
             }
-            SettingsButton(emoji: "ℹ️", label: "About App", action: {
+            SettingsButton(emoji: "ℹ️", label: "settings.aboutApp", action: {
                 showingAboutApp = true
             })
             .sheet(isPresented: $showingAboutApp) {
@@ -51,7 +51,7 @@ struct SettingsView: View {
                 )
             }
             if provider.debugMenuAvailable {
-                SettingsButton(emoji: "🐛", label: "Debug Menu", action: {
+                SettingsButton(emoji: "🐛", label: "settings.debugMenu", action: {
                     showingDebugMenu = true
                 })
                 .sheet(isPresented: $showingDebugMenu) {
@@ -75,7 +75,7 @@ private struct SettingsButton: View {
             label: {
                 HStack(spacing: 10) {
                     Text(emoji)
-                    Text(label)
+                    Text(LocalizedStringKey(label))
                     Spacer()
                 }
                 .padding(.leading, 4)

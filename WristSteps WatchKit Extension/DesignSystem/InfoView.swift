@@ -37,11 +37,20 @@ struct InfoView: View {
                     Text(emoji)
                         .font(.largeTitle)
                 }
-                HeadingText(self.provider.title)
+                Text(LocalizedStringKey(self.provider.title))
+                    .font(.headline)
+                    .foregroundColor(.appTint)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.top, self.provider.emoji == nil ? 10 : 0)
-                BodyText(self.provider.body)
+                Text(LocalizedStringKey(self.provider.body))
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, alignment: .center)
                 if let action = self.provider.action {
-                    Button(action.label, action: action.actionBlock)
+                    Button(
+                        LocalizedStringKey(action.label),
+                        action: action.actionBlock
+                    )
                 }
             }
         }

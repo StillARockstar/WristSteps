@@ -13,15 +13,31 @@ struct AboutAppView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            HeadingText("About WristSteps")
+            Text("aboutApp.title")
+                .font(.headline)
+                .foregroundColor(.appTint)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.bottom, 12)
 
-            BodyText("App Version")
-            Body1Text(provider.versionNumber)
+            Text("aboutApp.version.title")
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
+            Text(provider.versionNumber)
+                .font(.footnote)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.bottom, 6)
 
-            BodyText("Copyright")
-            Body1Text(provider.copyrightText)
+            Text("aboutApp.copyright.title")
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
+            Text(provider.copyrightText)
+                .font(.footnote)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
 
             Spacer()
         }
