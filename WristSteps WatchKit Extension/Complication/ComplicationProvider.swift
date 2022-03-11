@@ -368,7 +368,10 @@ private extension ComplicationProvider {
     }
 
     var longStepCountString: String {
-        return "\(dataProvider.healthData.stepCount) steps"
+        return String(
+            format: NSLocalizedString("complication.content.steps", comment: ""),
+            "\(dataProvider.healthData.stepCount)"
+        )
     }
 
     var shortStepPercentString: String {
@@ -380,7 +383,10 @@ private extension ComplicationProvider {
     }
 
     var longStepPercentString: String {
-        return "\(Int(stepsPercent)) percent"
+        return String(
+            format: NSLocalizedString("complication.content.percent", comment: ""),
+            "\(Int(stepsPercent))"
+        )
     }
 
     var hourlyStepsView: some View {

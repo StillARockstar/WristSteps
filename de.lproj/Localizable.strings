@@ -37,6 +37,8 @@
 "aboutApp.copyright.title" = "Copyright";
 "complication.content.modularLarge.stepsToday" = "Schritte heute:";
 "complication.content.modularLarge.goalToday" = "Ziel erreicht:";
+"complication.content.steps" = "%@ Schritte";
+"complication.content.percent" = "%@ Prozent";
 
 "color.appBlue" = "App Blue";
 "color.appCyan" = "App Cyan";
