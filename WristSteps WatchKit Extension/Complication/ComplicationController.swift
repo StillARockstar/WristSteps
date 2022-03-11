@@ -16,55 +16,55 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         let descriptors = [
             CLKComplicationDescriptor(
                 identifier: "\(ComplicationProvider.ComplicationStyle.glyph.rawValue)_\(timestamp)",
-                displayName: "Glyph",
+                displayName: NSLocalizedString("complication.layout.gylph", comment: ""),
                 supportedFamilies: [.modularSmall, .utilitarianSmall, .circularSmall, .extraLarge],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.glyph.rawValue]
             ),
             CLKComplicationDescriptor(
                 identifier: "\(ComplicationProvider.ComplicationStyle.steps.rawValue)_\(timestamp)",
-                displayName: "Steps",
+                displayName: NSLocalizedString("complication.layout.steps", comment: ""),
                 supportedFamilies: [.modularSmall, .modularLarge, .utilitarianSmall, .utilitarianSmallFlat , .utilitarianLarge, .circularSmall, .extraLarge],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.steps.rawValue]
             ),
             CLKComplicationDescriptor(
                 identifier: "\(ComplicationProvider.ComplicationStyle.percent.rawValue)_\(timestamp)",
-                displayName: "Percent",
+                displayName: NSLocalizedString("complication.layout.percent", comment: ""),
                 supportedFamilies: [.modularSmall, .modularLarge, .utilitarianSmall, .utilitarianSmallFlat , .utilitarianLarge, .circularSmall, .extraLarge],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.percent.rawValue]
             ),
             CLKComplicationDescriptor(
                 identifier: "\(ComplicationProvider.ComplicationStyle.lineSteps.rawValue)_\(timestamp)",
-                displayName: "Line + Steps",
+                displayName: NSLocalizedString("complication.layout.lineSteps", comment: ""),
                 supportedFamilies: [.graphicCorner, .graphicRectangular],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.lineSteps.rawValue]
             ),
             CLKComplicationDescriptor(
                 identifier: "\(ComplicationProvider.ComplicationStyle.linePercent.rawValue)_\(timestamp)",
-                displayName: "Line + Percent",
+                displayName: NSLocalizedString("complication.layout.linePercent", comment: ""),
                 supportedFamilies: [.graphicCorner, .graphicRectangular],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.linePercent.rawValue]
             ),
             CLKComplicationDescriptor(
                 identifier: "\(ComplicationProvider.ComplicationStyle.ringSteps.rawValue)_\(timestamp)",
-                displayName: "Ring + Steps",
+                displayName: NSLocalizedString("complication.layout.ringSteps", comment: ""),
                 supportedFamilies: [.circularSmall, .graphicCorner],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.ringSteps.rawValue]
             ),
             CLKComplicationDescriptor(
                 identifier: "\(ComplicationProvider.ComplicationStyle.ringPercent.rawValue)_\(timestamp)",
-                displayName: "Ring + Percent",
+                displayName: NSLocalizedString("complication.layout.ringPercent", comment: ""),
                 supportedFamilies: [.modularSmall, .utilitarianSmall, .circularSmall, .extraLarge, .graphicCorner, .graphicCircular, .graphicBezel, .graphicExtraLarge],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.ringPercent.rawValue]
             ),
             CLKComplicationDescriptor(
                 identifier: "\(ComplicationProvider.ComplicationStyle.ringPercentSteps.rawValue)_\(timestamp)",
-                displayName: "Ring + Percent + Steps",
+                displayName: NSLocalizedString("complication.layout.ringsPercentSteps", comment: ""),
                 supportedFamilies: [.graphicBezel],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.ringPercentSteps.rawValue]
             ),
             CLKComplicationDescriptor(
                 identifier: "\(ComplicationProvider.ComplicationStyle.hourlySteps.rawValue)",
-                displayName: "Hourly Steps",
+                displayName: NSLocalizedString("complication.layout.hourlySteps", comment: ""),
                 supportedFamilies: [.graphicRectangular],
                 userInfo: ["style": ComplicationProvider.ComplicationStyle.hourlySteps.rawValue]
             )
