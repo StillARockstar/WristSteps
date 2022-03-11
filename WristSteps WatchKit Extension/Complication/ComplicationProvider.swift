@@ -90,14 +90,18 @@ class ComplicationProvider {
     private func modularLargeTemplate(with style: ComplicationStyle) -> CLKComplicationTemplate? {
         switch style {
         case .steps:
-            let headerProvider = CLKSimpleTextProvider(text: "Steps today:")
+            let headerProvider = CLKSimpleTextProvider(
+                text: NSLocalizedString("complication.content.modularLarge.stepsToday", comment: "")
+            )
             let bodyProvider = CLKSimpleTextProvider(text: mediumStepCountString)
             return CLKComplicationTemplateModularLargeTallBody(
                 headerTextProvider: headerProvider,
                 bodyTextProvider: bodyProvider
             )
         case .percent:
-            let headerProvider = CLKSimpleTextProvider(text: "Step goal done:")
+            let headerProvider = CLKSimpleTextProvider(
+                text: NSLocalizedString("complication.content.modularLarge.goalToday", comment: "")
+            )
             let bodyProvider = CLKSimpleTextProvider(text: mediumStepPercentString)
             return CLKComplicationTemplateModularLargeTallBody(
                 headerTextProvider: headerProvider,
@@ -364,7 +368,10 @@ private extension ComplicationProvider {
     }
 
     var longStepCountString: String {
-        return "\(dataProvider.healthData.stepCount) steps"
+        return String(
+            format: NSLocalizedString("complication.content.steps", comment: ""),
+            "\(dataProvider.healthData.stepCount)"
+        )
     }
 
     var shortStepPercentString: String {
@@ -376,7 +383,10 @@ private extension ComplicationProvider {
     }
 
     var longStepPercentString: String {
-        return "\(Int(stepsPercent)) percent"
+        return String(
+            format: NSLocalizedString("complication.content.percent", comment: ""),
+            "\(Int(stepsPercent))"
+        )
     }
 
     var hourlyStepsView: some View {

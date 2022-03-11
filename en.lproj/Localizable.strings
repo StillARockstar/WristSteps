@@ -35,6 +35,19 @@
 "aboutApp.title" = "About WristSteps";
 "aboutApp.version.title" = "App Version";
 "aboutApp.copyright.title" = "Copyright";
+"complication.content.modularLarge.stepsToday" = "Steps today:";
+"complication.content.modularLarge.goalToday" = "Goal reached:";
+"complication.content.steps" = "%@ steps";
+"complication.content.percent" = "%@ percent";
+"complication.layout.gylph" = "Glyph";
+"complication.layout.steps" = "Steps";
+"complication.layout.percent" = "Percent";
+"complication.layout.lineSteps" = "Line + Steps";
+"complication.layout.linePercent" = "Line + Percent";
+"complication.layout.ringSteps" = "Ring + Steps";
+"complication.layout.ringPercent" = "Ring + Percent";
+"complication.layout.ringsPercentSteps" = "Ring + Percent + Steps";
+"complication.layout.hourlySteps" = "Hourly Steps";
 
 "color.appBlue" = "App Blue";
 "color.appCyan" = "App Cyan";
