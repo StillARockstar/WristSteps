@@ -35,6 +35,8 @@
 "aboutApp.title" = "Über WristSteps";
 "aboutApp.version.title" = "App Version";
 "aboutApp.copyright.title" = "Copyright";
+"complication.content.modularLarge.stepsToday" = "Schritte heute:";
+"complication.content.modularLarge.goalToday" = "Ziel erreicht:";
 
 "color.appBlue" = "App Blue";
 "color.appCyan" = "App Cyan";
